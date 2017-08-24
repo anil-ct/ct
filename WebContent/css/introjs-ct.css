@@ -1,0 +1,167 @@
+.ct-code-b-yellow {
+	font-family: monospace;
+	font-weight: bold;
+	color: yellow;
+}
+
+.ct-keywords-color {
+	font-family: monospace;
+	font-weight: bold;
+	color: rgb(132, 4, 99);
+}
+
+.ct-variables-color {
+	font-family: monospace;
+	color: rgb(147, 89, 89);
+}
+
+.ct-blue-color {
+	color: blue;
+}
+
+.ct-box-main {
+	margin: 10px;
+	padding: 10px;
+}
+
+.ct-demo-heading {
+	background: highlight none repeat scroll 0 0;
+    border-radius: 10px;
+    font-size: 18px;
+    position: relative;
+    z-index: 9999999;
+}
+
+.introjs-tooltiptext {
+	min-height: 25px !important;
+}
+
+.typingCursor::after {
+    width: 0 !important;
+}
+
+
+.visibility-hidden {
+	visibility: hidden !important;
+}
+
+.opacity00 {
+	opacity: 0;
+}
+
+.center {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.introjs-tooltip {
+	padding: 5px !important;
+}
+
+.introjs-tooltip > ol, ul {
+	margin-bottom: 0;
+    margin-left: -15px;
+}
+
+.introjs-tooltiptext {
+	border-top-left-radius: 3px !important;
+	border-top-right-radius: 3px !important;
+}
+
+.introjs-tooltipbuttons {
+	border-bottom-left-radius: 3px !important;
+	border-bottom-right-radius: 3px !important;
+}
+
+.introjs-tooltiptext, .introjs-tooltipbuttons {
+	background-color: #003399;
+	color: white; 
+	padding: 2px;
+}
+
+a:focus, a:hover {
+	text-decoration:none !important;
+}
+.introjs-button {
+	margin: 10px 2px 2px !important;
+	padding: 3px !important;
+	background-image:none !important;
+	text-shadow:none !important;
+	color:white !important;
+}
+
+.introjs-prevbutton, .introjs-nextbutton, .introjs-skipbutton {
+	border-radius: 3px !important; 
+}
+
+.introjs-prevbutton {
+	background-color: #5bc0de !important;
+}
+
+.introjs-nextbutton {
+	background-color:green !important;
+}
+
+.introjs-skipbutton {
+	margin-right: 15px !important; 
+	background-color:orange !important;
+}
+@keyframes ellipsis {
+    from {
+        width: 0;
+        margin-right: 0;
+    }
+    to {
+        width: 40px;
+        margin-right: -40px;
+    }
+}
+
+.loading::after {
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: bottom;
+    text-align: left;
+    animation: ellipsis 1s infinite steps(4);
+    content: "…";
+}
+
+.popover-content {
+	background-color: #003399;
+    border-radius: 4px;
+    color: white;
+    font-size: 12px;
+    margin: 4px;
+    padding: 5px;
+}
+
+.popover {
+	width: -moz-max-content;
+}
+
+.tooltip {
+	width: -moz-max-content;
+}
+
+.output-console {  
+    border-radius: 8px !important;
+    overflow: auto;
+    margin: 30px 10px 10px 10px;
+}
+
+.output-console-title-bar {
+    background-image: -moz-linear-gradient(center top, #e8e8e8, #bcbbbc);
+    padding: 2px 0;
+    text-align: center;
+}
+
+.output-console-body {
+    background-color: black;
+    padding-left: 20px;
+    color: #f0f0f0;
+    font-family: monospace;
+    font-size: 10px;
+    white-space: pre;
+    overflow-y: auto;
+}

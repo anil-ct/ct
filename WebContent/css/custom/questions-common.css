@@ -1,0 +1,30 @@
+.qTextPreviewPopover {
+	max-width: 100% !important;	
+}
+
+.ul-square {
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+.li-square-red:before {
+	margin-right: 5px;
+	color : red;
+	content :"■";
+	/*font-family:"Arial Black";*/
+}
+
+.li-square-orange:before {
+	margin-right: 5px;
+	color : orange;
+	content :"■";
+	/*font-family:"Arial Black";*/
+}
+
+.li-square-green:before {
+	margin-right: 5px;
+	color : green;
+	content :"■";
+	/*font-family:"Arial Black";*/
+}

@@ -1,0 +1,182 @@
+.panel-new-subs {
+	border-color: #B125E7;
+}
+
+.panel-new-subs>.panel-heading {
+	color: #B125E7;
+	background-color: #DCA3F1;
+	border-color: #D288EE;
+}
+
+.panel-completed-subs {
+	border-color: #209196;
+}
+
+.panel-completed-subs>.panel-heading {
+	color: #209196;
+	background-color: #86E2E6;
+	border-color: #86E2E6;
+}
+
+.panel-payment-due {
+	border-color: #108A37;
+}
+
+.panel-payment-due>.panel-heading {
+	color: #108A37;
+	background-color: #87F0A8;
+	border-color: #68D38A;
+}
+
+.panel-pending-subs {
+	border-color: #EE2509;
+}
+
+.panel-pending-subs>.panel-heading {
+	color: #EE2509;
+	background-color: #F59F93;
+	border-color: #F37462;
+}
+
+.panel-success > .panel-heading {
+  color: #3c763d !important;
+  background-color: #A6F9A6 !important;
+  border-color: #86E437 !important;
+}
+
+.taskBox {
+	margin-top: 20px;
+}
+
+.task-count {
+	color: white;
+	/* background: #91877b; */
+	text-shadow: 1px 1px 2px black, 0 0 1em gray, 0 0 0.2em gray;
+	/* 
+  For the above text shadow see the below link
+  https://developer.mozilla.org/en-US/docs/Web/CSS/text-shadow
+  */
+	font-size: 24pt;
+	text-align: center;
+}
+
+.bs-callout {
+	padding: 0 20px;
+	margin: 20px 0;
+	border: 1px solid #eee;	
+	border-left-width : 10px;
+	border-radius: 3px;
+}
+	.bs-callout-body {
+		padding: 10px 0px 10px 20px;
+		margin: 0px;
+	}
+
+.bs-callout-info {
+	border-left-color: #5bc0de;
+}
+
+.bs-callout-success {
+	border-left-color: #90ee90;
+}
+	
+	.bs-callout-success > .bs-callout-body{
+		background-color: #E1FCE1;
+	}
+	
+	.bs-callout h4, .bs-callout h3 {
+		color : #0095dd;/* bright light-blue */
+	} 
+	
+	.bs-callout.text-muted h4, .bs-callout.text-muted h3 {
+		/* original .text-muted  color*/
+  		color: #999999;
+	} 
+	
+	.bs-callout-success > .bs-callout-body{
+		background-color: #F2FFF2;/* #E1FCE1; */
+	}
+
+
+.bs-callout-warm {
+	border-left-color: #ffe680;
+	border-left-color: rgba(255,203,0,.5);
+}
+	
+	.bs-callout-warm > .bs-callout-body{
+		background-color: #fffae6;
+  		background-color: rgba(255,203,0,.1);
+	}
+	
+.bs-callout-warning {
+	border-left-color: #ffa500;
+}
+
+
+	.bs-callout-warning > .bs-callout-body{
+		background-color: #FFF3C2;
+	}
+	
+	.bs-callout-blue {
+		border-left-color: #A6F3F9;
+	}
+	
+	.bs-callout-blue > .bs-callout-body{
+		background-color: #F2FFFC;/*light-blue background */
+	}
+	
+
+	.bs-callout-gray {
+		border-left-color: #CFCFCF;
+		border-left-color: rgba(207, 207, 207, 1);
+	} 
+
+	.bs-callout-gray > .bs-callout-body{
+		background-color: #F2F1EF;/* light-grey */
+	    background-color: rgba(161, 161, 161, 0.1);
+	}
+	
+	
+	
+	
+	
+	.bs-callout {
+	  padding: 0 !important;
+	}
+
+.leftHeading {
+	padding: 0 0px !important;
+	margin-left: -60px;
+	margin-top: 70px;
+	color: white;
+	font-weight: bold;
+}
+
+.leftHeadingSevenDays {
+	padding: 0 0px !important;
+	margin-left: -85px;
+	margin-top: 70px;
+	color: white;
+	font-weight: bold;
+}
+
+.leftHeadingOneMonth {
+	padding: 0 0px !important;
+	margin-left: -90px;
+	margin-top: 70px;
+	color: white;
+	font-weight: bold;
+}
+
+.rotate {
+	/* Safari */
+	-webkit-transform: rotate(-90deg);
+	/* Firefox */
+	-moz-transform: rotate(-90deg);
+	/* IE */
+	-ms-transform: rotate(-90deg);
+	/* Opera */
+	-o-transform: rotate(-90deg);
+	/* Internet Explorer */
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+}

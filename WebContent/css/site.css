@@ -1,0 +1,49 @@
+.left, .right {
+	height: 50%;
+}
+
+footer {
+	margin: 50px 0;
+}
+
+@media ( max-width : 768px) {
+	.logo {
+		content: url("../img/logo-new.png");
+		max-width: 100% !important;
+	}
+	.navbar-header {
+		max-width: 100% !important;
+	}
+}
+
+@media ( min-width : 768px) {
+	.navigation {
+		display: none !important;
+	}
+}
+
+a {
+	font-size: 20px;
+	color: grey;
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+a:HOVER {
+	color: #FF8800 !important;
+}
+
+.active {
+	color: #FF8800 !important;	
+}
+
+.divider{
+	border-top: 1px solid rgb(255, 136, 0) !important;
+}
+
+.navbar-toggle {
+  border: 1px solid rgb(253, 152, 33) !important;
+} 
+
+.navbar-toggle .icon-bar {
+  background-color: rgb(253, 152, 33) !important;
+} 

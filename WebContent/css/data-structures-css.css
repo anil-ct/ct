@@ -1,0 +1,61 @@
+.ct-pink-color {
+	font-family: monospace;
+	color: #ed138e;
+}
+
+.ct-code-b-green {
+	font-family: monospace;
+	font-weight: bold;
+	color: rgb(124, 255, 2);
+}
+
+.ct-code-b-red {
+	font-family: monospace;
+	font-weight: bold;
+	color: rgb(252, 66, 66);
+}
+
+.blinking-border-background-red {
+	animation-name: blink-border-background-red;
+	animation-duration: 1s;
+	animation-iteration-count: 3;
+	animation-direction: alternate ;
+}
+
+@keyframes blink-border-background-red { 
+	50% {
+		border-color: red;
+		background: rgba(255, 0, 0, 0.38);
+	}
+}
+
+.blinking-border-jar-blue {
+	animation-name: blink-jar-blue;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate ;
+	border-color: lightblue;
+	border-width: 2px;
+}
+
+@keyframes blink-jar-blue { 
+	50% {
+		border-color: #66afe9;
+		box-shadow: 0 10px 10px rgba(102, 175, 233, .6);
+	}
+}
+
+.blinking-border-jar-red {
+	animation-name: blink-jar-red;
+	animation-duration: 1s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate ;
+	border-color: rgba(255, 0, 0, 0.55);
+	border-width: 2px;
+}
+
+@keyframes blink-jar-red { 
+	50% {
+		box-shadow: 0 10px 10px rgb(255, 110, 110);
+	}
+}

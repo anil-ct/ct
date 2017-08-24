@@ -1,0 +1,75 @@
+
+
+@media print {
+	/* body { 
+	margin: 0; 
+	background-image: none; 
+	font-size: 10pt; 
+	} */
+	@PAGE{
+		margin: 5px;
+	}
+	body{
+		color:gray;
+	}
+}
+
+	h3{
+		text-align: center
+	}
+.heading{
+	font-size:10pt;
+}
+.labelClass {
+	font-family:Helvetica;
+	font-size: 7pt; 
+	padding-right: 5px;
+}
+
+.zeroMargin {
+	margin-left : 0px !important;
+	margin-right : 0px !important;
+}
+
+.textFieldClass {
+	font-family:Helvetica;
+	font-size: 7pt; 
+	/*  border-bottom: dotted 1px; */
+	font-weight: bold;
+	padding-right: 10px;
+}
+span{
+	margin-left: 1px
+}
+
+.broderDiv{
+	margin-top:7px;
+	border: 1px solid rgb(97, 97, 97);
+	border-radius: 5px;
+	padding: 5px;
+}
+.blockDiv{
+	font-family:Helvetica;
+	font-size: 7pt; 
+	border: dotted 1px;
+	border-color: rgb(97, 97, 97);
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-right: 5px;
+	padding: 2px 5px;
+}
+
+.checkedCheckbox{
+	font-family:Helvetica;
+	font-size: 7pt; 
+	border: dotted 1px;
+	font-weight: bold;
+	border-color: rgb(97, 97, 97);
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-right: 5px;
+	padding: 2px 5px;
+}
+.spanPaddingRight{
+	padding-right: 20px;
+}

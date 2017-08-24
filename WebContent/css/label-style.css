@@ -1,0 +1,53 @@
+/* =======================================
+
+		Main Stylesheet
+		
+		Building on Twitter Bootstrap
+		http://twitter.github.com/bootstrap/
+		
+========================================== 
+@import url('bootstrap.min.css');
+
+@import url('bootstrap-responsive.min.css');
+*/
+
+/* New styles below */
+label.valid {
+	width: 24px;
+	height: 24px;
+	background: url(../img/valid.png) center center no-repeat;
+	display: inline-block;
+	text-indent: -9999px;
+}
+
+label.error {
+	font-weight: bold;
+	color: red;
+	padding: 2px 8px;
+	margin-top: 2px;
+}
+
+.my-round-border4 {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	background-image: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+	background-repeat: repeat-x;
+	color: #333333;
+	background-color: #f5f5f5;
+	border-color: #dddddd;
+	border: 1px solid transparent;
+	
+}
+
+.border4 {
+	border: 1px solid transparent;
+	border-color: #dddddd;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+
+#generalSearchTable {
+	
+}

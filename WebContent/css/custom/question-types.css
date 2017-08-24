@@ -1,0 +1,75 @@
+.qType-MC-MA:before {
+  content: 'MC-MA';
+  background-color: #AAFF9C;
+  background-color: rgba(112, 255, 96, 0.57);
+  border-left: 4px solid #00BA11;
+  color: #00BA11;
+}
+
+.qType-MC-SA:before {
+  content: 'MC-SA';
+  background-color: #FCFF9C;
+  background-color: rgba(255, 247, 96, 0.57);
+  border-left: 4px solid #00BA11;
+  color: #00BA11;
+}
+
+.qType-CErr:before {
+  content: 'CErr';
+  background-color: #f9dbcc;
+  background-color: rgba(230,110,51,.25);
+  border-left: 4px solid #e66e33;
+  color: #e66e33;
+}
+
+.qType-CEval:before {
+  content: 'CEval';
+  background-color: #A8EBF7;
+  background-color: rgba(148, 236, 247, 0.25);
+  border-left: 4px solid #4758FF;
+  color: #4758FF;
+}
+
+.qType-CWrit:before {
+  content: 'CWrit';
+  background-color: #FBC4FF;
+  background-color: rgba(255, 185, 251, 1);
+  border-left: 4px solid #CD0EC3;
+  color: #CD0EC3;
+}
+
+.qType-RCO:before {
+  content: 'RCO';
+  background-color: #f9dbcc;
+  background-color: rgba(230,110,51,.25);
+  border-left: 4px solid #e66e33;
+  color: #e66e33;
+}
+
+.qType-FIB:before {
+  content: 'FIB';
+  background-color: #f9dbcc;
+  background-color: rgba(230,110,51,.25);
+  border-left: 4px solid #e66e33;
+  color: #e66e33;
+}
+
+.qType-MF:before {
+  content: 'MF';
+  background-color: #f9dbcc;
+  background-color: rgba(230,110,51,.25);
+  border-left: 4px solid #e66e33;
+  color: #e66e33;
+}
+
+.qType-MC-MA:before, .qType-MC-SA:before, .qType-CErr:before, .qType-CEval:before,
+	 .qType-CWrit:before, .qType-RCO:before, .qType-FIB:before, .qType-MF:before {
+  font: .7em Helvetica,Arial,sans-serif;
+  font-weight: 700;
+  min-width: 20px;
+  border-radius: 2px;
+  letter-spacing: 1px;
+  margin: .2em .2em 0 0;
+  padding: .45em .35em .35em;
+  white-space: nowrap;
+}

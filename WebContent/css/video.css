@@ -1,0 +1,247 @@
+/* Pretty stuff */
+
+body {
+	-moz-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	margin: 10px;
+	text-align: center;
+}
+
+#basic body {
+	background-image: url(../img/bg1.png);
+	color: #e1ffa1;
+}
+
+#demoDrag body {
+	background-image: url(../img/bg.png);
+	background-color: #F7E842;
+	color: #6C3801;
+}
+
+#stack body {
+	background-image: url(../img/bg2.png);
+	color: #cfeef8;
+}
+
+#zindex body {
+	background-image: url(../img/bg3.png);
+	color: #f1cafd;
+}
+
+#basic h1 { color:#a5eb0e }
+#demoDrag h1 { color:#C56900 }
+#stack h1 { color:#3aceff }
+#zindex h1 { color:#e17fff }
+
+#basic video {
+	border: 5px solid #1a5b0e;
+	-moz-box-shadow:0px 0px 12px #166809; 
+	-webkit-box-shadow:0px 0px 12px #166809; 
+	box-shadow:0px 0px 12px #166809; 
+}
+#basic video:focus { border: 5px solid #a5eb0e }
+
+#zindex video { border: 5px solid #4a1f57 }
+#zindex video:focus { border: 5px solid #e17fff }
+
+#stack video {
+	border: 5px solid #1a5b0e;
+	-moz-box-shadow:0px 0px 12px #163d6f; 
+	-webkit-box-shadow:0px 0px 12px #163d6f; 
+	box-shadow:0px 0px 12px #163d6f; 
+}
+
+
+
+/* Type stuff ---------------------------------- */
+
+/* layout  ---------------------------------- */
+
+nav {
+	display: block;
+	overflow: hidden;
+	background-image: url(../img/blur.png);
+}
+nav ul {
+	width: auto;
+	float: left;
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px g; 
+	overflow: hidden;
+}
+nav ul li {
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+nav ul li a {
+	display: block;
+	margin: 5px;
+	padding: 5px;
+	background: #000;
+	color:yellow;
+}
+
+
+
+a.blogpost {
+	float: right;
+	color: #000;
+	margin: 10px;
+} 
+
+
+div.intro {
+	width: 40%;
+	padding: 20px;
+	position: absolute;
+	top:0;
+	right: 0;
+}
+
+/* Test one - Basic -------------------------------- */
+
+
+
+
+
+/* Test two - Resize -------------------------------- */
+
+
+.theMovie1 {
+	clear: both;
+	position: absolute;
+	/* width: 350px; */
+	display: block;
+	/* margin: 0 auto; */
+	text-align: center;
+	 z-index: 4; 
+}
+#draggable { 
+	margin: 10px auto;
+	float: left;
+	position: absolute;
+}
+	
+#draggable p { cursor: move; }
+
+.handle {
+	text-indent: -999px;
+	overflow: hidden;
+	height: 26px;
+	width: 22px;
+	background: url(../img/drag2.png) no-repeat 0 0; 
+	margin: 0;
+	padding: 0;	
+}
+#resizable {
+	width:300px;
+	display:block;
+	overflow: hidden;
+	padding:20px;
+	background: #FFF;
+	border: 1px solid #ccc;
+	-moz-box-shadow:0px 3px 10px #6D7575;
+	-webkit-box-shadow:0px 3px 10px #6D7575;
+	/* 	box-shadow:0px 3px 10px #6D7575; Ghosting on opera */
+}
+#draggable video {
+	width: 100%;
+	height: auto;
+}
+
+/* Test three - Stack and Rotate -------------------------------- */
+
+
+#videoStack {
+	position: relative;
+	display: block;
+	clear: both;
+	width: 800px;
+	margin: 10px auto;
+	padding-top: 60px;
+}
+#videoStack video {
+	padding: 10px;
+	background: #FFF;
+	border: 1px solid #ccc;
+	position: absolute;
+}
+
+#stack #videoStack video:focus {
+	z-index: 900;	
+}
+
+#videoStack video#v1 {
+	left:300px;
+	-moz-transform: rotate(-9deg);
+	-o-transform: rotate(-9deg);
+	-webkit-transform: rotate(-9deg);
+	width: 240px;
+}
+
+#videoStack video#v2 {
+	left:90px;
+	-moz-transform: rotate(129deg);
+	-o-transform: rotate(129deg);
+	-webkit-transform: rotate(129deg);
+}
+#videoStack video#v3 {
+	left:140px;
+	-moz-transform: rotate(190deg);
+	-o-transform: rotate(190deg);
+	-webkit-transform: rotate(190deg);
+}
+
+
+/* Test four - z-index -------------------------------- */
+
+
+#zindexTest #under { z-index: 100 }
+
+#zindexTest #over { z-index: 300 }
+
+#zindexTest video { z-index: 200 }
+
+
+#zindexTest {
+	position: relative;
+	width: 530px;
+	height: 400px;
+	display: block;
+	margin: 0 auto;
+	text-align: center;
+}
+#zindexTest video {
+	position: absolute;
+	left: 90px;	
+	top:0px;
+}
+#zindexTest h4 {
+	padding: 10px;
+	margin: 0;
+}
+#zindexTest #under {
+	position: absolute;
+	top:80px;
+	left: 10px;
+	background: #fff;
+	width: 500px;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+#zindexTest #over {
+	position: absolute;
+	left: 10px;	
+	top:10px;
+	background: rgba(22,33,66,0.8);
+	width: 150px;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}

@@ -1,0 +1,129 @@
+/* Menu CSS */#cssmenu,
+#cssmenu > ul {
+  /* background: url(images/highlight-bg.png) repeat; */
+  background-color: rgb(245, 205, 77);
+  color: black;/* rgb(206, 161, 20); */
+  padding-bottom: 3px;
+  font-weight: normal;
+}
+#cssmenu:before,
+#cssmenu:after,
+#cssmenu > ul:before,
+#cssmenu > ul:after {
+  content: "";
+  display: table;
+}
+#cssmenu:after,
+#cssmenu > ul:after {
+  clear: both;
+}
+#cssmenu {
+  width: auto;
+  zoom: 1;
+}
+#cssmenu > ul {
+  /* background: url(images/menu-bg.png) repeat; */
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+#cssmenu > ul li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#cssmenu > ul > li {
+  float: left;
+  position: relative;
+}
+#cssmenu > ul > li > a {
+  padding: 15px 30px;
+  display: block;
+  /*color: rgb(206, 161, 20);/*dark orange*/
+  color: black;/* rgb(206, 161, 20); */
+ /*  color: white; */
+  font-size: 12px;
+  text-decoration: none;
+  /* text-transform: uppercase; */
+  text-shadow: 0 -1px 0 #9e3825;
+  text-shadow: 0 -1px 0 rgba(116, 37, 2, 0.7);
+  line-height: 18px;
+}
+#cssmenu > ul > li:hover > a {
+  /* background: url(images/hover.png) repeat; */
+  /* background-color: black; */
+  color : black;
+  background-color: rgb(206, 161, 20);
+  /*text-shadow: 0 -1px 0 #97321f;
+  text-shadow: 0 -1px 0 rgba(122, 42, 26, 0.64);
+  */
+}
+#cssmenu > ul > li > a > span {
+  line-height: 18px;
+}
+#cssmenu > ul > li.active > a,
+#cssmenu > ul > li > a:active {
+  /* background: url(images/active.png) repeat; */
+  background-color : aqua;
+}
+/* Childs */
+#cssmenu > ul ul {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  top: 120px;
+  /* background: url(images/highlight-bg.png) repeat; */
+  background-color : rgb(245, 205, 77);
+  margin: 0;
+  padding: 0;
+  z-index: -1;
+}
+#cssmenu > ul li:hover ul {
+  opacity: 1;
+  visibility: visible;
+  margin: 0;
+  color: #000;
+  z-index: 102;
+  top: 50px;
+  left: 0;
+}
+#cssmenu > ul ul:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  width: 100%;
+  height: 20px;
+  background: transparent;
+}
+#cssmenu > ul ul li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+#cssmenu > ul ul li a {
+  padding: 10px 15px;
+  display: block;
+  color: black;/* #393939; */
+  font-size: 12px;
+  text-decoration: none;
+  /* text-transform: uppercase; */
+  width: 225px;
+  border-left: 6px solid transparent;
+  -webkit-transition: all 0.35s ease-in-out;
+  -moz-transition: all 0.35s ease-in-out;
+  -ms-transition: all 0.35s ease-in-out;
+  transition: all 0.35s ease-in-out;
+  /* text-shadow: 0 1px 0 white; */
+}
+#cssmenu > ul ul li a:hover {
+  border-left: 6px solid rgb(250, 8, 8);
+  /* background: url(images/hover.png) repeat; */
+  background-color: rgb(206, 161, 20);
+  color: white;
+  text-shadow: 0 1px 0 black;
+}
+#cssmenu > ul ul li a:active {
+  /* background: url(images/menu-bg.png) repeat; */
+  background-color: rgb(222,222,222);
+}
