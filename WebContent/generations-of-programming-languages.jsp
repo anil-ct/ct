@@ -292,7 +292,7 @@ function editText(selector) {
 			}
 			e.preventDefault();
 		}		
-	});
+	}); 
 } 
 
 function typing(selector, text, callBackFunction) {
