@@ -293,7 +293,7 @@ function editText(selector) {
 			e.preventDefault();
 		}		
 	});
-}
+} 
 
 function typing(selector, text, callBackFunction) {
 	$(selector).typewriting(text, {
