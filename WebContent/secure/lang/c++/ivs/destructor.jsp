@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>friend-function</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <link rel="stylesheet" href="/css/introjs.css">
@@ -19,10 +18,11 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
+<!-- <script src="/secure/lang/c++/js/destructor.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/ff.min.js"></script>
+<script src="/secure/lang/c++/js-min/destruct.min.js"></script>
 
+<title>destructors</title>
 <style type="text/css">
 
 .margin-top-20 {
@@ -156,33 +156,24 @@ orange {
 <body>
 <script type="text/javascript">
 
-
 $(document).ready(function() {
-	friendFunctionReadyFun();
+	destructorReadyFun();
 });
 
 
 </script>
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>Friend Function</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>Destructor</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00">A <b><a href="https://en.wikipedia.org/wiki/Friend_function" target="_blank">friend function</a></b> can be given special grant to access private and protected members. A friend function can be:
-						<ul>
-							<li>A method of another class</li>
-							<li>A global function</li>
-						</ul>
-					</li>
-					<li id="li2" class="opacity00">
-						 Friends should be used only for limited purpose. Too many functions or external classes are declared as friends
-					 	of a class with protected or private data, it lessens the value of encapsulation of separate classes in object-oriented programming.
-					 </li>
-					<li id="li3" class="opacity00">Friendship is not mutual. If a class A is friend of B, then B doesn’t become friend of A automatically.</li>
-					<li id="li4" class="opacity00">Friendship is not inherited</li>
-					<li id="li5" class="opacity00">The concept of friends is not there in Java. 
+					<li id="li1" class="opacity00"><g>Destructor</g> functions are the inverse of constructor functions. They are called when objects are destroyed (deallocated).</li>
+					<li id="li2" class="opacity00">Destructors have same name as the class preceded by a tilde<g>(~)</g>.</li>
+					<li id="li3" class="opacity00">If we do not write our own destructor in class, compiler creates a default destructor for us.</li>
+					<li id="li4" class="opacity00">The Destructor of class is automatically called when object goes out of scope.</li>
+					<li id="li5" class="opacity00">There can only one destructor in a class with classname preceded by (~), no parameters and no return type. 
 						&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span><br>
 					</li>
 				</ul>
@@ -195,25 +186,26 @@ $(document).ready(function() {
 <div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>Distance</blue> {
-	<g>private</g>:
-    	<span id="meter"><red>int</red> meter;</span>
+<g>class</g> <blue>Sample</blue> {
+	<red>int</red> a, b;
 	<span id="defaultConst" class="hide"><g>public</g>:
-		Distance() {
-			meter = 0;
+		Sample() { 
+			a = 5;			// <b>Default Constructor</b>
+			b = 10;
+			cout << <red>"s1 object created.\n"</red>;
 		}</span>
-		<span id="friendFun" class="hide"><b>//friend function</b>
-		<span id="friend" class=""><g>friend</g></span> <red>int</red> addFive(Distance);</span>
-};
-<span id="totalAddFiveFun" class="hide"><b>//friend function definition</b></span>
-<span id="addFiveFun" class="hide"><red>int</red> addFive(Distance d) {
-	<b>//accessing private data from non-member function</b>
-	<span id="meterInit">d.meter = meter + 5;</span>
-	return d.meter;
-}</span>
+		<span id="parameterConst" class="hide">Sample(int x, int y) {
+			<span id="xAndY">a = x;			// <b>Parameterized Constructor</b>
+			b = y;</span>
+			cout << <red>"s2 object created.\n"</red>;
+		}</span>
+		<span id="destruct" class="hide"><b>~Sample()</b> { 
+			cout << <red>"s1 and s2 objects are deleted.\n"</red>;
+		}</span>
+};	
 <red>void</red> main() {
-	<span id="constD" class="hide">Distance D;</span>
-	<span id="cout" class="hide">cout << <red>"Distance: "</red> << <span id="callMethod">addFive(D);</span></span>
+	<span id="callDefaultConst" class="hide">Sample s1;</span>
+	<span id="callParameterConst" class="hide">Sample s2(<spa id="s1Val1">10</spa>, <span id="s1Val2">20</span>);</span>
 }
 </pre>
 		</div>
@@ -221,31 +213,57 @@ $(document).ready(function() {
 	<div class="col-xs-3">
 	<div id="memoryDiv" class="opacity00">
 	<div class="text-center"><b>memory</b></div>
-		<div id="dPanel" class="opacity00">
+		<div id="s1Panel" class="opacity00">
 			<div class="panel panel-primary margin-bottom0">
-    			<div class="panel-heading text-center padding0"><b id="d">D</b></div>
+    			<div class="panel-heading text-center padding0"><b id="s1">s1</b></div>
     			<div class="panel-body text-center" style="padding: 5px;">
-    				<div class="col-xs-offset-3 col-xs-6">
-						<div id="meterPanel" class="opacity00">
+    				<div class="col-xs-6 margin-top-10">
+						<div id="a1Panel" class="opacity00">
 							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>meter</b></div>
-			    				<div class="panel-body text-center"><span id="meterPanelVal" class="">0</span></div>
+			    				<div class="panel-heading text-center padding0"><b>a</b></div>
+			    				<div class="panel-body text-center"><span id="a1PanelVal" class="">5</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
-		  				
-		  				<div id="meterPanel1" class="hide">
+					</div>
+					<div class="col-xs-6 margin-top-10">
+						<div id="b1Panel" class="opacity00">
 							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>meter</b></div>
-			    				<div class="panel-body text-center"><span id="meterPanelVal1" class="">5</span></div>
+			    				<div class="panel-heading text-center padding0"><b>b</b></div>
+			    				<div class="panel-body text-center"><span id="b1PanelVal" class="">10</span></div>
 			  				</div>
-			  				<!-- <div class="text-center">1024</div> -->
+			  				<!-- <div class="text-center">1026</div> -->
 		  				</div>
 					</div>
     			</div>
   			</div>
  		</div>
  		
+ 		<div id="s2Panel" class="opacity00 margin-top-10">
+			<div class="panel panel-primary margin-bottom0">
+    			<div class="panel-heading text-center padding0"><b id="s2">s2</b></div>
+    			<div class="panel-body text-center" style="padding: 5px;">
+    				<div class="col-xs-6 margin-top-10">
+						<div id="a2Panel" class="opacity00">
+							<div class="panel panel-primary margin-bottom0">
+			    				<div class="panel-heading text-center padding0"><b>a</b></div>
+			    				<div class="panel-body text-center"><span id="a2PanelVal" class="">10</span></div>
+			  				</div>
+			  				<!-- <div class="text-center">1024</div> -->
+		  				</div>
+					</div>
+					<div class="col-xs-6 margin-top-10">
+						<div id="b2Panel" class="opacity00">
+							<div class="panel panel-primary margin-bottom0">
+			    				<div class="panel-heading text-center padding0"><b>b</b></div>
+			    				<div class="panel-body text-center"><span id="b2PanelVal" class="">20</span></div>
+			  				</div>
+			  				<!-- <div class="text-center">1026</div> -->
+		  				</div>
+					</div>
+    			</div>
+  			</div>
+ 		</div>
  		</div>
  		<div class="col-xs-12 text-center margin-top-20">
  			<span class="btn btn-warning btn-sm opacity00" id="restart">Restart</span>
@@ -260,6 +278,9 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+</div>
+<div class="col-xs-12 text-center margin-top-20">
+	<span class="btn btn-warning btn-sm opacity00" id="restart">Restart</span>
 </div>
 </body>
 </html>
