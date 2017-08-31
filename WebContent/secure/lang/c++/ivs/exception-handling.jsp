@@ -209,7 +209,7 @@ $(document).ready(function() {
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv" class="hide">
 			<ul style="font-family: monospace;">
-				<li style="list-style-type: none;"><g>Following are the main advantages of exception handling over traditional error handling</g>.</li>
+				<li style="list-style-type: none;"><g>Following are the main advantages of <a href="https://en.wikipedia.org/wiki/Exception_handling" target="_blank">exception handling</a> over traditional error handling</g>.</li>
 				<li id="li1" class="opacity00">
 					<b>Separation of Error Handling code from Normal Code:</b> With try catch blocks, the code for error handling becomes separate from the normal flow.
 				</li>

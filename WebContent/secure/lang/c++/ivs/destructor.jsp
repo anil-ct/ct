@@ -169,7 +169,7 @@ $(document).ready(function() {
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00"><g>Destructor</g> functions are the inverse of constructor functions. They are called when objects are destroyed (deallocated).</li>
+					<li id="li1" class="opacity00"><g><a href="https://en.wikipedia.org/wiki/Destructor_(computer_programming)" target="_blank">Destructor</a></g> functions are the inverse of constructor functions. They are called when objects are destroyed (deallocated).</li>
 					<li id="li2" class="opacity00">Destructors have same name as the class preceded by a tilde<g>(~)</g>.</li>
 					<li id="li3" class="opacity00">If we do not write our own destructor in class, compiler creates a default destructor for us.</li>
 					<li id="li4" class="opacity00">The Destructor of class is automatically called when object goes out of scope.</li>

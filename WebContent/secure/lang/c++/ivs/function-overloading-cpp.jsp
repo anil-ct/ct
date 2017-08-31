@@ -150,7 +150,7 @@ $(document).ready(function() {
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
 					<li id="li1" class="opacity00">Two or more functions having same name but different argument(s) are known as overloaded functions.</li>
-					<li id="li2" class="opacity00">Function overloading can be considered as an example of polymorphism feature in C++.</li>
+					<li id="li2" class="opacity00"><a href="https://en.wikipedia.org/wiki/Function_overloading" target="_blank">Function overloading</a> can be considered as an example of polymorphism feature in C++.</li>
 					<li id="li3" class="opacity00">The return type may be similar but type of the arguments and number of arguments must be different in function overloading.
 						&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span><br>
 					</li>

@@ -37,8 +37,10 @@
 	padding: 0;
 }
 
-div, span {
-	position: relative;
+#topDiv {
+    border: 1px solid gray;
+    border-radius: 8px;
+    padding: 10px;
 }
 
 .padding5 {
@@ -133,23 +135,30 @@ orange {
 .bgcolor-lightgray {
 	background-color: #E9E9E9;
 }
+.monospace {
+	font-family: monospace;
+}
+
+.margin-5 {
+	margin-top: 5px;
+} 
 </style>
 </head>
 <body>
 <script type="text/javascript">
 var tooltipMap = {
-	"#group1" : "Use a binary code that consists of strings of only zeroes (0) and ones. (1). The use of binary code is difficult to "
-		+ " learn and use. The first computers uses vacuum tubes for circuitry and magnetic drums for memory.",
-	"#group2" : "Uses mnemonics code that consists of very short words for commands. Assembly language programs need to be converted into"
-		+ " machine language by an assembler before it can be run. The vacuum tubes were replaced by transistors since they are more superior, smaller, faster, cheaper, " 
+	"#group1" : "Use a <b class='monospace'><a href='https://en.wikipedia.org/wiki/Binary_code' target='_blank'>binary code</a></b> that consists of strings of only <g><b>0</b></g>'s and <g><b>1</b></g>'s. The use of binary code is difficult to "
+		+ " learn and use. The first computers uses <b>vacuum tubes</b> for circuitry and magnetic drums for memory.",
+	"#group2" : "Uses <b><a href='https://en.wikipedia.org/wiki/Mnemonic' target='_blank'>mnemonics</a></b> code that consists of very short words for commands. Assembly language programs need to be converted into"
+		+ " machine language by an <b>assembler</b> before it can be run. The <b>vacuum tubes</b> were replaced by <b>transistors</b> since they are more superior, smaller, faster, cheaper, " 
 		+ " energy efficient and more reliable.",
-	"#group3" : "Third Generation Languages also refereed to as high – level languages introduced data structures and control structures"
-		+ "can be platform independent, meaning that code written for one system will work on another. To convert a 3rd generation program into object code"
-		+ " requires a Compiler or an Interpreter.",
+	"#group3" : "Third Generation Languages also refereed to as <b>high – level languages</b> introduced data structures and control structures "
+		+ " can be platform independent, meaning that code written for one system will work on another. To convert a 3rd generation program into object code"
+		+ " requires a <b>Compiler</b> or an <b>Interpreter</b>. Examples of 3rd generation programming languages are: <b>Fortran</b>, <b>C</b>, <b>python</b>.",
 	"#group4" : "Fourth Generation language is designed to be closer to natural language than a Third Generation."
-		+ " Languages for accessing databases are often described as Fourth Generation languages."
-		+ " Standard ML, Lisp, SQL and visual basic are example of Fourth Generation language",
-	"#group5" : "Fifth Generation Languages are basically an outgrowth of artificial intelligence research from the 1980s. The approach is to build a program"
+		+ " Languages for accessing <b>databases</b> are often described as Fourth Generation languages."
+		+ " Standard <b>ML</b>, <b>Lisp</b>, <b>SQL</b> are example of Fourth Generation language",
+	"#group5" : "Fifth Generation Languages are basically an outgrowth of <b><a href='https://en.wikipedia.org/wiki/Artificial_intelligence' target='_blank'>artificial intelligence</a></b> research from the 1980's. The approach is to build a program"
 		+ " that implements a specific algorithm to solve problems.",
 };
 
@@ -159,12 +168,14 @@ var typingSpeed = 5;
 $(document).ready(function(){
 	$("rect, circle, line, text").hide();
 	
-	animation("#group1", function() {
+	/* animation("#group1", function() {
 		$(".customPopover:last").append("<div><span class='pull-right user-btn introjs-button' onclick='firstGenCode()'>Next &#8594;</span></div>");
-		console.log("@@@@@@@@@@@");
-	});
+	}); */
 	
-	$('#restartBtn').click(function() {
+	revealText();
+	
+	
+	$('#restart').click(function() {
 		location.reload();
 	});
 });
@@ -252,9 +263,24 @@ function arrowReveal(lineId, callBackFunction) {
 	});
 }
 
+function revealText() {
+	$("#li1").fadeTo(500, 1, function () {
+		$("#li2").fadeTo(500, 1, function () {
+		
+		});
+	});
+}
+
+function timelineAnimation() {
+	$('.user-btn').remove();
+	animation("#group1", function() {
+		$(".customPopover:last").append("<div><span class='pull-right user-btn introjs-button' onclick='firstGenCode()'>Next &#8594;</span></div>");
+	});
+}
+
 function firstGenCode() {
 	$('.user-btn').remove();
-	$(".customPopover:last").append("<br><div>Example:</div><div class='text-center' style='font-family: monospace; background-color: lightyellow;'><div>10101010011000101</div> <div>10011010100000010</div> <div>11111111101000101</div></div>");
+	$(".customPopover:last").append("<br><div>Example:</div><div class='text-center monospace' style='background-color: lightyellow;'><div>10101010011000101</div> <div>10011010100000010</div> <div>11111111101000101</div></div><div class='monospace margin-5'><b>Machine Code only</b>.</div>");
 	$(".customPopover:last").append("<div><span class='pull-right user-btn introjs-button' onclick='progressFirstGen()'>Next &#8594;</span></div>");
 }
 
@@ -269,10 +295,10 @@ function progressFirstGen() {
 
 function secondGenCode() {
 	$('.user-btn').remove();
-	$(".customPopover:last").append("<br><div>Example:</div><div class='text-center' style='font-family: monospace; background-color: lightyellow;'>"
+	$(".customPopover:last").append("<br><div>Example:</div><div class='text-center monospace' style='background-color: lightyellow;'>"
 			+ " <div><span style='color: #0000FF;'>LDA</span> <span style='color: #666666;'>34</span></div>"
 			+ " <div><span style='color: #0000FF;'>ADD</span> <span style='color: #408080;'>#1</span></div>"
-			+ " <div><span style='color: #880000;'>STO</span> <span style='color: #666666;'>34</span></div></div>");
+			+ " <div><span style='color: #880000;'>STO</span> <span style='color: #666666;'>34</span></div></div><div class='monospace margin-5'><b>Assembly Code</b></div>");
 	$(".customPopover:last").append("<div><span class='pull-right user-btn introjs-button' onclick='progressSecondGen()'>Next &#8594;</span></div>");
 }
 
@@ -288,9 +314,7 @@ function progressSecondGen() {
 function thirdGenCode() {
 	$('.user-btn').remove();
 	$(".customPopover:last").append("<br><div>Example:</div><div style='font-family: monospace; background-color: lightyellow; padding: 5px;'>"
-			+ " <div><span style='color: #B00040;'>int</span> x = 3;</div>"
-			+ " <div><span style='color: #B00040;'>int</span> y = 5;</div>"
-			+ " <div><span style='color: #008000;'>System</span>.out.println(x);</div></div>");
+			+ " <div> x = x + 1;</div></div>");
 	$(".customPopover:last").append("<div><span class='pull-right user-btn introjs-button' onclick='progressThirdGen()'>Next &#8594;</span></div>");
 }
 
@@ -332,57 +356,69 @@ function restart() {
 }
 
 </script>
-<div class='text-center margin-top-20'>
+<div class='text-center margin-top-10'>
 	<h4 class='label ct-demo-heading' id='demoTitle'>Generations of Programming Languages</h4>
 </div>
-<div class="col-xs-12 text-center margin-top-20">
+<div class="col-xs-12 text-center margin-top-10">
 	<span class="btn btn-warning btn-sm opacity00" id="restart">Restart</span>
 </div>
-<div class="col-xs-12 text-center margin-top-20">
+<div class="col-xs-offset-1 col-xs-10 margin-5">
+	<div id="topDiv">
+		<div id="typingDiv1">
+			<ul style="font-family: monospace;">
+				<li id="li1" class="opacity00">Programming language is a formal language that specifies a set of rules for instructing a computer to perform specific tasks.</li>
+				<li id="li2" class="opacity00"> Programming languages differ from natural languages in that natural languages are only used for interaction between people, while programming languages also allow humans to communicate instructions to machines. 
+					&emsp; <span class='user-btn introjs-button' onclick='timelineAnimation()'>Next &#8594;</span><br>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="col-xs-12 text-center">
 	<svg class="svg-css">
 		<g id="group1">
 			<line class="svg-line-css" x1 = "10%" y1 = "50%" x2 = "30%" y2= "50%"></line>
 			<circle class="cirlce-css" cx="10%" cy="50%" r="1%"></circle>
-			<text x="5.5%" y="20%" class='svg-text-css'>First Generation</text>
+			<text text-anchor="middle" x="10%" y="20%" class='svg-text-css'>First Generation</text>
 			<line class="svg-line-css" x1 = "10%" y1 = "47%" x2 = "10%" y2= "25%"></line>
 			<rect class="svg-rect-css" width="6.5%" height="9%" x="7%" y="55%" rx="4" ry="4"></rect>
-			<text x="7.3%" y="61%" class='svg-text-css'>1942-1956</text>
+			<text text-anchor="middle" x="10.3%" y="61%" class='svg-text-css'>1940-1956</text>
 		</g>
 		
 		<g id="group2">
 			<line class="svg-line-css" x1 = "30%" y1 = "50%" x2 = "50%" y2= "50%"></line>
 			<circle class="cirlce-css" cx="30%" cy="50%" r="1%"></circle>
-			<text x="25%" y="20%" class='svg-text-css'>Second Generation</text>
+			<text text-anchor="middle" x="30%" y="20%" class='svg-text-css'>Second Generation</text>
 			<line class="svg-line-css" x1 = "30%" y1 = "47%" x2 = "30%" y2= "25%"></line>
 			<rect class="svg-rect-css" width="6.5%" height="9%" x="27%" y="55%" rx="4" ry="4"></rect>
-			<text x="27.3%" y="61%" class='svg-text-css'>1956-1963</text>
+			<text text-anchor="middle" x="30.3%" y="61%" class='svg-text-css'>1956-1963</text>
 		</g>
 		
 		<g id="group3">
 			<line class="svg-line-css" x1 = "50%" y1 = "50%" x2 = "70%" y2= "50%"></line>
 			<circle class="cirlce-css" cx="50%" cy="50%" r="1%"></circle>
-			<text x="45.5%" y="20%" class='svg-text-css'>Third Generation</text>
+			<text text-anchor="middle" x="50%" y="20%" class='svg-text-css'>Third Generation</text>
 			<line class="svg-line-css" x1 = "50%" y1 = "47%" x2 = "50%" y2= "25%"></line>
 			<rect class="svg-rect-css" width="6.5%" height="9%" x="47%" y="55%" rx="4" ry="4"></rect>
-			<text x="47.3%" y="61%" class='svg-text-css'>1964-1971</text>
+			<text text-anchor="middle" x="50.2%" y="61%" class='svg-text-css'>1964-1971</text>
 			
 		</g>
 		
 		<g id="group4">
 			<line class="svg-line-css" x1 = "70%" y1 = "50%" x2 = "90%" y2= "50%"></line>
 			<circle class="cirlce-css" cx="70%" cy="50%" r="1%"></circle>
-			<text x="65%" y="20%" class='svg-text-css'>Fourth Generation</text>
+			<text text-anchor="middle" x="70%" y="20%" class='svg-text-css'>Fourth Generation</text>
 			<line class="svg-line-css" x1 = "70%" y1 = "47%" x2 = "70%" y2= "25%"></line>
 			<rect class="svg-rect-css" width="8.5%" height="9%" x="66%" y="55%" rx="4" ry="4"></rect>
-			<text x="66.5%" y="61%" class='svg-text-css'>1971-present</text>
+			<text text-anchor="middle" x="70.2%" y="61%" class='svg-text-css'>1971-present</text>
 		</g>
 		
 		<g id="group5">
 			<line class="svg-line-css" x1 = "90%" y1 = "47%" x2 = "90%" y2= "25%"></line>
 			<circle class="cirlce-css" cx="90%" cy="50%" r="1%"></circle>
-			<text x="85.5%" y="20%" class="svg-text-css">Fifth Generation</text>
+			<text text-anchor="middle" x="90%" y="20%" class="svg-text-css">Fifth Generation</text>
 			<rect class="svg-rect-css" width="10%" height="9%" x="85%" y="55%" rx="4" ry="4"></rect>
-			<text x="85.5%" y="61%" class="svg-text-css">present-beyond</text>
+			<text text-anchor="middle" x="90.2%" y="61%" class="svg-text-css">present-beyond</text>
 		</g>
 		
 	</svg>

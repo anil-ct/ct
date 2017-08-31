@@ -102,7 +102,7 @@ div, span {
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 423px;
+	height: 262px;
 	padding: 10px;
 	white-space: inherit;
 }

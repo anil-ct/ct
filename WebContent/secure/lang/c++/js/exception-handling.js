@@ -1,4 +1,7 @@
 var introjs;
+var aValue;
+var aValue;
+var value;
 var printFlag = false;
 var lastPrintFlag = false;
 var tl = new TimelineLite();	
@@ -319,7 +322,7 @@ function introGuide() {
 				$('.introjs-prevbutton').hide();
 				$("#callDivFun").removeClass("yellow");
 				$(".introjs-helperLayer").one("transitionend", function() {
-					$("#body").append("<div>z = " + (($("#inputVal1").text()) / ($("#inputVal2").text())) + "</div>");
+					$("#body").append("<div>z = " + (($("#inputVal1").text()) / ($("#inputVal2").text())).toFixed(2) + "</div>");
 					setTimeout(function(){
 						introjs.nextStep();
 					}, 1000);
@@ -393,9 +396,9 @@ function introGuide() {
 					$(".introjs-tooltip").css({"min-width": "200px"});
 					introjs.refresh();
 					$("#callDivFun").addClass("yellow");
-					flipEffect("#callDivFun", (($("#inputVal1").text()) / ($("#inputVal2").text())), function() {
+					flipEffect("#callDivFun", ((($("#inputVal1").text()) / ($("#inputVal2").text())).toFixed(2)), function() {
 						introjs.refresh();
-						var text = "The return value is <y><b>" + (($("#inputVal1").text()) / ($("#inputVal2").text())).toFixed(2) + "</b></y>.<br>"
+						var text = "The return value is <y><b>" + ((($("#inputVal1").text()) / ($("#inputVal2").text())).toFixed(2)) + "</b></y>.<br>"
 						+ " is stored into z.";
 						introjs.refresh();
 						typing($(".introjs-tooltiptext"), text, function() {
@@ -559,14 +562,18 @@ function animationInnerFor() {
 		+ "</b></y>"
 		+ "</div>)</div>";
 	typing($(".introjs-tooltiptext"), text, function() {
+		value = ((parseInt($("#inputVal1").text()) / parsrInt($("#inputVal2").text())).toFixed(2));
+		aValue = $("#inputVal1").text();
+		bValue = $("#inputVal2").text();
 		var l1 = $("#tooltipReturn").offset();
 		var l2 = $("#return").offset();
 		var topLength = l2.top - l1.top;
 		var leftLength = l2.left - l1.left;
 		TweenMax.from("#tooltipReturn", 1, {top : topLength, left : leftLength, onComplete:function () {
-			flipEffect("#tooltipReturnA", $("#inputVal1").text(), function() {
-				flipEffect("#tooltipReturnB", $("#inputVal2").text(), function() {
-					flipEffect("#tooltipReturnVal", (($("#inputVal1").text()) / ($("#inputVal2").text())), function() {
+			flipEffect("#tooltipReturnA", aValue, function() {
+				flipEffect("#tooltipReturnB", bValue, function() {
+					flipEffect("#tooltipReturnVal", value, function() {
+						console.log(value);
 						$('.introjs-nextbutton').show();
 					});
 				});
