@@ -17,6 +17,7 @@
 <script type="text/javascript" src="/js/intro.js"></script>
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
+<script type="text/javascript" src="/js/jquery.scrollTo.js"></script>
 
 <!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
 
@@ -53,6 +54,7 @@
 
 .user-btn {
 	background-color: green;
+	margin: 0 !important;
 }
 
 .z-index {
@@ -141,25 +143,33 @@ orange {
 
 .margin-5 {
 	margin-top: 5px;
-} 
+}
+
+.lite-red {
+	color: #880000;
+}
+
+.lite-blue {
+	color: seagreen;
+}
 </style>
 </head>
 <body>
 <script type="text/javascript">
 var tooltipMap = {
-	"#group1" : "Use a <b class='monospace'><a href='https://en.wikipedia.org/wiki/Binary_code' target='_blank'>binary code</a></b> that consists of strings of only <g><b>0</b></g>'s and <g><b>1</b></g>'s. The use of binary code is difficult to "
-		+ " learn and use. The first computers uses <b>vacuum tubes</b> for circuitry and magnetic drums for memory.",
-	"#group2" : "Uses <b><a href='https://en.wikipedia.org/wiki/Mnemonic' target='_blank'>mnemonics</a></b> code that consists of very short words for commands. Assembly language programs need to be converted into"
-		+ " machine language by an <b>assembler</b> before it can be run. The <b>vacuum tubes</b> were replaced by <b>transistors</b> since they are more superior, smaller, faster, cheaper, " 
-		+ " energy efficient and more reliable.",
-	"#group3" : "Third Generation Languages also refereed to as <b>high – level languages</b> introduced data structures and control structures "
-		+ " can be platform independent, meaning that code written for one system will work on another. To convert a 3rd generation program into object code"
-		+ " requires a <b>Compiler</b> or an <b>Interpreter</b>. Examples of 3rd generation programming languages are: <b>Fortran</b>, <b>C</b>, <b>python</b>.",
-	"#group4" : "Fourth Generation language is designed to be closer to natural language than a Third Generation."
-		+ " Languages for accessing <b>databases</b> are often described as Fourth Generation languages."
-		+ " Standard <b>ML</b>, <b>Lisp</b>, <b>SQL</b> are example of Fourth Generation language",
-	"#group5" : "Fifth Generation Languages are basically an outgrowth of <b><a href='https://en.wikipedia.org/wiki/Artificial_intelligence' target='_blank'>artificial intelligence</a></b> research from the 1980's. The approach is to build a program"
-		+ " that implements a specific algorithm to solve problems.",
+	"#group1" : "<ul><li>Use a <b class='monospace lite-red'>binary code</b> that consists of strings of only <g><b>0</b></g>'s and <g><b>1</b></g>'s.</li>"
+		+ "<li>The use of binary code is difficult to  learn and use. The first computers uses <b class='monospace lite-blue'>vacuum tubes</b> for circuitry and magnetic drums for memory.</li></ul>",
+	"#group2" : "<ul><li>Uses <b class='monospace'><a href='https://en.wikipedia.org/wiki/Mnemonic' target='_blank'>mnemonics</a></b> code that consists of very short words for commands.</li> <li>Assembly language programs need to be converted into"
+		+ " machine language by an <b class='monospace lite-blue'>assembler</b> before it can be run.</li> <li>The <b class='monospace lite-blue'>vacuum tubes</b> were replaced by <b class='monospace lite-blue'>transistors</b> since they are more superior, smaller, faster, cheaper, " 
+		+ " energy efficient and more reliable.</li></ul>",
+	"#group3" : "<ul><li>Third Generation Languages also refereed to as <b class='monospace lite-red'>high – level languages</b> introduced data structures and control structures "
+		+ " can be platform independent, meaning that code written for one system will work on another.</li> <li>To convert a 3rd generation program into object code"
+		+ " requires a <b class='monospace lite-red'>Compiler</b> or an <b class='monospace lite-red'>Interpreter</b>.</li> <li>Examples of 3rd generation programming languages are: <b class='monospace lite-blue'>Fortran</b>, <b class='monospace lite-blue'>C</b>, <b class='monospace lite-blue'>python</b>.</li></ul>",
+	"#group4" : "<ul><li>Fourth Generation language is designed to be closer to natural language than a Third Generation.</li>"
+		+ " <li>Languages for accessing <b class='monospace lite-red'>databases</b> are often described as Fourth Generation languages.</li>"
+		+ " <li>Standard <b class='monospace lite-blue'>ML</b>, <b class='monospace lite-blue'>Lisp</b>, <b class='monospace lite-blue'>SQL</b> are example of Fourth Generation language.</li></ul>",
+	"#group5" : "<ul><li>Fifth Generation Languages are basically an outgrowth of <b style='font-size:95%;' class='monospace'><a href='https://en.wikipedia.org/wiki/Artificial_intelligence' target='_blank'>artificial intelligence</a></b> research from the 1980's.</li> <li>The approach is to build a program"
+		+ " that implements a specific algorithm to solve problems.</li></ul>",
 };
 
 var typingSpeed = 5;
@@ -345,14 +355,15 @@ function progressFourthGen() {
 
 function restart() {
 	$('.user-btn').remove();
-	$('.next-btn').parents(".popover").remove();
-	$("#restart").css("opacity", "1").popover({
-		placement: "right",
-		html: true,
-		trigger: 'focus',
-		content: 'Click to restart.'
-	}).popover('show').next().addClass("animated bounceInDown");
-	$("#restart").next().css("width", "105px");
+	$("body").scrollTo($("#demoTitle"), 500, function() {
+		$("#restart").css("opacity", "1").popover({
+			placement: "right",
+			html: true,
+			trigger: 'focus',
+			content: 'Click to restart.'
+		}).popover('show').next().addClass("animated bounceInDown");
+		$("#restart").next().css("width", "105px");
+	});
 }
 
 </script>
@@ -366,8 +377,8 @@ function restart() {
 	<div id="topDiv">
 		<div id="typingDiv1">
 			<ul style="font-family: monospace;">
-				<li id="li1" class="opacity00">Programming language is a formal language that specifies a set of rules for instructing a computer to perform specific tasks.</li>
-				<li id="li2" class="opacity00"> Programming languages differ from natural languages in that natural languages are only used for interaction between people, while programming languages also allow humans to communicate instructions to machines. 
+				<li id="li1" class="opacity00"><b class='lite-blue'>Programming language</b> is a formal language that specifies a set of rules for instructing a computer to perform specific tasks.</li>
+				<li id="li2" class="opacity00"> Programming languages <b class='lite-blue'>differ from natural languages</b> in that natural languages are only used for interaction between people, while programming languages also allow humans to communicate instructions to machines. 
 					&emsp; <span class='user-btn introjs-button' onclick='timelineAnimation()'>Next &#8594;</span><br>
 				</li>
 			</ul>
