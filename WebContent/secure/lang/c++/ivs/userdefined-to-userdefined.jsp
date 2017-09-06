@@ -203,7 +203,7 @@ $(document).ready(function() {
 		<div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>radian</blue> {
+<span id="class"><g>class</g> <blue>radian</blue> {
 	<span id="rad"><red>float</red> rad;</span>
 	<g>public</g>:
 		<span id="paraConstRad" class="hide">radian(float x) {
@@ -212,7 +212,7 @@ $(document).ready(function() {
 		<span id="displayFun" class="hide">void display() {
 			cout << <red>"radians value : "</red> << rad;
 		}</span>
-};
+};</span>
 <g>class</g> <blue>degree</blue> {
 	<span id="rad"><red>float</red> deg;</span>
 	<g>public</g>:

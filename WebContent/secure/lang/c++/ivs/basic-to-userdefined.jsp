@@ -80,10 +80,6 @@
 	padding: 0;
 }
 
-div, span {
-	position: relative;
-}
-
 .relative {
 	position: relative;
 }
@@ -130,6 +126,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0 !important;
 }
 
 .z-index {
@@ -181,6 +178,14 @@ orange {
 	background-color: #ff0066;
 	font-weight: bold;
 }
+
+.lite-red {
+	color: #880000;
+}
+
+.lite-blue {
+	color: seagreen;
+}
 </style>
 </head>
 <body>
@@ -199,15 +204,17 @@ $(document).ready(function() {
 		<div id="topDiv">
 			<ul style="font-family: monospace;">
 				<li id="li1" class="opacity00">
-					To convert the data type from basic to user defined, the conversion function should be defined in class which is user defined in the form of constructor,
-					which is called conversion constructor.  
+					To convert a basic data type to user defined type the <b class='monospace lite-blue'>conversion function</b> should be defined in a class in the form of <b class='monospace lite-blue'>constructor</b>,
+					 which is called a <b>conversion constructor</b>.  
 				</li>
 				<li id="li2" class="opacity00">
-					 Conversion from basic to user defined type is done by using the constructor function with one argument of basic type as follows.<br>
-					 <div class="col-xs-4"><pre class="creampretab1">constructor(basic data type) {<br>	------<br>	------<br>}</pre><br></div><br>
-				</li>
+					 The format is...<br>
+					 <div class="col-xs-4"><pre class="creampretab1">constructor(basic data type) {<br>	------<br>	------<br>}</pre></div>
 				</li>
 			</ul>
+			<div class="col-xs-12">
+				<span id="nextBtn" class='user-btn introjs-button opacity00' onclick='introjs.nextStep()'>Next &#8594;</span>
+			</div>
 		</div>
 	</div>
 <div class="col-xs-12 margin-top-20">
@@ -215,10 +222,10 @@ $(document).ready(function() {
 		<div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>Meter</blue> {
+<span id="class"><g>class</g> <blue>Meter</blue> {
 	<span id="length"><red>float</red> length;</span>
 	<g>public</g>:
-		<span id="defaultConst" class="hide">Meter() {
+		<span id="defaultConst">Meter() {
 			length = 0.0;
 		}</span>
 		<span id="paraConst" class="hide">Meter(float y) {
@@ -227,14 +234,13 @@ $(document).ready(function() {
 		<span id="putdataFun" class="hide"><red>void</red> putdata() {
 			<span id="cout2" class="">cout << <red>"length in meters = "</red> << length;</span>
 		}</span>
-};
+};</span>
 <red>void</red> main() {
 	<span id="constM" class="hide">Meter M;</span>
 	<span id="floatX" class="hide"><red>float</red> x;</span>
 	<span id="cout1" class="hide">cout << <red>"enter length in centemeters : "</red>;</span>
 	<span id="cin" class="hide">cin >> x;</span>
 	<span id="comments" class="hide"><b>//convert from basic to user-defined;</b>
-	<b>//this is equivalent to M = Meter(x);</b>
 	<span id="mx" class="hide">M = x;</span></span>
 	<span id="callMethod" class="hide">m.putdata();</span>
 }
@@ -252,7 +258,7 @@ $(document).ready(function() {
 								<div id="lengthPanel" class="opacity00">
 									<div class="panel panel-primary margin-bottom0">
 					    				<div class="panel-heading text-center padding0"><b>length</b></div>
-					    				<div class="panel-body text-center"><span id="lengthPanelVal1" class="">0.0</span><span id="lengthPanelVal2" class="hide">0.0</span></div>
+					    				<div class="panel-body text-center"><span id="lengthPanelVal1" class="">0.0</span></div>
 					  				</div>
 					  				<!-- <div class="text-center">1024</div> -->
 				  				</div>

@@ -157,12 +157,10 @@ orange {
 <body>
 <script type="text/javascript">
 var tooltipMap = {
-	"#group1" : "<ul><li>Use a <b class='monospace lite-red'>binary code</b> that consists of strings of only <g><b>0</b></g>'s and <g><b>1</b></g>'s.</li>"
-		+ "<li>The use of binary code is difficult to  learn and use. The first computers uses <b class='monospace lite-blue'>vacuum tubes</b> for circuitry and magnetic drums for memory.</li></ul>",
-	"#group2" : "<ul><li>Uses <b class='monospace'><a href='https://en.wikipedia.org/wiki/Mnemonic' target='_blank'>mnemonics</a></b> code that consists of very short words for commands.</li> <li>Assembly language programs need to be converted into"
-		+ " machine language by an <b class='monospace lite-blue'>assembler</b> before it can be run.</li> <li>The <b class='monospace lite-blue'>vacuum tubes</b> were replaced by <b class='monospace lite-blue'>transistors</b> since they are more superior, smaller, faster, cheaper, " 
-		+ " energy efficient and more reliable.</li></ul>",
-	"#group3" : "<ul><li>Third Generation Languages also refereed to as <b class='monospace lite-red'>high – level languages</b> introduced data structures and control structures "
+	"#group1" : "<ul><li>Use a <b class='monospace lite-red'>binary code</b> that consists of strings of only <g><b>0</b></g>'s and <g><b>1</b></g>'s.</li></ul>",
+	"#group2" : "<ul><li>Uses <b><a href='https://en.wikipedia.org/wiki/Mnemonic' target='_blank'  class='monospace'>mnemonics</a></b> code that consists of very short words for commands.</li> <li>Assembly language programs need to be converted into"
+		+ " machine language by an <b class='monospace lite-blue'>assembler</b> before it can be run.</li></ul>",
+	"#group3" : "<ul><li>Third Generation Languages also refereed to as<br> <b class='monospace lite-red'>high–level languages</b> introduced data structures and control structures "
 		+ " can be platform independent, meaning that code written for one system will work on another.</li> <li>To convert a 3rd generation program into object code"
 		+ " requires a <b class='monospace lite-red'>Compiler</b> or an <b class='monospace lite-red'>Interpreter</b>.</li> <li>Examples of 3rd generation programming languages are: <b class='monospace lite-blue'>Fortran</b>, <b class='monospace lite-blue'>C</b>, <b class='monospace lite-blue'>python</b>.</li></ul>",
 	"#group4" : "<ul><li>Fourth Generation language is designed to be closer to natural language than a Third Generation.</li>"
@@ -290,7 +288,7 @@ function timelineAnimation() {
 
 function firstGenCode() {
 	$('.user-btn').remove();
-	$(".customPopover:last").append("<br><div>Example:</div><div class='text-center monospace' style='background-color: lightyellow;'><div>10101010011000101</div> <div>10011010100000010</div> <div>11111111101000101</div></div><div class='monospace margin-5'><b>Machine Code only</b>.</div>");
+	$(".customPopover:last").append("<br><div><span class='lite-red'>Example</span>:</div><div class='text-center monospace' style='background-color: lightyellow;'><div>10101010011000101</div> <div>10011010100000010</div> <div>11111111101000101</div></div><div class='monospace margin-5'><b>Machine Code only</b>.</div>");
 	$(".customPopover:last").append("<div><span class='pull-right user-btn introjs-button' onclick='progressFirstGen()'>Next &#8594;</span></div>");
 }
 
@@ -305,7 +303,7 @@ function progressFirstGen() {
 
 function secondGenCode() {
 	$('.user-btn').remove();
-	$(".customPopover:last").append("<br><div>Example:</div><div class='text-center monospace' style='background-color: lightyellow;'>"
+	$(".customPopover:last").append("<br><div><span class='lite-red'>Example</span>:</div><div class='text-center monospace' style='background-color: lightyellow;'>"
 			+ " <div><span style='color: #0000FF;'>LDA</span> <span style='color: #666666;'>34</span></div>"
 			+ " <div><span style='color: #0000FF;'>ADD</span> <span style='color: #408080;'>#1</span></div>"
 			+ " <div><span style='color: #880000;'>STO</span> <span style='color: #666666;'>34</span></div></div><div class='monospace margin-5'><b>Assembly Code</b></div>");
@@ -323,7 +321,7 @@ function progressSecondGen() {
 
 function thirdGenCode() {
 	$('.user-btn').remove();
-	$(".customPopover:last").append("<br><div>Example:</div><div style='font-family: monospace; background-color: lightyellow; padding: 5px;'>"
+	$(".customPopover:last").append("<br><div><span class='lite-red'>Example</span>:</div><div style='font-family: monospace; background-color: lightyellow; padding: 5px;'>"
 			+ " <div> x = x + 1;</div></div>");
 	$(".customPopover:last").append("<div><span class='pull-right user-btn introjs-button' onclick='progressThirdGen()'>Next &#8594;</span></div>");
 }
@@ -339,8 +337,8 @@ function progressThirdGen() {
 
 function fourthGenCode() {
 	$('.user-btn').remove();
-	$(".customPopover:last").append("<br><div>Example:</div><div style='font-family: monospace; background-color: lightyellow; padding: 5px;'>"
-			+ " <div><span style='color: #008000;'> SELECT </span> name, id, salary </div><span style='color: #008000;'> FROM </span> employee <span style='color: #008000;'> WHERE </span><br> id = 9;</div>");
+	$(".customPopover:last").append("<br><div><span class='lite-red'>Example</span>:</div><div style='font-family: monospace; background-color: lightyellow; padding: 5px;'>"
+			+ " <div><span style='color: #008000;'> SELECT </span> id, name, salary </div><span style='color: #008000;'> FROM </span> employee <span style='color: #008000;'> WHERE </span><br> id = 9;</div>");
 	$(".customPopover:last").append("<div><span class='pull-right user-btn introjs-button' onclick='progressFourthGen()'>Next &#8594;</span></div>");
 }
 
@@ -377,7 +375,7 @@ function restart() {
 	<div id="topDiv">
 		<div id="typingDiv1">
 			<ul style="font-family: monospace;">
-				<li id="li1" class="opacity00"><b class='lite-blue'>Programming language</b> is a formal language that specifies a set of rules for instructing a computer to perform specific tasks.</li>
+				<li id="li1" class="opacity00"><b><a href='https://en.wikipedia.org/wiki/Programming_language' target='_blank'>Programming Language</a></b> is a formal language that specifies a set of rules for instructing a computer to perform specific tasks.</li>
 				<li id="li2" class="opacity00"> Programming languages <b class='lite-blue'>differ from natural languages</b> in that natural languages are only used for interaction between people, while programming languages also allow humans to communicate instructions to machines. 
 					&emsp; <span class='user-btn introjs-button' onclick='timelineAnimation()'>Next &#8594;</span><br>
 				</li>

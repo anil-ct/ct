@@ -99,7 +99,7 @@
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 423px;
+	height: 135px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -196,6 +196,7 @@ var typingSpeed = 5;
 var buttonCount = 1;
 var delete_key = 46;
 var backspace_key = 8;
+var flag = true;
 $(document).ready(function() {
 	introGuide();
 	$("[contenteditable=true]").on("click keydown keyup", function(e) {
@@ -213,23 +214,29 @@ $(document).ready(function() {
 			$(".introjs-nextbutton").show();
 		}
 		
+		if ($(this).text().indexOf(".") == -1) {
+			flag = true;
+		} else {
+			flag = false;
+		}
 		var max = $(this).attr("maxlength");
-		if ($.inArray(e.keyCode, [46, 8, 9, 27]) !== -1 || (e.keyCode >= 37 && e.keyCode <= 39)) {
+		if ($.inArray(e.keyCode, [46, 8, 9, 27]) !== -1 || (e.keyCode >= 37 && e.keyCode <= 39) || (($(this).text().length >= 1) && e.keyCode == 110 && flag)) {
 			return;
 		}
 		if (((e.shiftKey) || (e.keyCode < 48 || e.keyCode > 57)) && ((e.keyCode < 96) || (e.keyCode > 105))) {
 			e.preventDefault();
 		}
 		if ($(this).text().length > max) {
-			//$(".introjs-tooltiptext").append("<div class='errMsg'>Max Length 2 digits only</div>")
 			e.preventDefault();
 		}
+		
 	});
 	$('#restart').click(function() {
 		location.reload();
 	});
 });
 
+var count = 0;
 function introGuide() {
 	introjs = introJs();
 	introjs.setOptions({
@@ -255,9 +262,17 @@ function introGuide() {
 					intro : "",
 					position : "right"
 				},{
+			 		element : "#memoryDiv",
+					intro : "",
+					tooltipClass : "hide"
+				},{
 			 		element : "#defaultConst",
 					intro : "",
 					position : "right"
+				},{
+			 		element : "#lengthPanel",
+					intro : "",
+					tooltipClass : "hide"
 				},{
 			 		element : "#floatX",
 					intro : "",
@@ -293,7 +308,7 @@ function introGuide() {
 				},{
 			 		element : "#putdataFun",
 					intro : "",
-					position : "right"
+					tooltipClass : "hide"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
@@ -311,91 +326,114 @@ function introGuide() {
 		introjs.refresh();
 		switch (elementId) {
 		case "topDiv":
-			$('.introjs-nextbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$("#code").addClass("opacity00");
+			$('.user-btn').removeClass("hide");
+			$("#li1, #li2, #nextBtn").hide();
 			$("#li1").fadeTo(500, 1, function () {
 				$("#li2").fadeTo(500, 1, function () {
 					$("#nextBtn").fadeTo(500, 1, function () {
-						
 					});
 				});
 			});
 		break;
 		case "code":
 			$("#code").removeClass("opacity00");
-			$('.user-btn').remove();
+			$('.user-btn').addClass("hide");
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Let us consider sample C++ program to convert basic to userdefined.";
+				var text = "Let us consider sample C++ program to convert <y>basic</y> to <y>user-defined</y>.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "class":
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$("#constM").addClass("hide");
+			$("#memoryDiv").addClass("opacity00")
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This is a class Meter which consists a <b class='monospace'><y>float</y></b> field <b class='monospace'><y>length</y></b>.";
+				var text = "This is a class <y>Meter</y> which consists a <b class='monospace'><y>float</y></b> field <b class='monospace'><y>length</y></b>.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "constM":
 			$("#constM").removeClass("hide");
+			$("#defaultConst").addClass("hide");
+			introjs.refresh();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "Let us create an object for class <y>Meter</y>.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
+		case "memoryDiv":
+			$("#memoryDiv").removeClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Let us create a object for class Meter.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$("#memoryDiv").removeClass("opacity00").addClass("z-index");
+				$('.introjs-nextbutton').show();
+				 $("#memoryDiv").removeClass("opacity00").addClass("z-index");
 					$("#mPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
 						$("#memoryDiv").removeClass("z-index");
-						$('.introjs-nextbutton').show();
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 500);
 					});
 				});
-			});
 		break;
 		case "defaultConst":
 			$("#defaultConst").removeClass("hide");
+			$("#floatX").addClass("hide");
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>Whenever an object is created, the default constructor is called immediately.</li>"
-				+ "<li>Then the field <y>length</y> is initialized with <y>0.0</y></li></ul>";
+				var text = "<ul><li>Whenever an object is created, the <y>default constructor</y> is called immediately.</li>"
+				+ "<li>Here the field <y>length</y> is initialized with <y>0</y></li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$("#memoryDiv").addClass("z-index");
-					$("#lengthPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-						$(this).removeClass("animated zoomIn");
-						$("#memoryDiv").removeClass("z-index");
-						$('.introjs-nextbutton').show();
-					});	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
-		case "floatX":
-			$("#floatX").removeClass("hide");
+		case "lengthPanel":
+			$("#lengthPanel").removeClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
+				$('.introjs-nextbutton').show();
+					$("#lengthPanelVal1").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+						$(this).removeClass("animated zoomIn");
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 500);
+					});
+				});
+		break;
+		case "floatX":
+			$("#floatX").removeClass("hide");
+			$("#cout1").addClass("hide");
+			introjs.refresh();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Declare a float variable <y>x</y>.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "cout1":
 			$("#cout1").removeClass("hide");
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function(){
 					introjs.nextStep();
@@ -403,7 +441,7 @@ function introGuide() {
 			});
 		break;
 		case "outputDiv":
-			if (introjs._currentStep == 7) {
+			if (introjs._currentStep == 9) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
@@ -414,7 +452,7 @@ function introGuide() {
 						introjs.nextStep();
 					}, 1000);
 				});
-			} else if (introjs._currentStep == 9) {
+			} else if (introjs._currentStep == 11) {
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
@@ -424,13 +462,13 @@ function introGuide() {
 						charAtEnd("inputVal");
 					});
 				});
-			} else if (introjs._currentStep == 14) {
+			} else if (introjs._currentStep == 16) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					$("#body").append("<div>length in meters = " + (($("#inputVal").text()) / 100) + "</div>");
+					$("#body").append("<div>length in meters = " + (($("#inputVal").text()) / 100).toFixed(2) + "</div>");
 					setTimeout(function(){
 						introjs.nextStep();
 					}, 1000);
@@ -443,7 +481,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<y>cin</y> will read the value from the user.";
+				var text = "<y>cin</y> will read the input from the inputstream given by the user.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();	
 				});
@@ -453,13 +491,14 @@ function introGuide() {
 			$("#comments").removeClass("hide");
 			$("#mx").removeClass("hide").addClass("yellow");
 			introjs.refresh();
+			$("[contenteditable=true]").attr("contenteditable", "false");
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-tooltip").css({"min-width": "300px"});
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>x is a float variable with value " + $("#inputVal").text() + ""
-					+ "<li>M is user defined object of a class Meter.</li>"
-					+ "<li><b><y>M = x</y></b> means assign the <y>x</y> value to user defined object <y>M</y></li>"
+				var text = "<ul><li><y>x</y> is a float variable with value <y>" + $("#inputVal").text() + "</y>"
+					+ "<li><y>m</y> is user-defined object of a class Meter.</li>"
+					+ "<li><b><y>m = x</y></b> means assign the <y>x</y> value to user defined object <y>m</y></li>"
 					+ "<li>The basic data type value is assigned to an object by using <y>conversion constructor</y> which is a <y>parameterized constructor</y>"
 					+ "  i.e <y>Meter(<b><div id='tooltipXVal' class='display-inline-block relative'>x</div>)</y></b></li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
@@ -479,10 +518,12 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>The parameterized constructor <y>Meter(float y)</y> is called when <y>m = x</y> is maid.</li>"
-					+ "<li>The <y>x</y> value <y>" + $("#inputVal").text() + "</y> is copied into the formal parameter y.</li></ul>";
+				var text = "<ul><li>The parameterized constructor <y>Meter(float y)</y> is called when <y>m = x</y> is made.</li>"
+					+ "<li>The <y>x</y> value <y>" + $("#inputVal").text() + "</y> is copied into the formal parameter <y>y</y>.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append("<ul><li><y><b>length = <div id='tooltipTotalLength' class='display-inline-block relative'>"
+					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="lengthValue()">Next &#8594;</a>');
+					
+					/* $(".introjs-tooltiptext").append("<ul><li><y><b>length = <div id='tooltipTotalLength' class='display-inline-block relative'>"
 							+ " <div id='tooltipYLength' class='display-inline-block relative'>y</div> / 100</div></b></y></li></ul>");
 					var l1 = $("#tooltipTotalLength").offset();
 					var l2 = $("#lengthInit").offset();
@@ -493,19 +534,14 @@ function introGuide() {
 							$("#tooltipYLength").text($("#inputVal").text());
 							TweenMax.to("#tooltipYLength", 0.5, {rotationX : 0, onComplete:function() {
 								TweenMax.to("#tooltipTotalLength", 0.5, {rotationX : -90, onComplete:function() {
-									$("#tooltipTotalLength").text(($("#inputVal").text()) / 100);
+									$("#tooltipTotalLength").text((($("#inputVal").text()) / 100).toFixed(2));
 									TweenMax.to("#tooltipTotalLength", 0.5, {rotationX : 0, onComplete:function() {
 										$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="transferValue()">Next &#8594;</a>');
-										/* $("#lengthPanel").addClass("z-index");
-										fromEffectWithTweenMax("#tooltipTotalLength", "#lengthPanelVal1", function() {
-											$("#lengthPanel").removeClass("z-index");
-											$('.introjs-nextbutton').show();
-										}); */
 									}});
 								}});
 							}});
 						}});
-					}});
+					}}); */
 				});
 			});
 		break;
@@ -526,10 +562,9 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This function will print the result on console.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
-				});
+				setTimeout(function(){
+					introjs.nextStep();
+				}, 1000);
 			});
 		break;
 		case "restart":
@@ -552,6 +587,29 @@ function introGuide() {
 	$('.introjs-prevbutton').hide();
 	$('.introjs-skipbutton').hide();
 	$('.introjs-bullets').hide();
+}
+
+function lengthValue() {
+	$('.user-btn').remove();
+	$(".introjs-tooltiptext").append("<ul><li><y><b>length = <div id='tooltipTotalLength' class='display-inline-block relative'>"
+			+ " <div id='tooltipYLength' class='display-inline-block relative'>y</div> / 100</div></b></y></li></ul>");
+	var l1 = $("#tooltipTotalLength").offset();
+	var l2 = $("#lengthInit").offset();
+	var topLength = l2.top - l1.top;
+	var leftLength = l2.left - l1.left;
+	TweenMax.from("#tooltipTotalLength", 1, {top : topLength, left : leftLength, onComplete:function() {
+		TweenMax.to("#tooltipYLength", 0.5, {rotationX : -90, onComplete:function() {
+			$("#tooltipYLength").text($("#inputVal").text());
+			TweenMax.to("#tooltipYLength", 0.5, {rotationX : 0, onComplete:function() {
+				TweenMax.to("#tooltipTotalLength", 0.5, {rotationX : -90, onComplete:function() {
+					$("#tooltipTotalLength").text((($("#inputVal").text()) / 100).toFixed(2));
+					TweenMax.to("#tooltipTotalLength", 0.5, {rotationX : 0, onComplete:function() {
+						$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="transferValue()">Next &#8594;</a>');
+					}});
+				}});
+			}});
+		}});
+	}});
 }
 
 function transferValue() {
@@ -643,18 +701,18 @@ function getStep(element, intro, position, tooltipClass) {
 }
 </script>
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>Basic to Userdefined</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>Basic to User-defined</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<ul style="font-family: monospace;">
 				<li id="li1" class="opacity00">
-					To convert a basic data type to user defined type the <b class='monospace lite-blue'>conversion function</b> should be defined in a class in the form of <b class='monospace lite-blue'>constructor</b>,
-					 which is called a <b>conversion constructor</b>.  
+					To convert a <b class='monospace lite-blue'>basic data type</b> to <b class='monospace lite-blue'>user-defined type</b>, the <b class='monospace lite-blue'>conversion function</b> should be defined in a class in the form of <b class='monospace lite-blue'>constructor</b>,
+					 which is called a <b class='monospace lite-blue'>conversion constructor</b>.  
 				</li>
 				<li id="li2" class="opacity00">
-					 The format is...<br>
-					 <div class="col-xs-4"><pre class="creampretab1">constructor(basic data type) {<br>	------<br>	------<br>}</pre></div>
+					 The format is: <br>
+					 <div class="col-xs-4"><pre class="creampretab1">constructor(basic datatype) {<br>	------<br>	------<br>}</pre></div>
 				</li>
 			</ul>
 			<div class="col-xs-12">
@@ -671,7 +729,7 @@ function getStep(element, intro, position, tooltipClass) {
 	<span id="length"><red>float</red> length;</span>
 	<g>public</g>:
 		<span id="defaultConst">Meter() {
-			length = 0.0;
+			length = 0;
 		}</span>
 		<span id="paraConst" class="hide">Meter(float y) {
 			<span id="lengthInit">length = y / 100;</span>
@@ -681,12 +739,12 @@ function getStep(element, intro, position, tooltipClass) {
 		}</span>
 };</span>
 <red>void</red> main() {
-	<span id="constM" class="hide">Meter M;</span>
+	<span id="constM" class="hide">Meter m;</span>
 	<span id="floatX" class="hide"><red>float</red> x;</span>
-	<span id="cout1" class="hide">cout << <red>"enter length in centemeters : "</red>;</span>
+	<span id="cout1" class="hide">cout << <red>"Enter length in centemeters : "</red>;</span>
 	<span id="cin" class="hide">cin >> x;</span>
-	<span id="comments" class="hide"><b>//convert from basic to user-defined;</b>
-	<span id="mx" class="hide">M = x;</span></span>
+	<span id="comments" class="hide"><b>//convert from basic to user-defined</b>
+	<span id="mx" class="hide">m = x;</span></span>
 	<span id="callMethod" class="hide">m.putdata();</span>
 }
 </pre>
@@ -697,13 +755,13 @@ function getStep(element, intro, position, tooltipClass) {
 			<div class="text-center"><b>memory</b></div>
 				<div id="mPanel" class="opacity00">
 					<div class="panel panel-primary margin-bottom0">
-		    			<div class="panel-heading text-center padding0"><b id="m">M</b></div>
+		    			<div class="panel-heading text-center padding0"><b id="m">m</b></div>
 		    			<div class="panel-body text-center" style="padding: 5px;">
 		    				<div class="col-xs-offset-3 col-xs-6">
-								<div id="lengthPanel" class="opacity00">
+								<div id="lengthPanel" class="">
 									<div class="panel panel-primary margin-bottom0">
 					    				<div class="panel-heading text-center padding0"><b>length</b></div>
-					    				<div class="panel-body text-center"><span id="lengthPanelVal1" class="">0.0</span></div>
+					    				<div class="panel-body text-center"><span id="lengthPanelVal1" class="opacity00">0</span></div>
 					  				</div>
 					  				<!-- <div class="text-center">1024</div> -->
 				  				</div>
@@ -722,7 +780,7 @@ function getStep(element, intro, position, tooltipClass) {
 				<span class="title">Output</span>
 			</div>
 			<div class="output-console-body" id="body">
-			<div id="outputText" class="opacity00 display-inline-block">enter length in centemeters :&nbsp; </div><div class='display-inline-block input-val' contenteditable='true' maxlength='5' id='inputVal' class="padding5" spellcheck="false"></div>
+			<div id="outputText" class="opacity00 display-inline-block">Enter length in centemeters :&nbsp; </div><div class='display-inline-block input-val' contenteditable='true' maxlength='5' id='inputVal' class="padding5" spellcheck="false"></div>
 			</div>
 		</div>
 	</div>

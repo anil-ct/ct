@@ -80,10 +80,6 @@
 	padding: 0;
 }
 
-div, span {
-	position: relative;
-}
-
 .relative {
 	position: relative;
 }
@@ -130,6 +126,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0 !important;
 }
 
 .z-index {
@@ -181,6 +178,14 @@ orange {
 	background-color: #ff0066;
 	font-weight: bold;
 }
+
+.lite-red {
+	color: #880000;
+}
+
+.lite-blue {
+	color: seagreen;
+}
 </style>
 </head>
 <body>
@@ -205,10 +210,10 @@ $(document).ready(function() {
 				<li id="li2" class="opacity00">
 					 It is defined as an overloaded basic datatype which takes no arguments. The format of operator function is<br>
 					 <div class="col-xs-12"><pre class="col-xs-3 creampretab1">operator basic datatype() {<br>	------<br>	------<br>}</pre><br></div>
-					 <!-- &emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span> -->
 				</li>
 				<li id="li3" class="opacity00" style="margin-top: -1px;">
 					This operator function should return the basic datatype value.
+					&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span>
 				</li>
 			</ul>
 		</div>
@@ -218,7 +223,7 @@ $(document).ready(function() {
 		<div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>Meter</blue> {
+<span id="class"><g>class</g> <blue>Meter</blue> {
 	<span id="length"><red>float</red> length;</span>
 	<g>public</g>:
 		<span id="defaultConst" class="hide">Meter() {
@@ -233,7 +238,7 @@ $(document).ready(function() {
 			<span id="length100" class="">x = length * 100;</span>
 			<span id="returnX" class="">return x;</span>
 		}</span>
-};
+};</span>
 <red>void</red> main() {
 	<span id="constM" class="hide">Meter M;</span>
 	<span id="callMethod" class="hide">M.getdata();</span>

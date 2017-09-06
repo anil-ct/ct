@@ -47,9 +47,13 @@ function introGuide() {
 		steps : [{
 			 		element : "#topDiv",
 					intro : "",
-				 	position : "bottom"
+				 	position : "hide"
 				},{
 			 		element : "#code",
+					intro : "",
+					position : "right"
+				},{
+			 		element : "#class",
 					intro : "",
 					position : "right"
 				},{
@@ -141,7 +145,18 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Let us consider sample C++ program.";
+				var text = "Let us consider sample C++ program to convert userdefined to basic.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton').show();	
+				});
+			});
+		break;
+		case "class":
+			introjs.refresh();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "This is a class Meter which consists a <b class='monospace'><y>float</y></b> field <b class='monospace'><y>length</y></b>.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();	
 				});
@@ -170,7 +185,8 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "After creating object for Meter immediately the default constructor will call. And initialize the length with <y>0.0</y>;";
+				var text = "<ul><li>Whenever an object is created, the default constructor is called immediately.</li>"
+				+ "<li>Then the field <y>length</y> is initialized with <y>0.0</y></li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$("#memoryDiv").addClass("z-index");
 					$("#lengthPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
@@ -198,10 +214,13 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "In this function we will get value from the user.";
+				/* var text = "In this function we will get value from the user.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();	
-				});
+				}); */
+				setTimeout(function(){
+					introjs.nextStep();
+				}, 1000);
 			});
 		break;
 		case "cout2":
@@ -216,7 +235,7 @@ function introGuide() {
 			});
 		break;
 		case "outputDiv":
-			if (introjs._currentStep == 7) {
+			if (introjs._currentStep == 8) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
@@ -227,7 +246,7 @@ function introGuide() {
 						introjs.nextStep();
 					}, 1000);
 				});
-			} else if (introjs._currentStep == 9) {
+			} else if (introjs._currentStep == 10) {
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
@@ -237,7 +256,7 @@ function introGuide() {
 						charAtEnd("inputVal");
 					});
 				});
-			} else if (introjs._currentStep == 16) {
+			} else if (introjs._currentStep == 17) {
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
@@ -288,7 +307,7 @@ function introGuide() {
 			});
 		break;
 		case "xm":
-			if (introjs._currentStep == 12) {
+			if (introjs._currentStep == 13) {
 				$("#xm").removeClass("hide");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
@@ -301,7 +320,7 @@ function introGuide() {
 						$('.introjs-nextbutton').show();	
 					});
 				});
-			} else if (introjs._currentStep == 14) {
+			} else if (introjs._currentStep == 15) {
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
