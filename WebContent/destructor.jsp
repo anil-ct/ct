@@ -22,7 +22,7 @@
 
 <!-- <script src="/secure/lang/c/js-min/cof.min.js"></script> -->
 
-<title>destructors</title>
+<title>destructor</title>
 <style type="text/css">
 
 .margin-top-20 {
@@ -37,6 +37,7 @@
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
+    background-color: white;
 }
 
 .creampretab {
@@ -68,10 +69,6 @@
 
 .padding0 {
 	padding: 0;
-}
-
-div, span {
-	position: relative;
 }
 
 #outputDiv {
@@ -109,6 +106,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0!important;
 }
 
 .z-index {
@@ -213,17 +211,25 @@ function introGuide() {
 					intro : "",
 					position : "right"
 				},{
+			 		element : "#class",
+					intro : "",
+					position : "right"
+				},{
 			 		element : "#callDefaultConst",
 					intro : "",
 					position : "right"
 				},{
 			 		element : "#memoryDiv",
 					intro : "",
-					position : "right"
+					tooltipClass : "hide"
 				},{
 			 		element : "#defaultConst",
 					intro : "",
 					position : "right"
+				},{
+			 		element : "#s1Panel",
+					intro : "",
+					tooltipClass : "hide"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
@@ -237,6 +243,10 @@ function introGuide() {
 					intro : "",
 					position : "bottom"
 				},{
+			 		element : "#s2Panel",
+					intro : "",
+					tooltipClass : "hide"
+				},{
 			 		element : "#outputDiv",
 					intro : "",
 					tooltipClass : "hide"
@@ -244,6 +254,10 @@ function introGuide() {
 			 		element : "#destruct",
 					intro : "",
 					position : "bottom"
+				},{
+			 		element : "#memoryDiv",
+					intro : "",
+					tooltipClass : "hide"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
@@ -288,6 +302,18 @@ function introGuide() {
 				});
 			});
 		break;
+		case "class":
+			introjs.refresh();
+			$("#constM").addClass("hide");
+			$("#memoryDiv").addClass("opacity00")
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "This is a class <y>Sample</y> which consists <b><y>int</y></b> fields <b><y>a</y></b>, <b><y>b</y></b>.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
 		case "callDefaultConst":
 			$("#callDefaultConst").removeClass("hide");
 			introjs.refresh();
@@ -301,19 +327,35 @@ function introGuide() {
 			});
 		break;
 		case "memoryDiv":
-			$("#memoryDiv").removeClass("opacity00");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Memory created for object.";
-				typing($(".introjs-tooltiptext"), text, function() {
+			if (introjs._currentStep == 4) {
+				$("#memoryDiv").removeClass("opacity00");
+				introjs.refresh();
+				$('.introjs-nextbutton').hide();
+				$('.introjs-prevbutton').hide();
+				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#s1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
-						$('.introjs-nextbutton').show();
+						$(this).removeClass("animated zoomIn");
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 500);
 					});	
 				});
-			});
+			} else if (introjs._currentStep == 13) {
+				introjs.refresh();
+				$('.introjs-nextbutton').hide();
+				$("#memoryDiv").addClass("z-index");
+				$("#s1Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
+					$(this).removeClass("animated zoomIn");
+					$("#s2Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
+						$(this).removeClass("animated zoomIn");
+						$("#memoryDiv").removeClass("z-index");
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 500);
+					});
+				});
+			}
 		break;
 		case "defaultConst":
 			$("#defaultConst").removeClass("hide");
@@ -323,20 +365,27 @@ function introGuide() {
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "After creating an object immediately the default constructor will call.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$("#memoryDiv").addClass("z-index");
-					$("#a1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-						$(this).removeClass("animated zoomIn");
-					$("#b1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-						$(this).removeClass("animated zoomIn");
-						$("#memoryDiv").removeClass("z-index");
-						$('.introjs-nextbutton').show();
-					});
+					$('.introjs-nextbutton').show();
+				});
+			});
+		break;
+		case "s1Panel":
+			$("#memoryDiv").removeClass("opacity00");
+			introjs.refresh();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				$("#a1PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
+					$("#b1PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 500);
 					});
 				});
 			});
 		break;
 		case "outputDiv":
-			if (introjs._currentStep == 5) {
+			if (introjs._currentStep == 7) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
@@ -347,7 +396,7 @@ function introGuide() {
 						introjs.nextStep();
 					}, 1500);
 				});
-			} else if (introjs._currentStep == 8) {
+			} else if (introjs._currentStep == 11) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
@@ -358,7 +407,7 @@ function introGuide() {
 						introjs.nextStep();
 					}, 1500);
 				});
-			} else if (introjs._currentStep == 10) {
+			} else if (introjs._currentStep == 14) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
@@ -395,10 +444,12 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "After creating an object immediately the parameter constructor will called. And variables a, b created in the memory."
-					+ " And the result will print on the console.";
+				var text = "<ul><li>After creating an object immediately the parameter constructor will call.</li>"
+				+ "<li><y>x</y>, <y>y</y> values copied into <y>a</y>, <y>b</y> respectively.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append(" <div id='aToX' class='display-inline-block relative ct-code-b-yellow'>"
+					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="abValues()">Next &#8594;</a>');
+					
+					/* $(".introjs-tooltiptext").append(" <div id='aToX' class='display-inline-block relative ct-code-b-yellow'>"
 							+ "  a = <div id='tooltipXVal' class='display-inline-block relative'>x</div>;"
 							+ " b = <div id='tooltipYVal' class='display-inline-block relative'>y</div>;</div>");
 					var l1 = $("#aToX").offset();
@@ -425,7 +476,21 @@ function introGuide() {
 								}});
 							}});
 						}});
-					}});
+					}}); */
+				});
+			});
+		break;
+		case "s2Panel":
+			introjs.refresh();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				$("#a2PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
+					$("#b2PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 500);
+					});
 				});
 			});
 		break;
@@ -435,18 +500,18 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "When destructor function call the memory will be clear."
+				var text = "When destructor function call the objects are deleted from the memory."
 					+ " And the result will print on the console.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$("#memoryDiv").addClass("z-index");
+					$('.introjs-nextbutton').show();
+/* 					$("#memoryDiv").addClass("z-index");
 					$("#s1Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
 						$("#s2Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
 							$(this).removeClass("animated zoomIn");
 							$("#memoryDiv").removeClass("z-index");
-							$('.introjs-nextbutton').show();
 						});
-					});
+					}); */
 				});
 			});
 		break;
@@ -470,6 +535,30 @@ function introGuide() {
 	$('.introjs-prevbutton').hide();
 	$('.introjs-skipbutton').hide();
 	$('.introjs-bullets').hide();
+}
+
+function abValues() {
+	$('.user-btn').remove();
+	$(".introjs-tooltiptext").append("<ul style='list-style-type: none;'><li><div id='aToX' class='display-inline-block relative ct-code-b-yellow'>"
+			+ "  <div>a = <div id='tooltipXVal' class='display-inline-block relative'>x</div>;</div>"
+			+ " <div>b = <div id='tooltipYVal' class='display-inline-block relative'>y</div>;</div></div></li></ul>");
+	var l1 = $("#aToX").offset();
+	var l2 = $("#xAndY").offset();
+	var topLength = l2.top - l1.top;
+	var leftLength = l2.left - l1.left;
+	TweenMax.from("#aToX", 1, {top : topLength, left : leftLength, onComplete:function() {
+		TweenMax.to("#tooltipXVal", 0.5, {rotationX : -90, onComplete:function() {
+			$("#tooltipXVal").text($("#s1Val1").text());
+			TweenMax.to("#tooltipXVal", 0.5, {rotationX : 0, onComplete:function() {
+				TweenMax.to("#tooltipYVal", 0.5, {rotationX : -90, onComplete:function() {
+					$("#tooltipYVal").text($("#s1Val2").text());
+					TweenMax.to("#tooltipYVal", 0.5, {rotationX : 0, onComplete:function() {
+						$('.introjs-nextbutton').show();
+					}});
+				}});
+			}});
+		}});
+	}});
 }
 
 function textFocus(selector) {
@@ -541,7 +630,7 @@ function getStep(element, intro, position, tooltipClass) {
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00"><g>Destructor</g> functions are the inverse of constructor functions. They are called when objects are destroyed (deallocated).</li>
+					<li id="li1" class="opacity00"><a href="https://en.wikipedia.org/wiki/Destructor_(computer_programming)" target="_blank">Destructor</a> functions are the inverse of constructor functions. They are called when objects are destroyed (deallocated).</li>
 					<li id="li2" class="opacity00">Destructors have same name as the class preceded by a tilde<g>(~)</g>.</li>
 					<li id="li3" class="opacity00">If we do not write our own destructor in class, compiler creates a default destructor for us.</li>
 					<li id="li4" class="opacity00">The Destructor of class is automatically called when object goes out of scope.</li>
@@ -558,7 +647,7 @@ function getStep(element, intro, position, tooltipClass) {
 <div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>Sample</blue> {
+<span id="class"><g>class</g> <blue>Sample</blue> {
 	<red>int</red> a, b;
 	<span id="defaultConst" class="hide"><g>public</g>:
 		Sample() { 
@@ -574,7 +663,7 @@ function getStep(element, intro, position, tooltipClass) {
 		<span id="destruct" class="hide"><b>~Sample()</b> { 
 			cout << <red>"s1 and s2 objects are deleted.\n"</red>;
 		}</span>
-};	
+};</span>
 <red>void</red> main() {
 	<span id="callDefaultConst" class="hide">Sample s1;</span>
 	<span id="callParameterConst" class="hide">Sample s2(<spa id="s1Val1">10</spa>, <span id="s1Val2">20</span>);</span>
@@ -590,19 +679,19 @@ function getStep(element, intro, position, tooltipClass) {
     			<div class="panel-heading text-center padding0"><b id="s1">s1</b></div>
     			<div class="panel-body text-center" style="padding: 5px;">
     				<div class="col-xs-6 margin-top-10">
-						<div id="a1Panel" class="opacity00">
+						<div id="a1Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>a</b></div>
-			    				<div class="panel-body text-center"><span id="a1PanelVal" class="">5</span></div>
+			    				<div class="panel-body text-center"><span id="a1PanelVal" class="opacity00">5</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
 					</div>
 					<div class="col-xs-6 margin-top-10">
-						<div id="b1Panel" class="opacity00">
+						<div id="b1Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>b</b></div>
-			    				<div class="panel-body text-center"><span id="b1PanelVal" class="">10</span></div>
+			    				<div class="panel-body text-center"><span id="b1PanelVal" class="opacity00">10</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1026</div> -->
 		  				</div>
@@ -616,19 +705,19 @@ function getStep(element, intro, position, tooltipClass) {
     			<div class="panel-heading text-center padding0"><b id="s2">s2</b></div>
     			<div class="panel-body text-center" style="padding: 5px;">
     				<div class="col-xs-6 margin-top-10">
-						<div id="a2Panel" class="opacity00">
+						<div id="a2Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>a</b></div>
-			    				<div class="panel-body text-center"><span id="a2PanelVal" class="">10</span></div>
+			    				<div class="panel-body text-center"><span id="a2PanelVal" class="opacity00">10</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
 					</div>
 					<div class="col-xs-6 margin-top-10">
-						<div id="b2Panel" class="opacity00">
+						<div id="b2Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>b</b></div>
-			    				<div class="panel-body text-center"><span id="b2PanelVal" class="">20</span></div>
+			    				<div class="panel-body text-center"><span id="b2PanelVal" class="opacity00">20</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1026</div> -->
 		  				</div>

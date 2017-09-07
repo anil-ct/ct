@@ -70,10 +70,6 @@
 	padding: 0;
 }
 
-div, span {
-	position: relative;
-}
-
 #outputDiv {
 	padding: 0;
 	z-index: 9999999;
@@ -109,6 +105,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0 !important;
 }
 
 .z-index {
@@ -170,7 +167,7 @@ $(document).ready(function() {
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00">A <b><a href="https://en.wikipedia.org/wiki/Friend_function" target="_blank">friend function</a></b> can be given special grant to access private and protected members. A friend function can be:
+					<li id="li1" class="opacity00">A <a href="https://en.wikipedia.org/wiki/Friend_function" target="_blank">friend function</a> can be given special grant to access private and protected members. A friend function can be:
 						<ul>
 							<li>A method of another class</li>
 							<li>A global function</li>
@@ -181,9 +178,8 @@ $(document).ready(function() {
 					 	of a class with protected or private data, it lessens the value of encapsulation of separate classes in object-oriented programming.
 					 </li>
 					<li id="li3" class="opacity00">Friendship is not mutual. If a class A is friend of B, then B doesn’t become friend of A automatically.</li>
-					<li id="li4" class="opacity00">Friendship is not inherited</li>
-					<li id="li5" class="opacity00">The concept of friends is not there in Java. 
-						&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span><br>
+					<li id="li4" class="opacity00">Friendship is not inherited
+						&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span>
 					</li>
 				</ul>
 			</div>

@@ -39,6 +39,7 @@
     border-radius: 8px;
     padding: 10px;
     height: 195px;
+    background-color: white;
 }
 
 .creampretab {
