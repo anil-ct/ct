@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>default-constructor</title>
+<title>parameterized-constructor</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <link rel="stylesheet" href="/css/introjs.css">
@@ -37,7 +37,7 @@
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
-    height: 295px;
+    height: 315px;
     background-color: white;
 }
 
@@ -91,7 +91,7 @@ pre {
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 303px;
+	height: 287px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -164,6 +164,10 @@ orange {
 	background-color: #ff0066;
 	font-weight: bold;
 }
+
+.relative {
+	position: relative;
+}
 </style>
 </head>
 <body>
@@ -230,19 +234,15 @@ function introGuide() {
 					intro : "",
 					position : "right"
 				},{
-			 		element : "#callDefaultConst",
+			 		element : "#callParameterConst",
 					intro : "",
-					position : "top"
+					position : "right"
 				},{
 			 		element : "#memoryDiv",
 					intro : "",
 					position : "right"
 				},{
-			 		element : "#defaultConstByClass",
-					intro : "",
-					position : "top"
-				},{
-			 		element : "#defaultConst",
+			 		element : "#paraConst",
 					intro : "",
 					position : "top"
 				},{
@@ -278,6 +278,7 @@ function introGuide() {
 		introjs.refresh();
 		switch (elementId) {
 		case "topDiv":
+			$('.user-btn').removeClass("hide");
 			$('.introjs-nextbutton').hide();
 			$("#li1").fadeTo(500, 1, function () {
 				$("#li2").fadeTo(500, 1, function () {
@@ -290,9 +291,10 @@ function introGuide() {
 		break;
 		case "code":
 			$("#code").removeClass("opacity00");
-			$('.user-btn').remove();
+			$('.user-btn').addClass("hide");
 			introjs.refresh();
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Let us consider a sample C++ program.";
 				typing($(".introjs-tooltiptext"), text, function() {
@@ -312,17 +314,17 @@ function introGuide() {
 				});
 			});
 		break;
-		case "callDefaultConst":
-			$("#callDefaultConst").removeClass("hide");
+		case "callParameterConst":
+			$("#callParameterConst").removeClass("hide");
+			$("#s1Panel").addClass("opacity00").addClass("animated zoomOut");
+			$("#s1Panel").removeClass("animated zoomOut");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>Let us create an object for class <y>Sample</y>.</li>"
-					+ "<li>Here <y>s1</y> is an object of the class <y>Sample</y>.</li>"
-					+ "<li>First the memory is allocated for that object.</li>";
+				var text = "This is parameterized constructor.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
@@ -337,7 +339,7 @@ function introGuide() {
 						$(this).removeClass("animated zoomIn");
 						var text = "Memory is created for object <y>s1</y>, which consists of two integer variables <y>a</y> and <y>b</y>.";
 						typing($(".introjs-tooltiptext"), text, function() {
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});	
 				});
@@ -355,30 +357,16 @@ function introGuide() {
 				});
 			}
 		break;
-		case "defaultConstByClass":
-			$("#defaultConstByClass").removeClass("hide");
+		case "paraConst":
+			$("#paraConst").removeClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>If we are not defined any constructor, the compiler will <y>implicitly</y> declare and define a <y>default constructor</y> with an <y>empty body</y>.</li>"
-					+ "<li>If we are define any constructor, the compiiler will not define.</li></ul>";
+				var text = "<ul><li>After creating an object immediately the parameter constructor will call.</li>"
+				+ "<li><y>x</y>, <y>y</y> values copied into <y>a</y>, <y>b</y> respectively.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
-				});
-			});
-		break;
-		case "defaultConst":
-			$("#defaultConstByClass").addClass("hide");
-			$("#defaultConst").removeClass("hide");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>Here we are <y>explicitly</y> defined the <y>default constructor</y>.</li>"
-					+ "<li>So, after creating an object immediately the default constructor will call automatically. And <y>initialize</y> variables <y>a</y>, <y>b</y>.</li></ul>";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="abValues()">Next &#8594;</a>');
 				});
 			});
 		break;
@@ -436,7 +424,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$("#body").append("<div>Given values: 5 10</div>");
+				$("#body").append("<div>Given values: 10 20</div>");
 				setTimeout(function(){
 					introjs.nextStep();
 				}, 1500);
@@ -464,25 +452,28 @@ function introGuide() {
 	$('.introjs-bullets').hide();
 }
 
-function textFocus(selector) {
-	$("#"+selector).focus();
-	editText('#'+ selector);
-}
-
-function editText(selector) {
-	$(selector).on("keydown", function(e) {
-		$('.error-text').remove();
-		var max = $(this).attr("maxlength");
-		if ($(this).text().length > max-1) {
-			if ($.inArray(e.keyCode, [46, 8, 9, 27, 37, 39, 13]) !== -1) {
-				return;
-			}
-			if (e.keyCode == 13 && e.keyCode == 9) {
-				e.preventDefault();
-			}
-			e.preventDefault();
-		}		
-	});
+function abValues() {
+	$('.user-btn').remove();
+	$(".introjs-tooltiptext ul").append("<div id='aToX' class='display-inline-block relative ct-code-b-yellow'>"
+			+ " <li><div>a = <div id='tooltipXVal' class='display-inline-block relative'>x</div>;</div>"
+			+ " <div>b = <div id='tooltipYVal' class='display-inline-block relative'>y</div>;</div></li></div>");
+	var l1 = $("#aToX").offset();
+	var l2 = $("#xAndY").offset();
+	var topLength = l2.top - l1.top;
+	var leftLength = l2.left - l1.left;
+	TweenMax.from("#aToX", 1, {top : topLength, left : leftLength, onComplete:function() {
+		TweenMax.to("#tooltipXVal", 0.5, {rotationX : -90, onComplete:function() {
+			$("#tooltipXVal").text($("#s1Val1").text());
+			TweenMax.to("#tooltipXVal", 0.5, {rotationX : 0, onComplete:function() {
+				TweenMax.to("#tooltipYVal", 0.5, {rotationX : -90, onComplete:function() {
+					$("#tooltipYVal").text($("#s1Val2").text());
+					TweenMax.to("#tooltipYVal", 0.5, {rotationX : 0, onComplete:function() {
+						$('.introjs-nextbutton').show();
+					}});
+				}});
+			}});
+		}});
+	}});
 }
 
 function typing(selector, text, callBackFunction) {
@@ -553,7 +544,7 @@ function getStep(element, intro, position, tooltipClass) {
 }
 </script>
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>Default Constructor</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>Parameterized Constructor</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
@@ -567,8 +558,8 @@ function getStep(element, intro, position, tooltipClass) {
 							<li><a href="https://en.wikipedia.org/wiki/Copy_constructor_(C%2B%2B)" target="_blank">Copy constructor</a></li>
 						</ul>
 					</li>
-					<li id="li3" class="opacity00">The format of the <b><g>default constructor</g></b> is:<br>
-						 <div class="col-xs-4"><pre class="creampretab1">class <blue>class-name</blue> {<br>  <g>public</g>:<br>  class-name() {<br><br>  }<br>};</pre></div>
+					<li id="li3" class="opacity00">The format of the <b><g>parameterized constructor</g></b> is:<br>
+						 <div class="col-xs-4"><pre class="creampretab1">class <blue>class-name</blue> {<br>  <g>public</g>:<br>  class-name(arguments) {<br>    -----<br>    -----<br>  }<br>};</pre></div>
 					</li>
 				</ul>
 				<div class="col-xs-12">
@@ -585,19 +576,16 @@ function getStep(element, intro, position, tooltipClass) {
 <span id="class"><g>class</g> <blue>Sample</blue> {
 	<red>int</red> a, b;
 	<g>public</g>:
-	<span id="defaultConstByClass" class="hide">Sample() {
-	 
-	}</span>
-	<span id="defaultConst" class="hide">Sample() { 
-		a = 5;
-		b = 10;
+	<span id="paraConst" class="hide">Sample(int x, int y) { 
+		<span id="xAndY">a = x;
+		b = y;</span>
 	}</span>
 	<span id="displayMethod" class="hide"><red>void</red> display() {
 		<span id="cout">cout &lt;&lt; <red>"Given values : "</red> << a << " " << b;</span> 
 	}</span>
 };</span>
 <red>void</red> main() {
-	<span id="callDefaultConst" class="hide">Sample s1;</span>
+	<span id="callParameterConst" class="hide">Sample s1(<spa id="s1Val1">10</spa>, <span id="s1Val2">20</span>);</span>
 	<span id="callMethod1" class="hide">s1.display();</span>
 }
 </pre>
@@ -614,7 +602,7 @@ function getStep(element, intro, position, tooltipClass) {
 						<div id="a1Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>a</b></div>
-			    				<div class="panel-body text-center"><span id="a1PanelVal" class="opacity00">5</span></div>
+			    				<div class="panel-body text-center"><span id="a1PanelVal" class="opacity00">10</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
@@ -623,7 +611,7 @@ function getStep(element, intro, position, tooltipClass) {
 						<div id="b1Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>b</b></div>
-			    				<div class="panel-body text-center"><span id="b1PanelVal" class="opacity00">10</span></div>
+			    				<div class="panel-body text-center"><span id="b1PanelVal" class="opacity00">20</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1026</div> -->
 		  				</div>

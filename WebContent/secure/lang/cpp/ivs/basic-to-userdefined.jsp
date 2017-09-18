@@ -39,6 +39,7 @@
     border-radius: 8px;
     padding: 10px;
     height: 200px;
+    background-color: white;
 }
 
 .creampretab {
@@ -99,7 +100,7 @@
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 423px;
+	height: 135px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -155,6 +156,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold;
 }
 
 blue {
@@ -198,18 +200,18 @@ $(document).ready(function() {
 
 </script>
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>Basic to Userdefined</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>Basic to User-defined</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<ul style="font-family: monospace;">
 				<li id="li1" class="opacity00">
-					To convert a basic data type to user defined type the <b class='monospace lite-blue'>conversion function</b> should be defined in a class in the form of <b class='monospace lite-blue'>constructor</b>,
-					 which is called a <b>conversion constructor</b>.  
+					To convert a <b class='monospace lite-blue'>basic data type</b> to <b class='monospace lite-blue'>user-defined type</b>, the <b class='monospace lite-blue'>conversion function</b> should be defined in a class in the form of <b class='monospace lite-blue'>constructor</b>,
+					 which is called a <b class='monospace lite-blue'>conversion constructor</b>.  
 				</li>
 				<li id="li2" class="opacity00">
-					 The format is...<br>
-					 <div class="col-xs-4"><pre class="creampretab1">constructor(basic data type) {<br>	------<br>	------<br>}</pre></div>
+					 The format is: <br>
+					 <div class="col-xs-4"><pre class="creampretab1">constructor(basic datatype) {<br>	------<br>	------<br>}</pre></div>
 				</li>
 			</ul>
 			<div class="col-xs-12">
@@ -226,7 +228,7 @@ $(document).ready(function() {
 	<span id="length"><red>float</red> length;</span>
 	<g>public</g>:
 		<span id="defaultConst">Meter() {
-			length = 0.0;
+			length = 0;
 		}</span>
 		<span id="paraConst" class="hide">Meter(float y) {
 			<span id="lengthInit">length = y / 100;</span>
@@ -236,12 +238,12 @@ $(document).ready(function() {
 		}</span>
 };</span>
 <red>void</red> main() {
-	<span id="constM" class="hide">Meter M;</span>
+	<span id="constM" class="hide">Meter m;</span>
 	<span id="floatX" class="hide"><red>float</red> x;</span>
-	<span id="cout1" class="hide">cout << <red>"enter length in centemeters : "</red>;</span>
+	<span id="cout1" class="hide">cout << <red>"Enter length in centemeters : "</red>;</span>
 	<span id="cin" class="hide">cin >> x;</span>
-	<span id="comments" class="hide"><b>//convert from basic to user-defined;</b>
-	<span id="mx" class="hide">M = x;</span></span>
+	<span id="comments" class="hide"><b>//convert from basic to user-defined</b>
+	<span id="mx" class="hide">m = x;</span></span>
 	<span id="callMethod" class="hide">m.putdata();</span>
 }
 </pre>
@@ -252,13 +254,13 @@ $(document).ready(function() {
 			<div class="text-center"><b>memory</b></div>
 				<div id="mPanel" class="opacity00">
 					<div class="panel panel-primary margin-bottom0">
-		    			<div class="panel-heading text-center padding0"><b id="m">M</b></div>
+		    			<div class="panel-heading text-center padding0"><b id="m">m</b></div>
 		    			<div class="panel-body text-center" style="padding: 5px;">
 		    				<div class="col-xs-offset-3 col-xs-6">
-								<div id="lengthPanel" class="opacity00">
+								<div id="lengthPanel" class="">
 									<div class="panel panel-primary margin-bottom0">
 					    				<div class="panel-heading text-center padding0"><b>length</b></div>
-					    				<div class="panel-body text-center"><span id="lengthPanelVal1" class="">0.0</span></div>
+					    				<div class="panel-body text-center"><span id="lengthPanelVal1" class="opacity00">0</span></div>
 					  				</div>
 					  				<!-- <div class="text-center">1024</div> -->
 				  				</div>
@@ -277,7 +279,7 @@ $(document).ready(function() {
 				<span class="title">Output</span>
 			</div>
 			<div class="output-console-body" id="body">
-			<div id="outputText" class="opacity00 display-inline-block">enter length in centemeters :&nbsp; </div><div class='display-inline-block input-val' contenteditable='true' maxlength='5' id='inputVal' class="padding5" spellcheck="false"></div>
+			<div id="outputText" class="opacity00 display-inline-block">Enter length in centemeters :&nbsp; </div><div class='display-inline-block input-val' contenteditable='true' maxlength='5' id='inputVal' class="padding5" spellcheck="false"></div>
 			</div>
 		</div>
 	</div>

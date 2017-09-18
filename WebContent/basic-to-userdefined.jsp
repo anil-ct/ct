@@ -156,6 +156,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold;
 }
 
 blue {
@@ -523,26 +524,6 @@ function introGuide() {
 					+ "<li>The <y>x</y> value <y>" + $("#inputVal").text() + "</y> is copied into the formal parameter <y>y</y>.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="lengthValue()">Next &#8594;</a>');
-					
-					/* $(".introjs-tooltiptext").append("<ul><li><y><b>length = <div id='tooltipTotalLength' class='display-inline-block relative'>"
-							+ " <div id='tooltipYLength' class='display-inline-block relative'>y</div> / 100</div></b></y></li></ul>");
-					var l1 = $("#tooltipTotalLength").offset();
-					var l2 = $("#lengthInit").offset();
-					var topLength = l2.top - l1.top;
-					var leftLength = l2.left - l1.left;
-					TweenMax.from("#tooltipTotalLength", 1, {top : topLength, left : leftLength, onComplete:function() {
-						TweenMax.to("#tooltipYLength", 0.5, {rotationX : -90, onComplete:function() {
-							$("#tooltipYLength").text($("#inputVal").text());
-							TweenMax.to("#tooltipYLength", 0.5, {rotationX : 0, onComplete:function() {
-								TweenMax.to("#tooltipTotalLength", 0.5, {rotationX : -90, onComplete:function() {
-									$("#tooltipTotalLength").text((($("#inputVal").text()) / 100).toFixed(2));
-									TweenMax.to("#tooltipTotalLength", 0.5, {rotationX : 0, onComplete:function() {
-										$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="transferValue()">Next &#8594;</a>');
-									}});
-								}});
-							}});
-						}});
-					}}); */
 				});
 			});
 		break;

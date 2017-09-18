@@ -23,6 +23,7 @@
 
 <!-- <script src="/secure/lang/c/js-min/cof.min.js"></script> -->
 
+<script src="generations-of-programming-languages.js" type="text/javascript"></script>
 <title>generations-of-programming-languages</title>
 <style type="text/css">
 
@@ -156,7 +157,12 @@ orange {
 </head>
 <body>
 <script type="text/javascript">
-var tooltipMap = {
+
+$(document).ready(function() {
+	generationsOfProgrammingLanguagesReadyFun();
+});
+
+/* var tooltipMap = {
 	"#group1" : "<ul><li>Use a <b class='monospace lite-red'>binary code</b> that consists of strings of only <g><b>0</b></g>'s and <g><b>1</b></g>'s.</li></ul>",
 	"#group2" : "<ul><li>Uses <b><a href='https://en.wikipedia.org/wiki/Mnemonic' target='_blank'  class='monospace'>mnemonics</a></b> code that consists of very short words for commands.</li> <li>Assembly language programs need to be converted into"
 		+ " machine language by an <b class='monospace lite-blue'>assembler</b> before it can be run.</li></ul>",
@@ -166,7 +172,7 @@ var tooltipMap = {
 	"#group4" : "<ul><li>Fourth Generation language is designed to be closer to natural language than a Third Generation.</li>"
 		+ " <li>Languages for accessing <b class='monospace lite-red'>databases</b> are often described as Fourth Generation languages.</li>"
 		+ " <li>Standard <b class='monospace lite-blue'>ML</b>, <b class='monospace lite-blue'>Lisp</b>, <b class='monospace lite-blue'>SQL</b> are example of Fourth Generation language.</li></ul>",
-	"#group5" : "<ul><li>Fifth Generation Languages are basically an outgrowth of <b style='font-size:95%;' class='monospace'><a href='https://en.wikipedia.org/wiki/Artificial_intelligence' target='_blank'>artificial intelligence</a></b> research from the 1980's.</li> <li>The approach is to build a program"
+	"#group5" : "<ul><li>Fifth Generation Languages are basically an outgrowth of <b style='font-size:95%;' class='monospace'><a href='https://en.wikipedia.org/wiki/Artificial_intelligence' target='_blank' style='font-size: 11px;'>artificial intelligence</a></b> research from the 1980's.</li> <li>The approach is to build a program"
 		+ " that implements a specific algorithm to solve problems.</li></ul>",
 };
 
@@ -175,14 +181,7 @@ var typingSpeed = 5;
 
 $(document).ready(function(){
 	$("rect, circle, line, text").hide();
-	
-	/* animation("#group1", function() {
-		$(".customPopover:last").append("<div><span class='pull-right user-btn introjs-button' onclick='firstGenCode()'>Next &#8594;</span></div>");
-	}); */
-	
 	revealText();
-	
-	
 	$('#restart').click(function() {
 		location.reload();
 	});
@@ -363,7 +362,7 @@ function restart() {
 		$("#restart").next().css("width", "105px");
 	});
 }
-
+ */
 </script>
 <div class='text-center margin-top-10'>
 	<h4 class='label ct-demo-heading' id='demoTitle'>Generations of Programming Languages</h4>

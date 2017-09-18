@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>default-constructor</title>
+<title>staic-data-members</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <link rel="stylesheet" href="/css/introjs.css">
@@ -37,7 +37,6 @@
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
-    height: 295px;
     background-color: white;
 }
 
@@ -91,7 +90,7 @@ pre {
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 303px;
+	height: 287px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -164,6 +163,10 @@ orange {
 	background-color: #ff0066;
 	font-weight: bold;
 }
+
+.relative {
+	position: relative;
+}
 </style>
 </head>
 <body>
@@ -179,34 +182,6 @@ $(document).ready(function() {
 	$('#restart').click(function() {
 		location.reload();
 	});
-	
-	$(".validate").on("click keydown keyup", function(e) {
-		$(".errMsg").remove();
-		if ($(this).text() == "") {
-			$(this).addClass("empty");
-		} else {
-			$(this).removeClass("empty");
-		}
-		introjs.refresh();
-		
-		if ($(".empty").length > 0) {
-			$(".introjs-nextbutton").hide();
-		} else {
-			$(".introjs-nextbutton").show();
-		}
-		
-		var max = $(this).attr("maxlength");
-		if ($.inArray(e.keyCode, [46, 8, 9, 27]) !== -1 || (e.keyCode >= 37 && e.keyCode <= 39)) {
-			return;
-		}
-		if (((e.shiftKey) || (e.keyCode < 48 || e.keyCode > 57)) && ((e.keyCode < 96) || (e.keyCode > 105))) {
-			e.preventDefault();
-		}
-		if ($(this).text().length > max) {
-			//$(".introjs-tooltiptext").append("<div class='errMsg'>Max Length 2 digits only</div>")
-			e.preventDefault();
-		}
-	});
 });
 
 function introGuide() {
@@ -220,7 +195,7 @@ function introGuide() {
 		steps : [{
 			 		element : "#topDiv",
 					intro : "",
-					tooltipClass : "hide"
+				 	position : "bottom"
 				},{
 			 		element : "#code",
 					intro : "",
@@ -230,21 +205,21 @@ function introGuide() {
 					intro : "",
 					position : "right"
 				},{
-			 		element : "#callDefaultConst",
+			 		element : "#objects",
 					intro : "",
-					position : "top"
+					position : "right"
 				},{
 			 		element : "#memoryDiv",
 					intro : "",
 					position : "right"
 				},{
-			 		element : "#defaultConstByClass",
+			 		element : "#callParameterConst1",
 					intro : "",
-					position : "top"
+					position : "right"
 				},{
-			 		element : "#defaultConst",
+			 		element : "#paraConst",
 					intro : "",
-					position : "top"
+					position : "right"
 				},{
 			 		element : "#s1Panel",
 					intro : "",
@@ -265,11 +240,11 @@ function introGuide() {
 			 		element : "#outputDiv",
 					intro : "",
 					tooltipClass : "hide"
-				},{
+				}/* ,{
 			 		element : "#restart",
 					intro : "",
 					position : "right"
-				}
+				} */
 			]});
 	
 	introjs.onafterchange(function(targetElement) {
@@ -278,13 +253,10 @@ function introGuide() {
 		introjs.refresh();
 		switch (elementId) {
 		case "topDiv":
+			$(".introjs-tooltip").hide();
 			$('.introjs-nextbutton').hide();
 			$("#li1").fadeTo(500, 1, function () {
-				$("#li2").fadeTo(500, 1, function () {
-					$("#li3").fadeTo(500, 1, function () {
-						$("#nextBtn").fadeTo(500, 1, function () {
-						});
-					});
+				$("#nextBtn").fadeTo(500, 1, function () {
 				});
 			});
 		break;
@@ -292,11 +264,12 @@ function introGuide() {
 			$("#code").removeClass("opacity00");
 			$('.user-btn').remove();
 			introjs.refresh();
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Let us consider a sample C++ program.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton, .introjs-prevbutton').show();
+					$('.introjs-nextbutton').show();
 				});
 			});
 		break;
@@ -306,21 +279,21 @@ function introGuide() {
 			$("#memoryDiv").addClass("opacity00")
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This is a class <y>Sample</y> which consists two <b><y>int</y></b> fields <b><y>a</y></b>, <b><y>b</y></b>.";
+				var text = "This is a class <y>Sample</y> which consist of a <b><y>int</y></b> field <y>non_static_variable</y>.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
-		case "callDefaultConst":
-			$("#callDefaultConst").removeClass("hide");
+		case "objects":
+			$("#objects").removeClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>Let us create an object for class <y>Sample</y>.</li>"
-					+ "<li>Here <y>s1</y> is an object of the class <y>Sample</y>.</li>"
-					+ "<li>First the memory is allocated for that object.</li>";
+				var text = "<ul><li>Let us create objects for class <y>Sample</y>.</li>"
+					+ "<li>Here <y>s1</y>, <y>s2</y>, <y>s3</y> are objects of the class <y>Sample</y>.</li>"
+					+ "<li>First the memory is allocated for that objects.</li>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -335,9 +308,15 @@ function introGuide() {
 				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#s1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
-						var text = "Memory is created for object <y>s1</y>, which consists of two integer variables <y>a</y> and <y>b</y>.";
-						typing($(".introjs-tooltiptext"), text, function() {
-							$('.introjs-nextbutton').show();
+						$("#s2Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+							$(this).removeClass("animated zoomIn");
+							$("#s3Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+								$(this).removeClass("animated zoomIn");
+								var text = "Memory is created for objects <y>s1</y>, <y>s2</y>, <y>s3</y>, which consists of a integer variable <y>non_static_variable</y>.";
+								typing($(".introjs-tooltiptext"), text, function() {
+									$('.introjs-nextbutton').show();
+								});
+							});
 						});
 					});	
 				});
@@ -355,45 +334,41 @@ function introGuide() {
 				});
 			}
 		break;
-		case "defaultConstByClass":
-			$("#defaultConstByClass").removeClass("hide");
+		case "callParameterConst1":
+			$("#callParameterConst1").removeClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>If we are not defined any constructor, the compiler will <y>implicitly</y> declare and define a <y>default constructor</y> with an <y>empty body</y>.</li>"
-					+ "<li>If we are define any constructor, the compiiler will not define.</li></ul>";
+				var text = "This is parameterized constructor.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
 			});
 		break;
-		case "defaultConst":
-			$("#defaultConstByClass").addClass("hide");
-			$("#defaultConst").removeClass("hide");
+		case "paraConst":
+			$("#paraConst").removeClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
+			$(".introjs-tooltip").css({"min-width": "280px"});
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>Here we are <y>explicitly</y> defined the <y>default constructor</y>.</li>"
-					+ "<li>So, after creating an object immediately the default constructor will call automatically. And <y>initialize</y> variables <y>a</y>, <y>b</y>.</li></ul>";
+				var text = "<ul><li>After creating an object immediately the parameter constructor will call.</li>"
+				+ "<li><y>arg</y> value copied into <y>non_static_variable</y>.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="abValues()">Next &#8594;</a>');
 				});
 			});
 		break;
 		case "s1Panel":
-			$("#memoryDiv").removeClass("opacity00");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$("#a1PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
-					$("#b1PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
-						setTimeout(function(){
-							introjs.nextStep();
-						}, 500);
-					});
+				$("#aPanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
+					setTimeout(function(){
+						introjs.nextStep();
+					}, 500);
 				});
 			});
 		break;
@@ -436,7 +411,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$("#body").append("<div>Given values: 5 10</div>");
+				$("#body").append("<div>Given value: 10</div>");
 				setTimeout(function(){
 					introjs.nextStep();
 				}, 1500);
@@ -462,6 +437,25 @@ function introGuide() {
 	$('.introjs-prevbutton').hide();
 	$('.introjs-skipbutton').hide();
 	$('.introjs-bullets').hide();
+}
+
+function abValues() {
+	$('.user-btn').remove();
+	$(".introjs-tooltiptext").append("<ul style='list-style-type: none;'><li><div id='aToX' class='display-inline-block relative ct-code-b-yellow'>"
+			+ "  <div>non_static_variable = <div id='tooltipXVal' class='display-inline-block relative'>arg</div>;</div></div></li></ul>");
+	var l1 = $("#aToX").offset();
+	var l2 = $("#xAndY").offset();
+	var topLength = l2.top - l1.top;
+	var leftLength = l2.left - l1.left;
+	TweenMax.from("#aToX", 1, {top : topLength, left : leftLength, onComplete:function() {
+		TweenMax.to("#tooltipXVal", 0.5, {rotationX : -90, onComplete:function() {
+			$("#tooltipXVal").text($("#s1Val").text());
+			TweenMax.to("#tooltipXVal", 0.5, {rotationX : 0, onComplete:function() {
+				$('.introjs-nextbutton').show();
+				
+			}});
+		}});
+	}});
 }
 
 function textFocus(selector) {
@@ -553,23 +547,13 @@ function getStep(element, intro, position, tooltipClass) {
 }
 </script>
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>Default Constructor</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>Static Data Members</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
 					<li id="li1" class="opacity00">A <a href="https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)" target="_blank">constructor</a> is a special member function which has been <b><g>executed</g></b> only when an <b><g>object</g></b> of that class is <b><g>created</g></b>.</li>
-					<li id="li2" class="opacity00">Types of constructors are: 
-						<ul>
-							<li><a href="https://en.wikipedia.org/wiki/Default_constructor" target="_blank">Default constructor</a></li>
-							<li><a href="https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)" target="_blank">Parameterized constructor</a></li>
-							<li><a href="https://en.wikipedia.org/wiki/Copy_constructor_(C%2B%2B)" target="_blank">Copy constructor</a></li>
-						</ul>
-					</li>
-					<li id="li3" class="opacity00">The format of the <b><g>default constructor</g></b> is:<br>
-						 <div class="col-xs-4"><pre class="creampretab1">class <blue>class-name</blue> {<br>  <g>public</g>:<br>  class-name() {<br><br>  }<br>};</pre></div>
-					</li>
 				</ul>
 				<div class="col-xs-12">
 				<span id="nextBtn" class='user-btn introjs-button opacity00' onclick='introjs.nextStep()'>Next &#8594;</span>
@@ -583,22 +567,23 @@ function getStep(element, intro, position, tooltipClass) {
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
 <span id="class"><g>class</g> <blue>Sample</blue> {
-	<red>int</red> a, b;
+	<red>int</red> non_static_variable;
 	<g>public</g>:
-	<span id="defaultConstByClass" class="hide">Sample() {
-	 
-	}</span>
-	<span id="defaultConst" class="hide">Sample() { 
-		a = 5;
-		b = 10;
+	<span id="paraConst" class="hide">Sample(int arg) { 
+		<span id="xAndY">non_static_variable = arg;</span>
 	}</span>
 	<span id="displayMethod" class="hide"><red>void</red> display() {
-		<span id="cout">cout &lt;&lt; <red>"Given values : "</red> << a << " " << b;</span> 
+		<span id="cout">cout &lt;&lt; <red>"Given value : "</red> << non_static_variable;</span> 
 	}</span>
 };</span>
 <red>void</red> main() {
-	<span id="callDefaultConst" class="hide">Sample s1;</span>
+	<span id="objects" class="hide">Sample s1, s2, s3;</span>
+	<span id="callParameterConst1" class="hide">Sample s1(<span id="s1Val">10</span>);</span>
 	<span id="callMethod1" class="hide">s1.display();</span>
+	<span id="callParameterConst2" class="hide">Sample s1(<span id="s2Val">20</span>);</span>
+	<span id="callMethod2" class="hide">s2.display();</span>
+	<span id="callParameterConst3" class="hide">Sample s1(<span id="s3Val">30</span>);</span>
+	<span id="callMethod2" class="hide">s2.display();</span>
 }
 </pre>
 		</div>
@@ -610,22 +595,47 @@ function getStep(element, intro, position, tooltipClass) {
 			<div class="panel panel-primary margin-bottom0">
     			<div class="panel-heading text-center padding0"><b id="s">s1</b></div>
     			<div class="panel-body text-center" style="padding: 5px;">
-    				<div class="col-xs-6 margin-top-10">
-						<div id="a1Panel" class="">
+    				<div class="col-xs-offset-1 col-xs-10 margin-top-10">
+						<div id="aPanel" class="">
 							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>a</b></div>
-			    				<div class="panel-body text-center"><span id="a1PanelVal" class="opacity00">5</span></div>
+			    				<div class="panel-heading text-center padding0"><b>non_static_variable</b></div>
+			    				<div class="panel-body text-center"><span id="aPanelVal" class="opacity00">10</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
 					</div>
-					<div class="col-xs-6 margin-top-10">
-						<div id="b1Panel" class="">
+    			</div>
+  			</div>
+ 		</div>
+ 		
+ 		<div id="s2Panel" class="opacity00 margin-top-10">
+			<div class="panel panel-primary margin-bottom0">
+    			<div class="panel-heading text-center padding0"><b id="s">s2</b></div>
+    			<div class="panel-body text-center" style="padding: 5px;">
+    				<div class="col-xs-offset-1 col-xs-10 margin-top-10">
+						<div id="bPanel" class="">
 							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>b</b></div>
-			    				<div class="panel-body text-center"><span id="b1PanelVal" class="opacity00">10</span></div>
+			    				<div class="panel-heading text-center padding0"><b>non_static_variable</b></div>
+			    				<div class="panel-body text-center"><span id="bPanelVal" class="opacity00">20</span></div>
 			  				</div>
-			  				<!-- <div class="text-center">1026</div> -->
+			  				<!-- <div class="text-center">1024</div> -->
+		  				</div>
+					</div>
+    			</div>
+  			</div>
+ 		</div>
+ 		
+ 		<div id="s3Panel" class="opacity00 margin-top-10">
+			<div class="panel panel-primary margin-bottom0">
+    			<div class="panel-heading text-center padding0"><b id="s">s3</b></div>
+    			<div class="panel-body text-center" style="padding: 5px;">
+    				<div class="col-xs-offset-1 col-xs-10 margin-top-10">
+						<div id="cPanel" class="">
+							<div class="panel panel-primary margin-bottom0">
+			    				<div class="panel-heading text-center padding0"><b>non_static_variable</b></div>
+			    				<div class="panel-body text-center"><span id="cPanelVal" class="opacity00">10</span></div>
+			  				</div>
+			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
 					</div>
     			</div>
