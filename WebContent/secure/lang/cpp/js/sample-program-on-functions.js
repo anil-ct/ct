@@ -69,6 +69,10 @@ function introGuide() {
 					intro : "",
 					position : "right"
 				},{
+			 		element : "#memoryDiv",
+					intro : "",
+					position : "bottom"
+				},{
 			 		element : "#sum",
 					intro : "",
 					tooltipClass : "hide"
@@ -103,11 +107,16 @@ function introGuide() {
 				}
 			]});
 	
+	introjs.onbeforechange(function(targetElement) {
+		var elementId = targetElement.id;
+		$("#" + elementId).removeClass("hide");
+		$('.introjs-nextbutton').hide();
+	});
 	introjs.onafterchange(function(targetElement) {
 		var elementId = targetElement.id;
+		introjs.refresh();
 		switch (elementId) {
 		case "demoTitle":
-			$('.introjs-nextbutton').hide();
 			$('#code').removeClass("opacity00");
 			var text = "Here, we will learn <b class ='ct-code-b-yellow'>Function Definition</b>"
 					+ ", <b class ='ct-code-b-yellow'>Function Declaration</b> and <b class ='ct-code-b-yellow'>Function Call</b>.";
@@ -116,17 +125,16 @@ function introGuide() {
 			});
 		break;
 		case "leftDiv":
-			$('.introjs-nextbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$('#leftDiv').removeClass("opacity00");
-				var text = "Let us consider an example.";
+				var text = "Let us consider a sample C++ program.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-nextbutton").show();
 				});
 			});
 		break;
 		case "funDec":
-				$('.introjs-nextbutton').hide();
+			introjs.refresh();
 				$(".introjs-helperLayer").one("transitionend", function() {
 					var text = "We declare a function with name <span class='ct-code-b-yellow'>addition(int, int)</span> "
 						+ " with two arguments of type <b>int</b> and return value of type int.";
@@ -136,9 +144,6 @@ function introGuide() {
 				});
 		break;
 		case "varDec":
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Here, you can edit the values of <b class ='ct-code-b-yellow'>a</b> and <b class ='ct-code-b-yellow'>b</b>.";
 				typing($(".introjs-tooltiptext"), text, function() {
@@ -148,10 +153,26 @@ function introGuide() {
 				});
 			});
 		break;
+		case "memoryDiv":
+			$("#memoryDiv").removeClass("opacity00");
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "Memory is created for variable <y>a</y>, <y>b</y> and <y>sum</y>.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$("#aVal").addClass("z-index");
+					fromEffectWithTweenMax("#aVal", "#aPanelVal", function(){
+						$("#aPanelVal").removeClass("opacity");
+						$("#aVal").removeClass("z-index");
+						$("#bVal").addClass("z-index");
+						fromEffectWithTweenMax("#bVal", "#bPanelVal", function(){
+							$("#bPanelVal").removeClass("opacity");
+							$("#bVal").removeClass("z-index");
+							$(".introjs-nextbutton").show();
+						});
+					});
+				});
+			});
+		break;
 		case "sum":
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function() {
 					introjs.nextStep()
@@ -159,22 +180,15 @@ function introGuide() {
 			});
 		break;
 		case "callingFun":
-			if (introjs._currentStep == 5){
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
-				introjs.refresh();
+			if (introjs._currentStep == 6){
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "A call to the function <span class='ct-code-b-yellow'>addition(a, b)</span> is made by sending" 
-								+ " <b>a</b> and <b>b</b> as parameters. This is known as <span class='ct-code-b-yellow'>Funciton Call</span>.";
+					var text = "A call made to function <span class='ct-code-b-yellow'>addition(a, b)</span> by sending the values of " 
+							+ " <y>a</y>, <y>b</y> as parameters. This is known as <span class='ct-code-b-yellow'>Funciton Call</span>.";
 					typing($(".introjs-tooltiptext"), text, function() {
-						introjs.refresh();
 						$(".introjs-nextbutton").show();
 					});
 				});
-			} else if (introjs._currentStep == 8) {
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
-				introjs.refresh();
+			} else if (introjs._currentStep == 9) {
 				$(".introjs-helperLayer").one("transitionend", function() {
 					var text = "The return value will be stored in <b class ='ct-code-b-yellow'>sum</b>.";
 					typing($(".introjs-tooltiptext"), text, function() {
@@ -184,9 +198,6 @@ function introGuide() {
 			}
 		break;
 		case "funDef":
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "This is <b class ='ct-code-b-yellow'>Function Definition</b>."
 					+ " Whenever a function call is made, the argument values of the calling function i.e "
@@ -199,9 +210,6 @@ function introGuide() {
 			});
 		break;
 		case "return":
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "The return type of the function is an integer, the addition of x and y is an integer which is returned.<br>"
 				typing($(".introjs-tooltiptext"), text, function() {
@@ -238,9 +246,6 @@ function introGuide() {
 			});
 		break;
 		case "printf":
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function() {
 					introjs.nextStep()
@@ -248,25 +253,15 @@ function introGuide() {
 			});
 		break;
 		case "outputDiv":
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			introjs.refresh();
 			$("#outputDiv").removeClass("opacity00");
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "The sum of  a + b is : " + "<b class='val-color'> " + (parseInt($("#aVal").text()) + parseInt($("#bVal").text()))+"</b>";
-				$("#outputBody").append("<div></div>");
-				typing($("#outputBody > div:last-child"), text, function() {
-					$("#outputBody > div:last-child").append("<span id='intVal1'><input id='inputVal1' maxlength='2' class='input-val' tabindex='0'/></span>");
-					setTimeout(function() {
-						introjs.nextStep();
-					}, 1000);
-				});
+				$("#outputBody").append("The sum of  a + b is : " + (parseInt($("#aVal").text()) + parseInt($("#bVal").text())));
+				setTimeout(function() {
+					introjs.nextStep();
+				}, 1000);
 			});
 		break;
 		case "restart":
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
 			$('#restart').removeClass("opacity00");
 			$(".introjs-tooltip").css({"min-width": "115px"});
 			$(".introjs-helperLayer").one("transitionend", function() {
@@ -317,4 +312,30 @@ function charAtEnd(elementId) {
 	var sel = window.getSelection();
 	sel.removeAllRanges();
 	sel.addRange(range);
+}
+
+function fromEffectWithTweenMax(selector1, selector2, callBackFunction) {
+	$(selector1).addClass('z-index').effect( "highlight",{color: 'white'}, 500, function() {
+		var l1 = $(selector1).offset();
+		$(selector2).text($(selector1).text()).addClass("opacity00");
+		$('body').append("<span id='dummy' style='position: relative; z-index: 100000002;"
+						+ " font-family: monospace; color: red' ><b>" + $(selector2).text() + "</b></span>");
+		$('#dummy').offset({
+		  'top': l1.top,
+		  'left': l1.left
+		});
+		var l1 = $(selector1).offset();
+		var l2 = $(selector2).offset();
+		var topLength = parseInt($('#dummy').css('top')) - (l1.top - l2.top);
+		var leftLength = parseInt($('#dummy').css('left')) - (l1.left - l2.left);
+		TweenMax.to('#dummy', 0.8, {top: topLength, left: leftLength, onComplete: function () {
+			$(selector2).removeClass('opacity00');
+			$(selector1).removeClass('z-index');
+			$("#dummy").remove();
+			$("#animationDiv").removeAttr("style").addClass("introjs-showElement");
+			if (typeof callBackFunction === "function") {
+				callBackFunction();
+			}
+		}});
+	});
 }

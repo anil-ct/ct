@@ -17,9 +17,9 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/c/js/sample-program-on-functions.js" type="text/javascript"></script> -->
+<!-- <script src="../js/sample-program-on-functions.js" type="text/javascript"></script> -->
 
-<script type="text/javascript" src="/secure/lang/c++/js-min/spof.min.js"></script>
+<script type="text/javascript" src="../js-min/spof.min.js"></script>
 
 <style type="text/css">
 .margin-top-20 {
@@ -38,6 +38,17 @@
     padding: 7px;
 }
 
+#memoryDiv {
+	border: 1px solid gray;
+    border-radius: 6px;
+	padding: 15px;
+}
+
+.errMsg {
+	color: red;
+    font-weight: bold;
+}
+
 #outputDiv {
 	margin-top: 18px;
 	padding: 0;
@@ -47,13 +58,14 @@
 .output-console-title-bar {
 	border-top-left-radius: 6px;
 	border-top-right-radius: 6px;
+	background-color: darkgray;
 }
 
 .output-console-body {
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 185px;
+	height: 60px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -63,10 +75,21 @@
 	font-family: monospace;
 }
 
-.errMsg {
-	color: red;
-	font-weight: bold;
-	font-family: monospace;
+
+.z-index {
+	position: relative;
+	z-index: 10000001 !important;
+	border-radius: 4px;
+	padding: 4px;
+	background: white;
+}
+
+.padding0 {
+	padding: 0;
+}
+
+.margin-bottom0 {
+	margin-bottom: 0;
 }
 
 .input-val {
@@ -99,6 +122,27 @@
 .ct-green-color {
 	color: green;
 }
+
+g {
+	color: green;
+}
+
+y {
+	color: yellow;
+	font-weight: bold;
+}
+
+blue {
+	color: #0000FF;
+}
+
+red {
+	color: red;
+}
+
+orange {
+	color: #BC7A00;
+}
 </style>
 </head>
 <body>
@@ -113,26 +157,62 @@
 	<div class="col-xs-12">
 		<div class="col-xs-offset-1 col-xs-5 margin-top-20">
 			<div id="leftDiv" class="opacity00">
-			<pre class="creampretab" id="code">#include&lt;iostream&gt;
-using namespace std;
-<span id="funDec">int <span class='ct-green-color'>addition(int, int)</span>;</span>
-<span id="main">void <b class='ct-blue-color'>main()</b></span> {
-	<span id="varDec">int a = <div class='display-inline-block' contenteditable='true' maxlength='1' id='aVal' spellcheck="false">5</div>, b = <div class='display-inline-block' contenteditable='true' maxlength='1' id='bVal' spellcheck="false">10</div>, sum;</span>
-	<span id="sum">sum = <span id="callingFun" class='ct-green-color'>addition(a, b)</span>;</span>
-	<span id="printf">cout << "The sum of a + b is : " << sum;</span>
+			<pre class="creampretab" id="code">#include&lt;<span style="color: #408080;">&lt;iostream&gt;</span>
+<g>using namespace</g> std;
+<span id="funDec" class="hide"><red>int</red> addition(int, int);</span>
+<span id="main"><red>int</red> main()</span> {
+	<span id="varDec" class="hide"><red>int</red> a = <div class='display-inline-block' contenteditable='true' maxlength='1' id='aVal' spellcheck="false">5</div>, b = <div class='display-inline-block' contenteditable='true' maxlength='1' id='bVal' spellcheck="false">10</div>, sum = 0;</span>
+	<span id="sum" class="hide">sum = <span id="callingFun">addition(a, b)</span>;</span>
+	<span id="printf" class="hide">cout << <red>"The sum of a + b is : "</red> << sum;</span>
 }
 
-<span id="funDef">int <b class='ct-blue-color'>addition(int x, int y)</b> {
-	<span id="return">return (x + y);</span>
+<span id="funDef" class="hide"><red>int</red> addition(int x, int y) {
+	<span id="return"><g>return</g> (x + y);</span>
 }</span></pre>
 			</div>
 		</div>
 		<div class="col-xs-5">
-			<div id="outputDiv" class="opacity00">
-				<div class="output-console-title-bar">
-					<span class="title">Output</span>
+			<div id="memoryDiv" class="col-xs-12 margin-top-20 opacity00">
+				<div class="col-xs-4">	
+					<div id="aPanel" class="">
+						<div class="panel panel-primary margin-bottom0">
+			    			<div class="panel-heading text-center padding0"><b id="a">a</b></div>
+			    			<div class="panel-body text-center" style="padding: 5px;">
+			    				<span id="aPanelVal" class="opacity00">5</span>
+			    			</div>
+			  			</div>
+			 		</div>
+		 		</div>
+		 		
+		 		<div class="col-xs-4">	
+					<div id="bPanel" class="">
+						<div class="panel panel-primary margin-bottom0">
+			    			<div class="panel-heading text-center padding0"><b id="b">b</b></div>
+			    			<div class="panel-body text-center" style="padding: 5px;">
+			    				<span id="bPanelVal" class="opacity00">10</span>
+			    			</div>
+			  			</div>
+			 		</div>
+		 		</div>
+		 		
+		 		<div class="col-xs-4">	
+					<div id="sumPanel" class="">
+						<div class="panel panel-primary margin-bottom0">
+			    			<div class="panel-heading text-center padding0"><b id="sum">sum</b></div>
+			    			<div class="panel-body text-center" style="padding: 5px;">
+			    				<span id="sumPanelVal" class="">0</span>
+			    			</div>
+			  			</div>
+			 		</div>
+		 		</div>
+			</div>
+			<div class="col-xs-12">
+				<div id="outputDiv" class="opacity00">
+					<div class="output-console-title-bar">
+						<span class="title">Output</span>
+					</div>
+					<div class="output-console-body" id="outputBody"></div>
 				</div>
-				<div class="output-console-body" id="outputBody"></div>
 			</div>
 		</div>
 	</div>

@@ -62,7 +62,6 @@ function introGuide() {
 		}, {
 			element : "#mainPf1",
 			intro : "",
-			tooltipClass : "hide",
 			position : "right"
 		}, {
 			element : "#consoleId",
@@ -104,7 +103,6 @@ function introGuide() {
 		}, {
 			element : "#mainPf2",
 			intro : "",
-			tooltipClass : "hide",
 			position : "right"
 		}, {
 			element : "#consoleId",
@@ -137,7 +135,7 @@ function introGuide() {
 		case "codeAnimation":
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#codeAnimation").removeClass("opacity00");
-				var text = "Consider an example.";
+				var text = "Let us consider an example which will explain the difference between local and global variables.";
 				typing(".introjs-tooltiptext", text, function() {
 					$(".introjs-nextbutton").show();
 				});
@@ -247,7 +245,7 @@ function introGuide() {
 		case "functionCall":
 			$("#localVar").removeClass("blinking-white");
 			$(".introjs-helperLayer").one("transitionend", function() { 
-				var text = "A call to the function <span class='ct-code-b-yellow'>display()</span> is made.";
+				var text = "Here no local variable declaration of <y>a</y> soit takes the reference from global variable.";
 				typing(".introjs-tooltiptext", text, function() {
 					$(".introjs-nextbutton").show();
 				});
@@ -263,10 +261,19 @@ function introGuide() {
 					$(".introjs-nextbutton").show();
 				});
 			});
-			break;
-			
+		break;
+		
 		case "mainPf1":
 		case "mainPf2":
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "<y>a</y> is local variable which contained in main(), so it returns <y>20</y>.";
+				typing(".introjs-tooltiptext", text, function() {
+					$(".introjs-nextbutton").show();
+				});
+			});
+		break;
+			
+		
 		case "userPrintf":
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function() {
@@ -282,7 +289,7 @@ function introGuide() {
 					$(".introjs-nextbutton").show();
 				});
 			});
-			break;
+		break;
 			
 		case "valDec":
 			$(".introjs-helperLayer").one("transitionend", function() {

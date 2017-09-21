@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>default-constructor</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <link rel="stylesheet" href="/css/introjs.css">
@@ -18,11 +19,10 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/c++/js/destructor.js" type="text/javascript"></script> -->
+<!-- <script src="/secure/lang/cpp/js/default-constructor.js" type="text/javascript"></script> -->
 
-<script type="text/javascript" src="../js-min/destruct.min.js"></script>
+<script src="../js-min/dfc.min.js"></script>
 
-<title>destructors</title>
 <style type="text/css">
 
 .margin-top-20 {
@@ -37,6 +37,12 @@
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
+    height: 295px;
+    background-color: white;
+}
+
+pre {
+	background-color: #fcf8e3;
 }
 
 .creampretab {
@@ -70,10 +76,6 @@
 	padding: 0;
 }
 
-div, span {
-	position: relative;
-}
-
 #outputDiv {
 	padding: 0;
 	z-index: 9999999;
@@ -89,7 +91,7 @@ div, span {
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 388px;
+	height: 303px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -109,6 +111,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0!important;
 }
 
 .z-index {
@@ -137,6 +140,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold;
 }
 
 blue {
@@ -151,61 +155,74 @@ orange {
 	color: #BC7A00;
 }
 
+.circle-css {
+	border: 1px solid;
+	border-radius: 50%;
+	padding: 2px;
+	position: relative;
+	z-index: 10000001 !important;
+	background-color: #ff0066;
+	font-weight: bold;
+}
 </style>
 </head>
 <body>
+
 <script type="text/javascript">
 
 $(document).ready(function() {
-	destructorReadyFun();
+	defaultConstructorReadyFun();
 });
 
-
 </script>
+
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>Destructor</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>Default Constructor</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00"><g><a href="https://en.wikipedia.org/wiki/Destructor_(computer_programming)" target="_blank">Destructor</a></g> functions are the inverse of constructor functions. They are called when objects are destroyed (deallocated).</li>
-					<li id="li2" class="opacity00">Destructors have same name as the class preceded by a tilde<g>(~)</g>.</li>
-					<li id="li3" class="opacity00">If we do not write our own destructor in class, compiler creates a default destructor for us.</li>
-					<li id="li4" class="opacity00">The Destructor of class is automatically called when object goes out of scope.</li>
-					<li id="li5" class="opacity00">There can only one destructor in a class with classname preceded by (~), no parameters and no return type. 
-						&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span><br>
+					<li id="li1" class="opacity00">A <a href="https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)" target="_blank">constructor</a> is a special member function which has been <b><g>executed</g></b> only when an <b><g>object</g></b> of that class is <b><g>created</g></b>.</li>
+					<li id="li2" class="opacity00">Types of constructors are: 
+						<ul>
+							<li><a href="https://en.wikipedia.org/wiki/Default_constructor" target="_blank">Default constructor</a></li>
+							<li><a href="https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)" target="_blank">Parameterized constructor</a></li>
+							<li><a href="https://en.wikipedia.org/wiki/Copy_constructor_(C%2B%2B)" target="_blank">Copy constructor</a></li>
+						</ul>
+					</li>
+					<li id="li3" class="opacity00">The format of the <b><g>default constructor</g></b> is:<br>
+						 <div class="col-xs-4"><pre class="creampretab1">class <blue>class-name</blue> {<br>  <g>public</g>:<br>  class-name() {<br><br>  }<br>};</pre></div>
 					</li>
 				</ul>
+				<div class="col-xs-12">
+				<span id="nextBtn" class='user-btn introjs-button opacity00' onclick='introjs.nextStep()'>Next &#8594;</span>
+			</div>
 			</div>
 		</div>
 	</div>
 <div class="col-xs-12 margin-top-20">
 	<div class="col-xs-5">
-	
-<div id="code" class="opacity00">
+		<div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>Sample</blue> {
+<span id="class"><g>class</g> <blue>Sample</blue> {
 	<red>int</red> a, b;
-	<span id="defaultConst" class="hide"><g>public</g>:
-		Sample() { 
-			a = 5;			// <b>Default Constructor</b>
-			b = 10;
-			cout << <red>"s1 object created.\n"</red>;
-		}</span>
-		<span id="parameterConst" class="hide">Sample(int x, int y) {
-			<span id="xAndY">a = x;			// <b>Parameterized Constructor</b>
-			b = y;</span>
-			cout << <red>"s2 object created.\n"</red>;
-		}</span>
-		<span id="destruct" class="hide"><b>~Sample()</b> { 
-			cout << <red>"s1 and s2 objects are deleted.\n"</red>;
-		}</span>
-};	
+	<g>public</g>:
+	<span id="defaultConstByClass" class="hide">Sample() {
+	 
+	}</span>
+	<span id="defaultConst" class="hide">Sample() { 
+		a = 5;
+		b = 10;
+	}</span>
+	<span id="displayMethod" class="hide"><red>void</red> display() {
+		<span id="cout">cout &lt;&lt; <red>"Given values : "</red> << a << " " << b;</span> 
+	}</span>
+};</span>
 <red>void</red> main() {
 	<span id="callDefaultConst" class="hide">Sample s1;</span>
-	<span id="callParameterConst" class="hide">Sample s2(<spa id="s1Val1">10</spa>, <span id="s1Val2">20</span>);</span>
+	<span id="callMethod1" class="hide">s1.display();</span>
 }
 </pre>
 		</div>
@@ -215,48 +232,22 @@ $(document).ready(function() {
 	<div class="text-center"><b>memory</b></div>
 		<div id="s1Panel" class="opacity00">
 			<div class="panel panel-primary margin-bottom0">
-    			<div class="panel-heading text-center padding0"><b id="s1">s1</b></div>
+    			<div class="panel-heading text-center padding0"><b id="s">s1</b></div>
     			<div class="panel-body text-center" style="padding: 5px;">
     				<div class="col-xs-6 margin-top-10">
-						<div id="a1Panel" class="opacity00">
+						<div id="a1Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>a</b></div>
-			    				<div class="panel-body text-center"><span id="a1PanelVal" class="">5</span></div>
+			    				<div class="panel-body text-center"><span id="a1PanelVal" class="opacity00">5</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
 					</div>
 					<div class="col-xs-6 margin-top-10">
-						<div id="b1Panel" class="opacity00">
+						<div id="b1Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>b</b></div>
-			    				<div class="panel-body text-center"><span id="b1PanelVal" class="">10</span></div>
-			  				</div>
-			  				<!-- <div class="text-center">1026</div> -->
-		  				</div>
-					</div>
-    			</div>
-  			</div>
- 		</div>
- 		
- 		<div id="s2Panel" class="opacity00 margin-top-10">
-			<div class="panel panel-primary margin-bottom0">
-    			<div class="panel-heading text-center padding0"><b id="s2">s2</b></div>
-    			<div class="panel-body text-center" style="padding: 5px;">
-    				<div class="col-xs-6 margin-top-10">
-						<div id="a2Panel" class="opacity00">
-							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>a</b></div>
-			    				<div class="panel-body text-center"><span id="a2PanelVal" class="">10</span></div>
-			  				</div>
-			  				<!-- <div class="text-center">1024</div> -->
-		  				</div>
-					</div>
-					<div class="col-xs-6 margin-top-10">
-						<div id="b2Panel" class="opacity00">
-							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>b</b></div>
-			    				<div class="panel-body text-center"><span id="b2PanelVal" class="">20</span></div>
+			    				<div class="panel-body text-center"><span id="b1PanelVal" class="opacity00">10</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1026</div> -->
 		  				</div>
@@ -278,9 +269,6 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
-</div>
-<div class="col-xs-12 text-center margin-top-20">
-	<span class="btn btn-warning btn-sm opacity00" id="restart">Restart</span>
 </div>
 </body>
 </html>

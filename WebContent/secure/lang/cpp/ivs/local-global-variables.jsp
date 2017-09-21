@@ -17,7 +17,7 @@
 <script src="/js/gs/TweenMax.min.js" type="text/javascript"></script>
 
 <!-- <script src="/secure/lang/c/js/local-global-variables.js" type="text/javascript"></script> -->
-<script src="/secure/lang/c++/js-min/lgv.min.js" type="text/javascript"></script>
+<script src="../js-min/lgv.min.js" type="text/javascript"></script>
 
 <title>Local and Global Variables</title>
 <style type="text/css">
@@ -110,6 +110,27 @@
 .ct-green-color {
 	color: green;
 }
+
+g {
+	color: green;
+}
+
+y {
+	color: yellow;
+	font-weight: bold;
+}
+
+blue {
+	color: #0000FF;
+}
+
+red {
+	color: red;
+}
+
+orange {
+	color: #BC7A00;
+}
 </style>
 </head>
 <body>
@@ -120,19 +141,19 @@
 	<div class="main-div col-xs-12" id="mainDiv">
 		<div class="col-xs-offset-1 col-xs-5" id="codeDiv">
 	<pre id="codeAnimation" class='creampretab4 box-border code-div opacity00'>
-	#include&lt;iostream&gt;
-	using namespace std;
-	<span id="funcDec">void <span class='ct-green-color'>display()</span>;</span>
-	<span id="globalVar">int a = <span id="tweenVal1">50</span>;</span>
-	<span id="mainFunc"><span id="startMain">void <b class='ct-blue-color'>main()</b> {</span>
-	  <span id="localVar">int a = <span id="tweenVal2">20</span>;</span>
-	  <span id="mainPf1">cout << "value in main() before call : " << a << endl;</span>
-	  <span id="functionCall" class='ct-green-color'>display();</span>
-	  <span id="mainPf2">cout << "value in main() after call : " << a << endl;</span>
+#include&lt;<span style="color: #408080;">&lt;iostream&gt;</span>
+<g>using namespace</g> std;
+	<span id="funcDec"><red>void</red> display();</span>
+	<span id="globalVar"><red>int</red> a = <span id="tweenVal1">50</span>;</span>
+	<span id="mainFunc"><span id="startMain"><red>int</red> main() {</span>
+	  <span id="localVar"><red>int</red> a = <span id="tweenVal2">20</span>;</span>
+	  <span id="mainPf1">cout << <red>"value in main() before call : "</red> << a << <red>"\n"</red>;</span>
+	  <span id="functionCall">display();</span>
+	  <span id="mainPf2">cout << <red>"value in main() after call : "</red> << a << <red>"\n"</red>;</span>
 	<span id="endMain">}</span></span>
-	<span id="funcDef"><span id="userFunc">void <b class='ct-blue-color'>display()</b> {</span>
+	<span id="funcDef"><span id="userFunc"><red>void</red> display() {</span>
 	  <span id="valAddition"><span id="valDec">a</span> = <span id="valRes">a + 20</span>;</span>
-	  <span id="userPrintf">cout << "value in dispaly() : " << a;</span>
+	  <span id="userPrintf">cout << <red>"value in dispaly() : "</red> << a;</span>
 	<span id="endFunc">}</span></span></pre>
 		</div>
 		<div id="addressDiv" class="col-xs-5 box-border address-div opacity00">

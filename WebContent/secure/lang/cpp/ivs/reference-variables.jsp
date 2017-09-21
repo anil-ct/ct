@@ -19,7 +19,10 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<script src="/secure/lang/c++/js-min/rv.min.js"></script>
+<!-- <script src="/secure/lang/cpp/js/reference-variables.js" type="text/javascript"></script> -->
+
+<script type="text/javascript" src="../js-min/rfv.min.js"></script>
+
 <style type="text/css">
 .margin-top-10 {
 	margin-top: 10px;
@@ -43,6 +46,26 @@
 	border: 1px solid gray;
 	border-radius: 6px;
 	height: 130px;
+}
+
+#outputDiv {
+	padding: 0;
+	z-index: 9999999;
+}
+
+.output-console-title-bar {
+	background-color: darkgray;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.output-console-body {
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	font-size: 13px;
+	height: 60px;
+	padding: 10px;
+	white-space: inherit;
 }
 
 .padding0 {
@@ -93,6 +116,23 @@ pre {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+g {
+	color: green;
+}
+
+y {
+	color: yellow;
+	font-weight: bold;
+}
+
+blue {
+	color: #0000FF;
+}
+
+red {
+	color: red;
+}
 </style>
 </head>
 <body>
@@ -111,10 +151,11 @@ $(document).ready(function() {
 </div>
 <div class="col-xs-12  margin-top-20">
 	<div class="col-xs-offset-2 col-xs-4">
-		<div id="leftDiv1" class="opacity00"><pre class="creampretab"><span id="intA">int a = <span id="aVal">10</span>;</span>
-<span id="intB">int b;</span>
-<span id="aIntoB">int <span id="init">b = a</span>;</span>
-<span id="initB">int <span id="b20">b = <span id="bVal">20</span></span>;</span></pre>
+		<div id="leftDiv1" class="opacity00"><pre class="creampretab"><span id="intA"><red>int</red> num1 = <span id="aVal">10</span>;</span>
+<span id="intB"><red>int</red> num2;</span>
+<span id="aIntoB"><span id="init">num2 = num1</span>;</span>
+<span id="initB"><span id="b20">num2 = <span id="bVal">20</span></span>;</span>
+<span id="cout1">cout << <red>"The values of a, b : "</red>;</span></pre>
 		</div>
 	</div>
 	<div class="col-xs-4">
@@ -122,7 +163,7 @@ $(document).ready(function() {
 			<div class="col-xs-offset-2 col-xs-4 margin-top-10">
 				<div id="aPanel" class="opacity00">
 					<div class="panel panel-primary margin-bottom0">
-	    				<div class="panel-heading text-center padding0"><b>a</b></div>
+	    				<div class="panel-heading text-center padding0"><b>num1</b></div>
 	    				<div class="panel-body text-center"><span id="aPanelVal" class="opacity00">10</span></div>
 	  				</div>
 	  				<div class="text-center">2485</div>
@@ -131,8 +172,8 @@ $(document).ready(function() {
 			<div class="col-xs-4 margin-top-10">
 				<div id="bPanel" class="opacity00">
 					<div class="panel panel-primary margin-bottom0">
-	    				<div class="panel-heading text-center padding0"><b>b</b></div>
-	    				<div class="panel-body text-center"><span id="bPanelVal" class="opacity00">10</span><span id="bPanelVal2" class="hide">20</span></div>
+	    				<div class="panel-heading text-center padding0"><b>num2</b></div>
+	    				<div class="panel-body text-center"><span id="bPanelVal" class="opacity00">10</span></div>
 	  				</div>
 	  				<div class="text-center">3658</div>
   				</div>
@@ -142,9 +183,22 @@ $(document).ready(function() {
 </div>
 
 <div class="col-xs-12  margin-top-20">
+	<div class="col-xs-offset-4 col-xs-4">
+		<div id="outputDiv" class="opacity00">
+			<div class="output-console-title-bar">
+				<span class="title">Output</span>
+			</div>
+			<div class="output-console-body" id="body">
+			</div>
+		</div>
+	</div>
+</div>	
+
+<div class="col-xs-12  margin-top-20">
 	<div class="col-xs-offset-2 col-xs-4">
-		<div id="leftDiv2" class="opacity00"><pre class="creampretab"><span id="intRefA">int a = <span id="aRefVal">10</span>;</span>
-<span id="aIntoRefB">int &<span id="initRef">b = a</span>;</span></pre>
+		<div id="leftDiv2" class="opacity00"><pre class="creampretab"><span id="intRefA">int num1 = <span id="aRefVal">10</span>;</span>
+<span id="aIntoRefB">int &<span id="initRef">num2 = num1</span>;</span>
+<span id="cout2">cout << <red>"The values of a, b : "</red>;</span></pre>
 		</div>
 	</div>
 	<div class="col-xs-4">
@@ -152,9 +206,9 @@ $(document).ready(function() {
 			<div class="col-xs-offset-3 col-xs-6 margin-top-10">
 				<div id="aRefPanel" class="opacity00">
 					<div class="panel panel-primary margin-bottom0">
-					<div class="panel-heading text-center padding0 hide" id="refB"><b>b</b></div>
+					<div class="panel-heading text-center padding0 hide" id="refB"><b>num2</b></div>
 					<div id="line" class="hide" style="border: 1px solid white;"></div>
-	    				<div class="panel-heading text-center padding0"><b>a</b></div>
+	    				<div class="panel-heading text-center padding0"><b>num1</b></div>
 	    				<div class="panel-body text-center"><span id="aRefPanelVal" class="opacity00">10</span></div>
 	  				</div>
 	  				<div class="text-center">8426</div>

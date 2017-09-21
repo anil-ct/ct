@@ -18,7 +18,7 @@
 
 <!-- <script src="/secure/lang/c++/js/functions-with-arrays.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/fwa.min.js" type="text/javascript"></script>
+<script src="../js-min/fwa.min.js" type="text/javascript"></script>
 <title>Functions with Arrays</title>
 <style type="text/css">
 
@@ -127,6 +127,27 @@ table {
 .ct-green-color {
 	color: green;
 }
+
+g {
+	color: green;
+}
+
+y {
+	color: yellow;
+	font-weight: bold;
+}
+
+blue {
+	color: #0000FF;
+}
+
+red {
+	color: red;
+}
+
+orange {
+	color: #BC7A00;
+}
 </style>
 </head>
 <body>
@@ -136,30 +157,30 @@ table {
 	<div id="mainDiv" class="col-xs-12" style="margin-top: 30px;">
 		<div class="col-xs-offset-1 col-xs-5" id="codeBox">
 			<pre id="codeAnimation" class='creampretab4 box-border'>
-#include&lt;iostream&gt;
-using namespace std;
-<span id="functionDec1">void <span class='ct-green-color'>read(int[], int)</span></span>
-<span id="functionDec2">void <span class='ct-green-color'>display(int[], int)</span></span>
-<span id="mainFunction"><span id="startMain">void <b class='ct-blue-color'>main()</b> {</span>
-  <span id="mainVar">int a[4], n;</span>
-  <span id="mainPrintf">cout << "Enter number of elements : ";</span>
+<orange>#include</orange><span style="color: #408080;">&lt;iostream&gt;</span>
+<g>using namespace</g> std;
+<span id="functionDec1"><red>void</red> read(int[], int)</span>
+<span id="functionDec2"><red>void</red> display(int[], int)</span>
+<span id="mainFunction"><span id="startMain"><red>int</red> main() {</span>
+  <span id="mainVar"><red>int</red> a[4], n;</span>
+  <span id="mainPrintf">cout << <red>"Enter number of elements : "</red>;</span>
   <span id="mainScanf">cin >> <span id="nAddr">n</span>;</span>
-  <span id="readCall" class='ct-green-color'>read(<span id="aTransfer1">a</span>, <span id="nTransfer1">n</span>);</span>
-  <span id="displayCall" class='ct-green-color'>display(<span id="aTransfer2">a</span>, <span id="nTransfer2">n</span>);</span>
+  <span id="readCall">read(<span id="aTransfer1">a</span>, <span id="nTransfer1">n</span>);</span>
+  <span id="displayCall">display(<span id="aTransfer2">a</span>, <span id="nTransfer2">n</span>);</span>
 <span id="endMain">}</span></span>
-<span id="funcDef1"><span id="readStep1">void <b class='ct-blue-color'>read(<span id="formalInit1">int <span id="readArg1">x[4]</span>, int <span id="readArg2">n</span></span>)</b></span> {
-  <span id="readVar">int i;</span>
-  <span id="readPrintf">cout << "Enter" << n << "elements : " << n << endl;</span>
+<span id="funcDef1"><span id="readStep1"><red>void</red> read(<span id="formalInit1"><red>int</red> <span id="readArg1">x[4]</span>, <red>int</red> <span id="readArg2">n</span></span>)</span> {
+  <span id="readVar"><red>int</red> i;</span>
+  <span id="readPrintf">cout << <red>"Enter"</red> << n << <red>"elements : "</red> << n << <red>"\n"</red>;</span>
   <span id="forLoop1">for(<span id="forInit1">i = 0</span>; <span id="forCond1">i &lt; n</span>; <span id="iInc1">i++</span>) {
-	<span id="forPrintf1">cout << "Enter value for x[" << i << "] : " << i;</span>
+	<span id="forPrintf1">cout << <red>"Enter value for x["</red> << i << <red>"] : "</red> << i;</span>
 	<span id="funScanf1">cin >> <span id="arrAddr1">x[i]</span>;</span>
   <span id="endFor1">}</span></span>
 <span id="endFunc1">}</span></span>
-<span id="funcDef2"><span id="displayStep1">void <b class='ct-blue-color'>display(<span id="formalInit2">int <span id="displayArg1">y[4]</span>, int <span id="displayArg2">n</span></span>)</b></span> {
-  <span id="displayVar">int i;</span>
-  <span id="displayPrintf1">cout << "The elements in array are : " << endl;</span>
+<span id="funcDef2"><span id="displayStep1"><red>void</red> display(<span id="formalInit2"><red>int</red> <span id="displayArg1">y[4]</span>, <red>int</red> <span id="displayArg2">n</span></span>)</span> {
+  <span id="displayVar"><red>int</red> i;</span>
+  <span id="displayPrintf1">cout << <red>"The elements in array are : \n"</red>;</span>
   <span id="forLoop2">for(<span id="forInit2">i = 0</span>; <span id="forCond2">i &lt; n</span>; <span id="iInc2">i++</span>) {
-    <span id="displayPrintf2">cout << "y[" << i << "] = " << y[" << i << "];</span>
+    <span id="displayPrintf2">cout << <red>"y["</red> << i << <red>"] = y["</red> << i << <red>"]"</red>;</span>
   <span id="endFor2">}</span></span>
 <span id="endFunc2">}</span></span></pre>
 		</div>

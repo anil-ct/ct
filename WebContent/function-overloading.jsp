@@ -97,6 +97,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0!important;
 }
 
 .z-index {
@@ -117,6 +118,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold; 
 }
 
 blue {
@@ -187,7 +189,7 @@ function introGuide() {
 		steps : [{
 			 		element : "#topDiv",
 					intro : "",
-				 	position : "bottom"
+				 	tooltipClass : "hide"
 				},{
 			 		element : "#code",
 					intro : "",
@@ -199,7 +201,7 @@ function introGuide() {
 				},{
 			 		element : "#addFun1",
 					intro : "",
-					position : "bottom"
+					position : "right"
 				},{
 			 		element : "#method1",
 					intro : "",
@@ -207,11 +209,23 @@ function introGuide() {
 				},{
 			 		element : "#outputDiv",
 					intro : "",
-					position : "left"
+					tooltipClass : "hide"
 				},{
 			 		element : "#addFun2",
 					intro : "",
-					position : "bottom"
+					position : "right"
+				},{
+			 		element : "#method2",
+					intro : "",
+					position : "right"
+				},{
+			 		element : "#outputDiv",
+					intro : "",
+					tooltipClass : "hide"
+				},{
+			 		element : "#addFun3",
+					intro : "",
+					position : "right"
 				},{
 			 		element : "#method4",
 					intro : "",
@@ -219,27 +233,27 @@ function introGuide() {
 				},{
 			 		element : "#outputDiv",
 					intro : "",
-					position : "left"
+					tooltipClass : "hide"
 				},{
-			 		element : "#addFun3",
+			 		element : "#addFun4",
 					intro : "",
-					position : "bottom"
+					position : "right"
 				},{
-			 		element : "#method1",
+			 		element : "#method3",
 					intro : "",
 					position : "right"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
-					position : "left"
+					tooltipClass : "hide"
 				},{
-			 		element : "#addFun4",
+			 		element : "#addFun5",
 					intro : "",
-					position : "bottom"
+					position : "right"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
-					position : "left"
+					tooltipClass : "hide"
 				},{
 			 		element : "#restart",
 					intro : "",
@@ -253,8 +267,8 @@ function introGuide() {
 		introjs.refresh();
 		switch (elementId) {
 		case "topDiv":
-			$(".introjs-tooltip").hide();
-			$('.introjs-nextbutton').hide();
+			$('.user-btn').removeClass("hide");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$("#li1").fadeTo(500, 1, function () {
 				$("#li2").fadeTo(500, 1, function () {
 					$("#li3").fadeTo(500, 1, function () {
@@ -266,8 +280,7 @@ function introGuide() {
 			$("#code").removeClass("opacity00");
 			$('.user-btn').remove();
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Let us consider sample C++ program.";
 				typing($(".introjs-tooltiptext"), text, function() {
@@ -281,7 +294,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Let us call the functions one by one from main().";
+				var text = "<y>main()</y> is the starting execution point of <y>c++</y> program.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -289,79 +302,37 @@ function introGuide() {
 		break;
 		case "addFun1":
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This function calls exact matching function.";
+				var text = "The <y>add()</y> is called with one int value <y>10</y> so the call is made to the exact matching function <y>add(int)</y>.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "method1":
-			if (introjs._currentStep == 4) {
-				introjs.refresh();
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
-				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "add(int, int) called and print the sum on the console.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						$(".introjs-tooltiptext").append(" <div id='firstAddition' class='display-inline-block relative ct-code-b-yellow'>"
-							+ " <div id='tooltipA1Val' class='display-inline-block relative'>a</div> + <div id='tooltipB1Val' class='display-inline-block relative'>b</div>"
-							+ " <div id='tooltipC1Val' class='opacity00 display-inline-block relative'> = "
-							+ 22 +"</div></div>");
-						var l1 = $("#firstAddition").offset();
-						var l2 = $("#aPlusB1").offset();
-						var topLength = l2.top - l1.top;
-						var leftLength = l2.left - l1.left;
-						TweenMax.from("#firstAddition", 1, {top : topLength, left : leftLength, onComplete:function() {
-							TweenMax.to("#tooltipA1Val", 0.5, {rotationX : -90, onComplete:function() {
-								$("#tooltipA1Val").text($("#intVal1").text());
-								TweenMax.to("#tooltipA1Val", 0.5, {rotationX : 0, onComplete:function() {
-									TweenMax.to("#tooltipB1Val", 0.5, {rotationX : -90, onComplete:function() {
-										$("#tooltipB1Val").text($("#intVal2").text());
-										TweenMax.to("#tooltipB1Val", 0.5, {rotationX : 0, onComplete:function() {
-											$("#tooltipC1Val").removeClass("opacity00");
-											$('.introjs-nextbutton').show();
-										}});
-									}});
-								}});
+			introjs.refresh();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "<y>add(int, int)</y> called and print the number on the console.<br>";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$(".introjs-tooltiptext").append(" <div id='firstAddition' class='display-inline-block relative ct-code-b-yellow'>"
+						+ " <div id='tooltipA1Val' class='display-inline-block relative'>a</div>"
+						+ " </div>");
+					var l1 = $("#firstAddition").offset();
+					var l2 = $("#aPlusB1").offset();
+					var topLength = l2.top - l1.top;
+					var leftLength = l2.left - l1.left;
+					TweenMax.from("#firstAddition", 1, {top : topLength, left : leftLength, onComplete:function() {
+						TweenMax.to("#tooltipA1Val", 0.5, {rotationX : -90, onComplete:function() {
+							$("#tooltipA1Val").text($("#intVal1").text());
+							TweenMax.to("#tooltipA1Val", 0.5, {rotationX : 0, onComplete:function() {
+								$('.introjs-nextbutton').show();
 							}});
 						}});
-					});
+					}});
 				});
-			} else if (introjs._currentStep == 10) {
-				introjs.refresh();
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
-				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "add(int, int) called and print the sum on the console.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						$(".introjs-tooltiptext").append(" <div id='firstAddition' class='display-inline-block relative ct-code-b-yellow'>"
-								+ " <div id='tooltipA1Val' class='display-inline-block relative'>a</div> + <div id='tooltipB1Val' class='display-inline-block relative'>b</div>"
-								+ " <div id='tooltipC1Val' class='opacity00 display-inline-block relative'> = "
-								+ 60 +"</div></div>");
-						var l1 = $("#firstAddition").offset();
-						var l2 = $("#aPlusB1").offset();
-						var topLength = l2.top - l1.top;
-						var leftLength = l2.left - l1.left;
-						TweenMax.from("#firstAddition", 1, {top : topLength, left : leftLength, onComplete:function() {
-							TweenMax.to("#tooltipA1Val", 0.5, {rotationX : -90, onComplete:function() {
-								$("#tooltipA1Val").text($("#doubleVal1").text());
-								TweenMax.to("#tooltipA1Val", 0.5, {rotationX : 0, onComplete:function() {
-									TweenMax.to("#tooltipB1Val", 0.5, {rotationX : -90, onComplete:function() {
-										$("#tooltipB1Val").text($("#doubleVal2").text());
-										TweenMax.to("#tooltipB1Val", 0.5, {rotationX : 0, onComplete:function() {
-											$("#tooltipC1Val").removeClass("opacity00");
-											$('.introjs-nextbutton').show();
-										}});
-									}});
-								}});
-							}});
-						}});
-					});
-				});
-			}
+			});
 		break;
 		case "outputDiv":
 			$("#outputDiv").removeClass("opacity00");
@@ -370,47 +341,53 @@ function introGuide() {
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "output";
-					$("#body").append("<div>sum = 22</div>");
-					typing($(".introjs-tooltiptext"), text, function() {
-						$('.introjs-nextbutton').show();
-					});
+					$("#body").append("<div>The integer value is = 10</div>");
+					setTimeout(function(){
+						introjs.nextStep();
+					}, 500);
 				});
 			} else if (introjs._currentStep == 8) {
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "output";
-					$("#body").append("<div>sum = 29.1</div>");
-					typing($(".introjs-tooltiptext"), text, function() {
-						$('.introjs-nextbutton').show();
-					});
+					$("#body").append("<div>Sum of two float values = 29.1</div>");
+					setTimeout(function(){
+						introjs.nextStep();
+					}, 500);
 				});
 			} else if (introjs._currentStep == 11) {
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "output";
-					$("#body").append("<div>sum = 60</div>");
-					typing($(".introjs-tooltiptext"), text, function() {
-						$('.introjs-nextbutton').show();
-					});
+					$("#body").append("<div>Sum of three double values = 180</div>");
+					setTimeout(function(){
+						introjs.nextStep();
+					}, 500);
 				});
-			}  else if (introjs._currentStep == 13) {
+			} else if (introjs._currentStep == 14) {
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "There is no function with one float argument.";
+					$("#body").append("<div>Sum of two double values = 60.8</div>");
+					setTimeout(function(){
+						introjs.nextStep();
+					}, 500);
+				});
+			} else if (introjs._currentStep == 16) {
+				introjs.refresh();
+				$('.introjs-nextbutton').hide();
+				$('.introjs-prevbutton').hide();
+				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#body").empty();
 					$("#body").append("<div>overloading.cpp: In function 'main()': <br>"
 							+ " overloading.cpp:20:10: <red><b>error</b></red>: no matching function for call to 'add(int)' "
 							+ " add(8.2)</div>");
-					typing($(".introjs-tooltiptext"), text, function() {
-						$('.introjs-nextbutton').show();
-					});
+					setTimeout(function(){
+						introjs.nextStep();
+					}, 500);
 				});
 			}
 		break;
@@ -419,25 +396,25 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This function calls exact matching function.";
+				var text = "The <y>add()</y> is called with two float values <y>12.4</y>, <y>16.7</y> so the call is made to the exact matching function<br> <y>add(float, float)</y>.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
 			});
 		break;
-		case "method4":
+		case "method2":
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "add(double, double) called and print the sum on the console..";
+				var text = "add(float, float) called and print the sum on the console..";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-tooltiptext").append(" <div id='thirdAddition' class='display-inline-block relative ct-code-b-yellow'>"
 						+ " <div id='tooltipA3Val' class='display-inline-block relative'>a</div> + <div id='tooltipB3Val' class='display-inline-block relative'>b</div>"
 						+ " <div id='tooltipC3Val' class='opacity00 display-inline-block relative'> = "
 						+ 29.1 +"</div></div>");
 					var l1 = $("#thirdAddition").offset();
-					var l2 = $("#aPlusB3").offset();
+					var l2 = $("#aPlusB2").offset();
 					var topLength = l2.top - l1.top;
 					var leftLength = l2.left - l1.left;
 					TweenMax.from("#thirdAddition", 1, {top : topLength, left : leftLength, onComplete:function() {
@@ -462,35 +439,85 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This function calls exact matching function.";
+				var text = "The <y>add()</y> is called with three integer values <y>30</y>, <y>60</y>, <y>90</y> so the call is made to the exact matching function<br> <y>add(int, int, int)</y>.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
 			});
 		break;
-		/* case "method4":
+		case "method4":
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "add(double, double).";
+				var text = "<y>add(int, int, int)</y> called and print the sum on the console.<br>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append(" <div id='thirdAddition' class='display-inline-block relative ct-code-b-yellow'>"
-						+ " <div id='tooltipA3Val' class='display-inline-block relative'>a</div> + <div id='tooltipB3Val' class='display-inline-block relative'>b</div>"
-						+ " = <div id='tooltipC3Val' class='opacity00 display-inline-block relative'>"
-						+ 60 +"</div></div>");
-					var l1 = $("#thirdAddition").offset();
+					$(".introjs-tooltiptext").append(" <div id='fourthAddition' class='display-inline-block relative ct-code-b-yellow'>"
+						+ " <div id='tooltipA4Val' class='display-inline-block relative'>a</div> + <div id='tooltipB4Val' class='display-inline-block relative'>b</div>"
+						+ " + <div id='tooltipC4Val' class='display-inline-block relative'>c</div>"
+						+ " <div id='tooltipD4Val' class='opacity00 display-inline-block relative'> = "
+						+ 180 +"</div></div>");
+					var l1 = $("#fourthAddition").offset();
+					var l2 = $("#aPlusB4").offset();
+					var topLength = l2.top - l1.top;
+					var leftLength = l2.left - l1.left;
+					TweenMax.from("#thirdAddition", 1, {top : topLength, left : leftLength, onComplete:function() {
+						TweenMax.to("#tooltipA4Val", 0.5, {rotationX : -90, onComplete:function() {
+							$("#tooltipA4Val").text($("#intVal111").text());
+							TweenMax.to("#tooltipA4Val", 0.5, {rotationX : 0, onComplete:function() {
+								TweenMax.to("#tooltipB4Val", 0.5, {rotationX : -90, onComplete:function() {
+									$("#tooltipB4Val").text($("#intVal112").text());
+									TweenMax.to("#tooltipB4Val", 0.5, {rotationX : 0, onComplete:function() {
+										TweenMax.to("#tooltipC4Val", 0.5, {rotationX : -90, onComplete:function() {
+											$("#tooltipC4Val").text($("#intVal113").text());
+											TweenMax.to("#tooltipC4Val", 0.5, {rotationX : 0, onComplete:function() {
+												$("#tooltipD4Val").removeClass("opacity00");
+												$('.introjs-nextbutton').show();
+											}});	
+										}});
+									}});
+								}});
+							}});
+						}});
+					}});
+				});
+			});
+		break;
+		case "addFun4":
+			$("#addFun4").removeClass("hide");
+			introjs.refresh();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "The <y>add()</y> is called with two double values <y>20.3</y>, <y>40.5</y> so the call is made to the exact matching function<br> <y>add(double, double)</y>.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton').show();
+				});
+			});
+		break;
+		case "method3":
+			introjs.refresh();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "<y>add(double, double)</y> called and print the sum on the console.<br>";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$(".introjs-tooltiptext").append(" <div id='fifthAddition' class='display-inline-block relative ct-code-b-yellow'>"
+						+ " <div id='tooltipA5Val' class='display-inline-block relative'>a</div> + <div id='tooltipB5Val' class='display-inline-block relative'>b</div>"
+						+ " <div id='tooltipC5Val' class='opacity00 display-inline-block relative'> = "
+						+ 60.8 +"</div></div>");
+					var l1 = $("#fifthAddition").offset();
 					var l2 = $("#aPlusB3").offset();
 					var topLength = l2.top - l1.top;
 					var leftLength = l2.left - l1.left;
 					TweenMax.from("#thirdAddition", 1, {top : topLength, left : leftLength, onComplete:function() {
-						TweenMax.to("#tooltipA3Val", 0.5, {rotationX : -90, onComplete:function() {
-							$("#tooltipA3Val").text($("#doubleVal1").text());
-							TweenMax.to("#tooltipA3Val", 0.5, {rotationX : 0, onComplete:function() {
-								TweenMax.to("#tooltipB3Val", 0.5, {rotationX : -90, onComplete:function() {
-									$("#tooltipB3Val").text($("#doubleVal2").text());
-									TweenMax.to("#tooltipB3Val", 0.5, {rotationX : 0, onComplete:function() {
-										$("#tooltipC3Val").removeClass("opacity00");
+						TweenMax.to("#tooltipA5Val", 0.5, {rotationX : -90, onComplete:function() {
+							$("#tooltipA5Val").text($("#doubleVal1").text());
+							TweenMax.to("#tooltipA5Val", 0.5, {rotationX : 0, onComplete:function() {
+								TweenMax.to("#tooltipB5Val", 0.5, {rotationX : -90, onComplete:function() {
+									$("#tooltipB5Val").text($("#doubleVal2").text());
+									TweenMax.to("#tooltipB5Val", 0.5, {rotationX : 0, onComplete:function() {
+										$("#tooltipC5Val").removeClass("opacity00");
 										$('.introjs-nextbutton').show();
 									}});
 								}});
@@ -499,14 +526,14 @@ function introGuide() {
 					}});
 				});
 			});
-		break; */
-		case "addFun4":
-			$("#addFun4").removeClass("hide");
+		break;
+		case "addFun5":
+			$("#addFun5").removeClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This gives an error.";
+				var text = "This call gives an error, why because the matching function definition is not available.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -539,30 +566,9 @@ function codeText() {
 	$('.user-btn').remove();
 	$(".color").addClass("yellow");
 	$(".introjs-tooltiptext").empty();
-	var text = "Here we overload the add() funtion, with same name and different argumens.";
+	var text = "Here we overload the <y>add()</y>, with <y>same name</y> and <y>different argumens</y>.";
 	typing(".introjs-tooltiptext", text, function() {
 		$('.introjs-nextbutton').show();
-	});
-}
-
-function textFocus(selector) {
-	$("#"+selector).focus();
-	editText('#'+ selector);
-}
-
-function editText(selector) {
-	$(selector).on("keydown", function(e) {
-		$('.error-text').remove();
-		var max = $(this).attr("maxlength");
-		if ($(this).text().length > max-1) {
-			if ($.inArray(e.keyCode, [46, 8, 9, 27, 37, 39, 13]) !== -1) {
-				return;
-			}
-			if (e.keyCode == 13 && e.keyCode == 9) {
-				e.preventDefault();
-			}
-			e.preventDefault();
-		}		
 	});
 }
 
@@ -608,15 +614,15 @@ function getStep(element, intro, position, tooltipClass) {
 }
 </script>
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>function-overloading</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>Function Overloading in c++</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00">Two or more functions having same name but different argument(s) are known as overloaded functions.</li>
-					<li id="li2" class="opacity00">Function overloading can be considered as an example of polymorphism feature in C++.</li>
-					<li id="li3" class="opacity00">The return type may be similar but type of the arguments and number of arguments must be different in function overloading.
+					<li id="li1" class="opacity00">Two or more functions having <g>same name</g> but <g>different arguments</g> are known as <g>overloaded functions</g>.</li>
+					<li id="li2" class="opacity00">Function overloading can be considered as an example of <g>polymorphism</g> feature in C++.</li>
+					<li id="li3" class="opacity00">The return type may be similar but <g>type of the arguments</g> and <g>number of arguments</g> must be <g>different</g> in function overloading.
 						&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span><br>
 					</li>
 				</ul>
@@ -628,29 +634,27 @@ function getStep(element, intro, position, tooltipClass) {
 		<div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>SampleOverloading</blue> {
-	<g>public</g>:
-		<span id="method1" class="color"><red>void</red> add(int a, int b) {
-			cout << <red>"sum = "</red> << <span id="aPlusB1">a + b</span> << <red>"\n"</red>;
-		}</span>
-		<span id="method2" class="color"><red>void</red> add(float a, float b) {
-			cout << <red>"sum = "</red> << <span id="aPlusB2">a + b</span> << <red>"\n"</red>;
-		}</span>
-		<span id="method4" class="color"><red>void</red> add(double a, double b) {
-			cout << <red>"sum = "</red> << <span id="aPlusB3">a + b</span> << <red>"\n"</red>;
-		}</span>
-		<span class="color"><red>void</red> add(int a, int b, int c) {
-			cout << <red>"sum = "</red> << <span id="aPlusB1">a + b + c</span> << <red>"\n"</red>;
-		}</span>
-		<span id="method3" class="color hide"><red>void</red> add(float t, float a, float b, float c) {
-			cout << <red>"sum = "</red> << a + b + c  << <red>"\n"</red>;
-		}</span>
-};
-<span id="main"><red>void</red> main() {
-	<span id="addFun1"><span class="green">add</span>(<span id="intVal1">10</span>, <span id="intVal2">12</span>);</span>
-	<span id="addFun2"><span class="green">add</span>(<span id="floatVal1">12.4</span>, <span id="floatVal2">16.7</span>);</span>
-	<span id="addFun3"><span class="green">add</span>(<span id="doubleVal1">20</span>, <span id="doubleVal2">40</span>);</span>
-	<span id="addFun4" class="hide"><span class="green">add</span>(<span id="float1Val1">8.2</span>);</span>
+	<span id="method1" class="color"><red>void</red> add(int a) {
+		cout << <red>"The integer value is = "</red> << <span id="aPlusB1">a</span> << <red>"\n"</red>;
+	}</span>
+	<span id="method2" class="color"><red>void</red> add(float a, float b) {
+		cout << <red>"Sum of two float values = "</red> << <span id="aPlusB2">a + b</span> << <red>"\n"</red>;
+	}</span>
+	<span id="method3" class="color"><red>void</red> add(double a, double b) {
+		cout << <red>"Sum of two double values = "</red> << <span id="aPlusB3">a + b</span> << <red>"\n"</red>;
+	}</span>
+	<span id="method4" class="color"><red>void</red> add(int a, int b, int c) {
+		cout << <red>"Sum of three integer values = "</red> << <span id="aPlusB4">a + b + c</span> << <red>"\n"</red>;
+	}</span>
+	<span id="method5" class="color hide"><red>void</red> add(float t, float a, float b, float c) {
+		cout << <red>"Sum of three float values = "</red> << a + b + c  << <red>"\n"</red>;
+	}</span>
+<span id="main"><red>int</red> main() {
+	<span id="addFun1" class="hide"><g>add</g>(<span id="intVal1">10</span>);</span>
+	<span id="addFun2" class="hide"><g>add</g>(<span id="floatVal1">12.4</span>f, <span id="floatVal2">16.7</span>f);</span>
+	<span id="addFun3" class="hide"><g>add</g>(<span id="intVal111">30</span>, <span id="intVal112">60</span>, <span id="intVal113">90</span>);</span>
+	<span id="addFun4" class="hide"><g>add</g>(<span id="doubleVal1">20.3</span>, <span id="doubleVal2">40.5</span>);</span>
+	<span id="addFun5" class="hide"><g>add</g>(<span id="float1Val1">8.2</span>);</span>
 }</span></pre>
 		</div>
 	</div>

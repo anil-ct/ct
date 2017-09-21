@@ -18,7 +18,7 @@
 
 <!-- <script src="/secure/lang/c++/js/categories-of-functions.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/cof.min.js"></script>
+<script src="../js-min/cof.min.js"></script>
 
 <title>Function categories</title>
 
@@ -131,6 +131,27 @@ div, span {
 .ct-green-color {
 	color: green;
 }
+
+g {
+	color: green;
+}
+
+y {
+	color: yellow;
+	font-weight: bold;
+}
+
+blue {
+	color: #0000FF;
+}
+
+red {
+	color: red;
+}
+
+orange {
+	color: #BC7A00;
+}
 </style>
 </head>
 
@@ -178,50 +199,54 @@ div, span {
 			</div>
 			<div id="animationDiv" class="col-xs-12 animation-div" style="margin-top: 50px;">
 				<div class="col-xs-6">
-<pre id="funcType1" class="creampretab hide opacity00" id="code">#include&lt;stdio.h&gt;
-<span id="funDec1">void <span class='ct-green-color'>getName(void)</span>;</span>
-<div id="main1" style="display: inline-block;"><b class='ct-blue-color'>main()</b> {</span>
-	<span id="callingFun1" class='ct-green-color'>getName();</span>
-	<span id="mainPrintf1">cout << "Inside main()";</span>
+<pre id="funcType1" class="creampretab hide opacity00" id="code"><orange>#include</orange><span style="color: #408080;">&lt;iostream&gt;</span>
+<g>using namespace</g> std;
+<span id="funDec1"><red>void</red> getName(void);</span>
+<div id="main1" style="display: inline-block;"><red>int</red> main() {
+	<span id="callingFun1">getName();</span>
+	<span id="mainPrintf1">cout << <red>"Inside main()\n"</red>;</span>
 <span id="endMain1">}</span></div>
-<div id="funDef1" style="display: inline-block;">void <b class='ct-blue-color'>getName()</b> {
-	<span id="userPrintf1">cout << "Inside getName()" << endl;</span>
+<div id="funDef1" style="display: inline-block;"><red>void</red> getName() {
+	<span id="userPrintf1">cout << <red>"Inside getName()\n"</red>;</span>
 <span id="endFunction1">}</span></div>
 </pre>
-<pre id="funcType2" class="creampretab hide opacity00" id="code">#include&lt;stdio.h&gt;
-<span id="funDec2">void <span class='ct-green-color'>getValue(int)</span>;</span>
-<div id="main2" style="display: inline-block;"><b class='ct-blue-color'>main()</b> {
-	<span id="callingFun2" class='ct-green-color'>getValue(5);</span>
-	<span id="mainPrintf2">cout << "inside main(), after getValue()";</span>
+<pre id="funcType2" class="creampretab hide opacity00" id="code"><orange>#include</orange><span style="color: #408080;">&lt;iostream&gt;</span>
+<g>using namespace</g> std;
+<span id="funDec2"><red>void</red> getValue(int);</span>
+<div id="main2" style="display: inline-block;"><red>int</red> main() {
+	<span id="callingFun2">getValue(5);</span>
+	<span id="mainPrintf2">cout << <red>"inside main(), after getValue()\n"</red>;</span>
 <span id="endMain2">}</span></div>
-<div id="funDef2" style="display: inline-block;">void <b class='ct-blue-color'>getValue(int b)</b> {
-	<span id="userPrintf2">cout << b << " printed in getValue()" << endl;</span>
+<div id="funDef2" style="display: inline-block;"><red>void</red> <b class='ct-blue-color'>getValue(int b)</b> {
+	<span id="userPrintf2">cout << b << <red>" printed in getValue()\n"</red> <<;</span>
 <span id="endFunction2">}</span></div>	
 </pre>
-<pre id="funcType3" class="creampretab hide opacity00" id="code">#include&lt;stdio.h&gt;
-<span id="funDec3">int <span class='ct-green-color'>calculateSum()</span>;</span>
-<div id="main3" style="display: inline-block;"><b class='ct-blue-color'>main()</b> {
-	<span id="varInMain3">int total;</span>
-	<span id="callingFun3">total = <span class='ct-green-color'>calculateSum()</span>;</span>
-	<span id="mainPrintf3">cout << "Sum = " << total;</span>
+<pre id="funcType3" class="creampretab hide opacity00" id="code"><orange>#include</orange><span style="color: #408080;">&lt;iostream&gt;</span>
+<g>using namespace</g> std;
+<span id="funDec3"><red>int</red> calculateSum();</span>
+<div id="main3" style="display: inline-block;"><red>int</red> main() {
+	<span id="varInMain3"><red>int</red> total;</span>
+	<span id="callingFun3">total = calculateSum();</span>
+	<span id="mainPrintf3">cout << <red>"Sum = "</red> << total << <red>"\n"</red>;</span>
 <span id="endMain3">}</span></div>
-<div id="funDef3" style="display: inline-block;">int <b class='ct-blue-color'>calculateSum()</b> {
-	<span id="varInit3">int a = 10, b = 20, sum;</span>
+<div id="funDef3" style="display: inline-block;"><red>int</red> calculateSum() {
+	<span id="varInit3"><red>int</red> a = 10, b = 20, sum;</span>
 	<span id="varDec3">sum = a + b;</span>
-	<span id="returnVal3">return sum;</span>
+	<span id="returnVal3"><g>return</g> sum;</span>
 <span id="endFunction3">}</span></div>	
 </pre>
-<pre id="funcType4" class="creampretab hide opacity00" id="code">#include&lt;stdio.h&gt;
-<span id="funDec4">int <span class='ct-green-color'>calculateSum(int, int)</span>;</span>
-<div id="main4" style="display: inline-block;"><b class='ct-blue-color'>main()</b> {
-	<span id="varInMain4">int a = 10, b = 20, total;</span>
+<pre id="funcType4" class="creampretab hide opacity00" id="code"><orange>#include</orange><span style="color: #408080;">&lt;iostream&gt;</span>
+<g>using namespace</g> std;
+<span id="funDec4"><red>int</red> calculateSum(int, int);</span>
+<div id="main4" style="display: inline-block;"><red>int</red> main() {
+	<span id="varInMain4"><red>int</red> a = 10, b = 20, total;</span>
 	<span id="callingFun4">total = <span class='ct-green-color'>calculateSum(a, b)</span>;</span>
-	<span id="mainPrintf4">cout << "Sum = " << total;</span>
+	<span id="mainPrintf4">cout << <red>"Sum = "</red> << total << <red>"\n"</red>;</span>
 <span id="endMain4">}</span></div>
-<div id="funDef4" style="display: inline-block;">int <b class='ct-blue-color'>calculateSum(int x, int y)</b> {
-	<span id="varInit4">int sum;</span>
+<div id="funDef4" style="display: inline-block;"><red>int</red> calculateSum(int x, int y) {
+	<span id="varInit4"><red>int</red> sum;</span>
 	<span id="varDec4">sum = x + y;</span>
-	<span id="returnVal4">return sum;</span>
+	<span id="returnVal4"><g>return</g> sum;</span>
 <span id="endFunction4">}</span></div>	
 </pre>
 				</div>

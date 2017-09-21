@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>userdefined-to-basic</title>
+<title>userdefined-to-userdefined</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <link rel="stylesheet" href="/css/introjs.css">
@@ -19,9 +19,9 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
+<!-- <script src="../js/userdefined-to-userdefined.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/udtud.min.js"></script>
+<script src="../js-min/udtud.min.js"></script>
 
 <style type="text/css">
 
@@ -38,6 +38,8 @@
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
+    height: 195px;
+    background-color: white;
 }
 
 .creampretab {
@@ -79,10 +81,6 @@
 	padding: 0;
 }
 
-div, span {
-	position: relative;
-}
-
 .relative {
 	position: relative;
 }
@@ -102,7 +100,7 @@ div, span {
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 262px;
+	height: 260px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -117,6 +115,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0!important;
 }
 
 .z-index {
@@ -145,6 +144,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold;
 }
 
 blue {
@@ -159,43 +159,74 @@ orange {
 	color: #BC7A00;
 }
 
-.circle-css {
-	border: 1px solid;
-	border-radius: 50%;
-	padding: 2px;
-	position: relative;
-	z-index: 10000001 !important;
-	background-color: #ff0066;
-	font-weight: bold;
+.lite-red {
+	color: #880000;
+}
+
+.lite-blue {
+	color: seagreen;
+}
+
+.padding-5 {
+	padding: 5px;
+	padding-left: 1px;
+}
+
+.display-inline-block {
+	display: inline-block;
+}
+
+
+[contenteditable=true] {
+	outline: none;
+	font-family: monospace;
+}
+
+[contenteditable=true]:empty:before, [contenteditable=false]:empty:before {
+	color: #cbcbc !important;
+	content: attr(placeholder);
+}
+
+.lite-red {
+	color: #ff3019;
+}
+
+.lite-blue {
+	color: seagreen;
+}
+
+.monospace {
+	font-family: monospace;
 }
 </style>
 </head>
 <body>
-<script type="text/javascript">
 
+<script type="text/javascript">
 $(document).ready(function() {
-	userdefinedToUserdefinedReadyFun();
+	userDefinedToUserDefinedReadyFun();
 });
 
-
 </script>
+
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>Userdefined to Userdefined</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>User-defined to User-defined</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<ul style="font-family: monospace;">
 				<li id="li1" class="opacity00">
-					
+					To convert a <b class='monospace lite-blue'>user-defined type</b> to another <b class='monospace lite-blue'>user-defined type</b>,
+					 the conversion function should be defined in base class in the form of <b class='monospace lite-blue'>operator function</b>.  
 				</li>
 				<li id="li2" class="opacity00">
-					
-				</li>
-				<li id="li3" class="opacity00" style="margin-top: -1px;">
-					
-					 &emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span>
+					 The format of the operator function is: <br>
+					 <div class="col-xs-4"><pre class="creampretab1">operator user-defined-datatype() {<br>	------<br>	------<br>}</pre></div>
 				</li>
 			</ul>
+			<div class="col-xs-12">
+				<span id="nextBtn" class='user-btn introjs-button opacity00' onclick='introjs.nextStep()'>Next &#8594;</span>
+			</div>
 		</div>
 	</div>
 <div class="col-xs-12 margin-top-20">
@@ -203,7 +234,7 @@ $(document).ready(function() {
 		<div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<span id="class"><g>class</g> <blue>radian</blue> {
+<span id="class1"><g>class</g> <blue>radian</blue> {
 	<span id="rad"><red>float</red> rad;</span>
 	<g>public</g>:
 		<span id="paraConstRad" class="hide">radian(float x) {
@@ -213,7 +244,7 @@ $(document).ready(function() {
 			cout << <red>"radians value : "</red> << rad;
 		}</span>
 };</span>
-<g>class</g> <blue>degree</blue> {
+<span id="class2"><g>class</g> <blue>degree</blue> {
 	<span id="rad"><red>float</red> deg;</span>
 	<g>public</g>:
 		<span id="paraConstDeg" class="hide">degree(float x) {
@@ -222,13 +253,11 @@ $(document).ready(function() {
 		<span id="operatorRad" class="hide">operator radian() {
 			return (<span id="returnVal">deg * 3.14 / 180</span>);
 		}</span>
-};
+};</span>
 <red>void</red> main() {
 	<span id="rd" class="hide">radian r;
 	degree d;</span>
-	<span id="comments" class="hide"><b>//convert from basic to user-defined;</b>
-	<b>//this is equivalent to d = degree(100.30);</b>
-	<span id="callingParaConst">d = 100.30;</span></span>
+	<span id="comments" class="hide"><span id="callingParaConst">d = <div class='display-inline-block' contenteditable='true' maxlength='5' id='dVal' class="padding-5" spellcheck="false" placeholder="deg">100.30</div>;</span></span>
 	<span id="rToD" class="hide">r = <span id="preD">d</span>;</span>
 	<span id="callingFun" class="hide">r.display();</span>
 }
@@ -243,10 +272,10 @@ $(document).ready(function() {
 		    			<div class="panel-heading text-center padding0"><b id="r">r</b></div>
 		    			<div class="panel-body text-center" style="padding: 5px;">
 		    				<div class="col-xs-offset-3 col-xs-6">
-								<div id="radPanel" class="opacity00">
+								<div id="radPanel" class="">
 									<div class="panel panel-primary margin-bottom0">
 					    				<div class="panel-heading text-center padding0"><b>rad</b></div>
-					    				<div class="panel-body text-center"><span id="radPanelVal" class="">1.7497</span></div>
+					    				<div class="panel-body text-center"><span id="radPanelVal" class=""></span></div>
 					  				</div>
 					  				<!-- <div class="text-center">1024</div> -->
 				  				</div>
@@ -259,10 +288,10 @@ $(document).ready(function() {
 		    			<div class="panel-heading text-center padding0"><b id="d">d</b></div>
 		    			<div class="panel-body text-center" style="padding: 5px;">
 		    				<div class="col-xs-offset-3 col-xs-6">
-								<div id="degPanel" class="opacity00">
+								<div id="degPanel" class="">
 									<div class="panel panel-primary margin-bottom0">
 					    				<div class="panel-heading text-center padding0"><b>deg</b></div>
-					    				<div class="panel-body text-center"><span id="degPanelVal" class="">100.30</span></div>
+					    				<div class="panel-body text-center"><span id="degPanelVal" class=""></span></div>
 					  				</div>
 					  				<!-- <div class="text-center">1024</div> -->
 				  				</div>
@@ -281,7 +310,6 @@ $(document).ready(function() {
 				<span class="title">Output</span>
 			</div>
 			<div class="output-console-body" id="body">
-			<div id="outputText" class="opacity00 display-inline-block">radians value :&nbsp;1.7497</div>
 			</div>
 		</div>
 	</div>

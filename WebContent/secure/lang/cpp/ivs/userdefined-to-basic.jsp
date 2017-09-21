@@ -19,9 +19,9 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
+<!-- <script src="/secure/lang/cpp/js/userdefined-to-basic.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/udtb.min.js"></script>
+<script type="text/javascript" src="../js-min/udtb.min.js"></script>
 
 <style type="text/css">
 
@@ -39,6 +39,7 @@
     border-radius: 8px;
     padding: 10px;
     height: 200px;
+    background-color: white;
 }
 
 .creampretab {
@@ -99,7 +100,7 @@
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 423px;
+	height: 135px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -155,6 +156,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold;
 }
 
 blue {
@@ -189,30 +191,31 @@ orange {
 </style>
 </head>
 <body>
+
 <script type="text/javascript">
-
-
 $(document).ready(function() {
-	userdefinedToBasicReadyFun();
+	userDefinedToBasicReadyFun();
 });
 
-
 </script>
+
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>Userdefined to Basic</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>User-defined to Basic</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<ul style="font-family: monospace;">
 				<li id="li1" class="opacity00">
-					To convert the data type from user defined to basic, the conversion function should be defined in userdefined class in the form of operator functions.
+					To convert a <b class='monospace lite-blue'>user-defined type</b> to <b class='monospace lite-blue'>basic type</b>,
+					 the conversion function should be defined in a class in the form of <b class='monospace lite-blue'>operator function</b>.
 				</li>
 				<li id="li2" class="opacity00">
-					 It is defined as an overloaded basic datatype which takes no arguments. The format of operator function is<br>
-					 <div class="col-xs-12"><pre class="col-xs-3 creampretab1">operator basic datatype() {<br>	------<br>	------<br>}</pre><br></div>
+					 The format of operator function is:<br>
+					 <div class="col-xs-12"><pre class="col-xs-3 creampretab1">operator basic_datatype() {<br>	------<br>	------<br>}</pre><br></div>
+					 
 				</li>
 				<li id="li3" class="opacity00" style="margin-top: -1px;">
-					This operator function should return the basic datatype value.
+					This operator function should return the basic data type value.
 					&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span>
 				</li>
 			</ul>
@@ -226,12 +229,12 @@ $(document).ready(function() {
 <span id="class"><g>class</g> <blue>Meter</blue> {
 	<span id="length"><red>float</red> length;</span>
 	<g>public</g>:
-		<span id="defaultConst" class="hide">Meter() {
-			length = 0.0;
+		<span id="defaultConst">Meter() {
+			length = 0;
 		}</span>
 		<span id="getdataFun" class="hide"><red>void</red> getdata() {
-			<span id="cout2" class="hide">cout << <red>"enter length in centemeters : "</red>;</span>
-			<span id="cin" class="hide">cin >> length;</span>
+			<span id="cout2">cout << <red>"Enter length in centemeters : "</red>;</span>
+			<span id="cin">cin >> length;</span>
 		}</span>
 		<span id="operatorFloat" class="hide">operator float() {
 			<span id="floatX2" class="">float x;</span>
@@ -240,10 +243,10 @@ $(document).ready(function() {
 		}</span>
 };</span>
 <red>void</red> main() {
-	<span id="constM" class="hide">Meter M;</span>
-	<span id="callMethod" class="hide">M.getdata();</span>
+	<span id="constM" class="hide">Meter m;</span>
+	<span id="callMethod" class="hide">m.getdata();</span>
 	<span id="floatX1" class="hide">float x;</span>
-	<span id="xm" class="hide">x = M;</span></span>
+	<span id="xm" class="hide">x = m;</span></span>
 	<span id="cout1" class="hide">cout << <red>"length in centemeters : "</red> << x;</span>
 }
 </pre>
@@ -257,10 +260,10 @@ $(document).ready(function() {
 		    			<div class="panel-heading text-center padding0"><b id="m">M</b></div>
 		    			<div class="panel-body text-center" style="padding: 5px;">
 		    				<div class="col-xs-offset-3 col-xs-6">
-								<div id="lengthPanel" class="opacity00">
+								<div id="lengthPanel" class="">
 									<div class="panel panel-primary margin-bottom0">
 					    				<div class="panel-heading text-center padding0"><b>length</b></div>
-					    				<div class="panel-body text-center"><span id="lengthPanelVal1" class="">0.0</span><span id="lengthPanelVal2" class="hide">0.0</span></div>
+					    				<div class="panel-body text-center"><span id="lengthPanelVal1" class="opacity00">0</span></div>
 					  				</div>
 					  				<!-- <div class="text-center">1024</div> -->
 				  				</div>
@@ -279,7 +282,7 @@ $(document).ready(function() {
 				<span class="title">Output</span>
 			</div>
 			<div class="output-console-body" id="body">
-			<div id="outputText" class="opacity00 display-inline-block">enter length in centemeters :&nbsp; </div><div class='display-inline-block input-val' contenteditable='true' maxlength='5' id='inputVal' class="padding5" spellcheck="false"></div>
+			<div id="outputText" class="opacity00 display-inline-block">Enter length in centemeters :&nbsp; </div><div class='display-inline-block input-val' contenteditable='true' maxlength='5' id='inputVal' class="padding5" spellcheck="false"></div>
 			</div>
 		</div>
 	</div>

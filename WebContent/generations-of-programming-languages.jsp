@@ -21,9 +21,9 @@
 
 <!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
 
-<!-- <script src="/secure/lang/c/js-min/cof.min.js"></script> -->
+<script type="text/javascript" src="../js-min/gopl.min.js"></script>
 
-<script src="generations-of-programming-languages.js" type="text/javascript"></script>
+<!-- <script src="../js/generations-of-programming-languages.js" type="text/javascript"></script> -->
 <title>generations-of-programming-languages</title>
 <style type="text/css">
 
@@ -158,23 +158,34 @@ orange {
 <body>
 <script type="text/javascript">
 
-$(document).ready(function() {
+/* $(document).ready(function() {
 	generationsOfProgrammingLanguagesReadyFun();
-});
+}); */
 
-/* var tooltipMap = {
-	"#group1" : "<ul><li>Use a <b class='monospace lite-red'>binary code</b> that consists of strings of only <g><b>0</b></g>'s and <g><b>1</b></g>'s.</li></ul>",
-	"#group2" : "<ul><li>Uses <b><a href='https://en.wikipedia.org/wiki/Mnemonic' target='_blank'  class='monospace'>mnemonics</a></b> code that consists of very short words for commands.</li> <li>Assembly language programs need to be converted into"
-		+ " machine language by an <b class='monospace lite-blue'>assembler</b> before it can be run.</li></ul>",
-	"#group3" : "<ul><li>Third Generation Languages also refereed to as<br> <b class='monospace lite-red'>high–level languages</b> introduced data structures and control structures "
-		+ " can be platform independent, meaning that code written for one system will work on another.</li> <li>To convert a 3rd generation program into object code"
-		+ " requires a <b class='monospace lite-red'>Compiler</b> or an <b class='monospace lite-red'>Interpreter</b>.</li> <li>Examples of 3rd generation programming languages are: <b class='monospace lite-blue'>Fortran</b>, <b class='monospace lite-blue'>C</b>, <b class='monospace lite-blue'>python</b>.</li></ul>",
-	"#group4" : "<ul><li>Fourth Generation language is designed to be closer to natural language than a Third Generation.</li>"
-		+ " <li>Languages for accessing <b class='monospace lite-red'>databases</b> are often described as Fourth Generation languages.</li>"
-		+ " <li>Standard <b class='monospace lite-blue'>ML</b>, <b class='monospace lite-blue'>Lisp</b>, <b class='monospace lite-blue'>SQL</b> are example of Fourth Generation language.</li></ul>",
-	"#group5" : "<ul><li>Fifth Generation Languages are basically an outgrowth of <b style='font-size:95%;' class='monospace'><a href='https://en.wikipedia.org/wiki/Artificial_intelligence' target='_blank' style='font-size: 11px;'>artificial intelligence</a></b> research from the 1980's.</li> <li>The approach is to build a program"
-		+ " that implements a specific algorithm to solve problems.</li></ul>",
-};
+var tooltipMap = {
+		"#group1" : "<ul><li>In this generation of languages, the instructions were given in <b class='monospace lite-red'>binary code</b>," +
+					" which constituted a sequence of <g><b>0</b></g>'s and <g><b>1</b></g>'s.</li></ul>",
+		
+		"#group2" : "<ul><li>These used <a href='https://en.wikipedia.org/wiki/Mnemonic' target='_blank'  class='monospace'>mnemonics</a> (short words) for instructions."
+					+ " The instructions consisted the <a href='https://en.wikipedia.org/wiki/Assembly_language' target='_blank'>"
+					+ "Assembly language</a>. Programs written in assembly language need to be converted into the"
+					+ " machine language by an <b class='monospace lite-blue'>assembler</b> before it can be run.</li></ul>",
+				
+		"#group3" : "<ul><li>The <b>third generation</b> languages also refereed to as<br> <b class='monospace lite-red'>high–level languages</b>."
+				+ " These introduced commands which are more human-readable. They also provided constructs to represent logic.</li> <li> These "
+				+ " requires a <b class='monospace lite-red'>Compiler</b> or an <b class='monospace lite-red'>Interpreter</b> to generate the machine code.</li>" +
+				" <li>Examples of 3<sup>rd</sup> generation "
+				+ " programming languages are: <b class='monospace lite-blue'>Fortran</b>, <b class='monospace lite-blue'>Pascal</b>, <b class='monospace lite-blue'>C</b>, etc.</li></ul>",
+				
+		"#group4" : "<ul><li><b>Fourth generation languages</b> are designed to be closer to natural language, meaning they contain English like commands.</li>"
+				+ " <li>Standard <b class='monospace lite-blue'>ML</b>, <b class='monospace lite-blue'>Lisp</b>, <b class='monospace lite-blue'>SQL</b> are a few examples.</li></ul>",
+				
+		"#group5" : "<ul><li><b>Fifth generation languages</b> are basically an outgrowth of <b style='font-size:95%;' class='monospace'> "
+				+ " <a href='https://en.wikipedia.org/wiki/Artificial_intelligence' target='_blank' style='font-size: 11px;'>artificial intelligence</a></b> research "
+				+ " from the 1980's.</li> <li>They are intended to solve problems given contraints instead of a programmer providing the algorithm. "
+				+ " A few examples are - <a href='https://en.wikipedia.org/wiki/Prolog' target='_blank'>Prolog</a>,"
+				+ " <a href='https://en.wikipedia.org/wiki/OPS5' target='_blank'>OPS5</a> and <a href='https://en.wikipedia.org/wiki/Mercury_(programming_language)' target='_blank'>Mercury</a>.</li></ul>"
+	};
 
 var typingSpeed = 5;
 
@@ -362,7 +373,6 @@ function restart() {
 		$("#restart").next().css("width", "105px");
 	});
 }
- */
 </script>
 <div class='text-center margin-top-10'>
 	<h4 class='label ct-demo-heading' id='demoTitle'>Generations of Programming Languages</h4>
@@ -374,8 +384,13 @@ function restart() {
 	<div id="topDiv">
 		<div id="typingDiv1">
 			<ul style="font-family: monospace;">
-				<li id="li1" class="opacity00"><b><a href='https://en.wikipedia.org/wiki/Programming_language' target='_blank'>Programming Language</a></b> is a formal language that specifies a set of rules for instructing a computer to perform specific tasks.</li>
-				<li id="li2" class="opacity00"> Programming languages <b class='lite-blue'>differ from natural languages</b> in that natural languages are only used for interaction between people, while programming languages also allow humans to communicate instructions to machines. 
+				<li id="li1" class="opacity00">
+					<a href='https://en.wikipedia.org/wiki/Programming_language' target='_blank'>Programming Language</a> is a formal language that specifies a set
+					 of rules for instructing a computer to perform specific tasks.
+				</li>
+				<li id="li2" class="opacity00">
+				 	Programming languages differ from natural languages. Natural languages are used for interaction between
+				 	 humans, while programming languages allow humans to communicate instructions to machines. 
 					&emsp; <span class='user-btn introjs-button' onclick='timelineAnimation()'>Next &#8594;</span><br>
 				</li>
 			</ul>

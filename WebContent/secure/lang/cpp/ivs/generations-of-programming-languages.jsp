@@ -21,7 +21,7 @@
 
 <!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
 
-<script src="../js-min/gocl.min.js"></script>
+<script type="text/javascript" src="../js-min/gopl.min.js"></script>
 
 <!-- <script src="../js/generations-of-programming-languages.js" type="text/javascript"></script> -->
 <title>generations-of-programming-languages</title>
@@ -174,8 +174,13 @@ $(document).ready(function() {
 	<div id="topDiv">
 		<div id="typingDiv1">
 			<ul style="font-family: monospace;">
-				<li id="li1" class="opacity00"><b><a href='https://en.wikipedia.org/wiki/Programming_language' target='_blank'>Programming Language</a></b> is a formal language that specifies a set of rules for instructing a computer to perform specific tasks.</li>
-				<li id="li2" class="opacity00"> Programming languages <b class='lite-blue'>differ from natural languages</b> in that natural languages are only used for interaction between people, while programming languages also allow humans to communicate instructions to machines. 
+				<li id="li1" class="opacity00">
+					<a href='https://en.wikipedia.org/wiki/Programming_language' target='_blank'>Programming Language</a> is a formal language that specifies a set
+					 of rules for instructing a computer to perform specific tasks.
+				</li>
+				<li id="li2" class="opacity00">
+				 	Programming languages differ from natural languages. Natural languages are used for interaction between
+				 	 humans, while programming languages allow humans to communicate instructions to machines. 
 					&emsp; <span class='user-btn introjs-button' onclick='timelineAnimation()'>Next &#8594;</span><br>
 				</li>
 			</ul>

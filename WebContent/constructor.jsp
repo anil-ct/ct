@@ -135,6 +135,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold;
 }
 
 blue {

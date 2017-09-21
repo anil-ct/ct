@@ -21,7 +21,7 @@
 
 <!-- <script src="/secure/lang/c++/js/basic-to-userdefined.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/btu.min.js"></script>
+<script src="../js-min/btu.min.js"></script>
 
 <style type="text/css">
 
@@ -196,7 +196,6 @@ orange {
 $(document).ready(function() {
 	basicUserDefinedReadyFun();
 });
-
 
 </script>
 <div class='text-center margin-top-20'>

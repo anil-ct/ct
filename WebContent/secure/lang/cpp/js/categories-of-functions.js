@@ -86,17 +86,17 @@ function introGuide() {
 			$("#actionBox").removeClass('opacity00');
 			$(".introjs-helperLayer").one("transitionend", function() {
 				if($("#type1").hasClass("clicked")) {
-					var text = "This example code uses a function with <span class='ct-code-b-yellow'>no</span> arguments " 
-								+ " and <span class='ct-code-b-yellow'>no</span> return type.";
+					var text = "This example code explain how a function with <span class='ct-code-b-yellow'>no arguments</span> " 
+								+ " and <span class='ct-code-b-yellow'>no return type</span> will be declared and defined.";
 				} else if($("#type2").hasClass("clicked")) {
-					var text = "This example code uses a function with <span class='ct-code-b-yellow'>with</span> arguments " 
-								+ " and <span class='ct-code-b-yellow'>no</span> return type.";
+					var text = "This example code explain how a function with <span class='ct-code-b-yellow'>with arguments</span> " 
+						+ " and <span class='ct-code-b-yellow'>no return type</span> will be declared and defined.";
 				} else if($("#type3").hasClass("clicked")) {
-					var text = "This example code uses a function with <span class='ct-code-b-yellow'>no</span> arguments " 
-								+ " and <span class='ct-code-b-yellow'>with</span> return type.";
+					var text = "This example code explain how a function with <span class='ct-code-b-yellow'>no arguments</span> " 
+						+ " and <span class='ct-code-b-yellow'>with return type</span> will be declared and defined.";
 				} else if($("#type4").hasClass("clicked")) {
-					var text = "This example code uses a function with <span class='ct-code-b-yellow'>with</span> arguments " 
-								+ " and <span class='ct-code-b-yellow'>with</span> return type.";
+					var text = "This example code explain how a function with <span class='ct-code-b-yellow'>with arguments</span> " 
+						+ " and <span class='ct-code-b-yellow'>with return type</span> will be declared and defined.";
 				}
 				typing(".introjs-tooltiptext", text, function() {
 					$(".introjs-nextbutton").show();
@@ -132,9 +132,10 @@ function introGuide() {
 		case "main" + i:
 			$('.introjs-tooltip').addClass('hide');
 			$(".introjs-helperLayer").one("transitionend", function() {
-				setTimeout(function() {
-					introjs.nextStep();
-				}, 500)
+				var text = "<y>main()</y> is the starting execution point of c++ program.";
+				typing(".introjs-tooltiptext", text, function() {
+					$(".introjs-nextbutton").show();
+				});
 			});
 			break;
 			
@@ -435,7 +436,7 @@ function dynamicSteps() {
 		
 		nextStepRight("#funcType" + i, 1);
 		nextStepRight("#funDec" + i, 2);
-		var dynamicStep = getStep("#main" + i, "", "hide", "right");
+		var dynamicStep = getStep("#main" + i, "", "right");
 		introjs.insertOption(introjs._currentStep + 3, dynamicStep);
 		
 		if($("#type1").hasClass("clicked") || $("#type2").hasClass("clicked")) {

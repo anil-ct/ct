@@ -45,7 +45,7 @@ function introGuide() {
 		},{
 			element : "#startMain",
 			intro : "",
-			tooltipClass : "hide"
+			position : "right"
 		},{
 			element : "#mainVar",
 			intro : "",
@@ -176,9 +176,8 @@ function introGuide() {
 			
 		case "functionDec1":
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This is a declaration of the function <span class='ct-code-b-yellow'>read(int[], int)</span> with one argument of type"
-							+ "<span class='ct-code-b-yellow'>int[ ]</span> array and the other of type <span class='ct-code-b-yellow'>int</span>."
-							+ " <br><br>This function returns <span class='ct-code-b-yellow'>void</span>.";
+				var text = "This is a declaration of the function <span class='ct-code-b-yellow'>read(int[], int)</span> with two int arguments, where as the "
+						+ " first one is an <span class='ct-code-b-yellow'>array type</span> and second one is a normal <span class='ct-code-b-yellow'>int variable.</span>.";
 				typing(".introjs-tooltiptext", text, function() {
 					$(".introjs-nextbutton").show();
 				});
@@ -194,11 +193,19 @@ function introGuide() {
 					$(".introjs-nextbutton").show();
 				});
 			});
-			break;
+		break;
+		
+		case "startMain":
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "<y>main()</y> is the starting execution point of c++ program.";
+				typing(".introjs-tooltiptext", text, function() {
+					$(".introjs-nextbutton").show();
+				});
+			});
+		break;
 			
 		case "funScanf" + i:
 		case "mainScanf":
-		case "startMain":
 		case "mainFunction":
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function() {
@@ -214,7 +221,7 @@ function introGuide() {
 					$(".introjs-nextbutton").show();
 				});
 			});
-			break;
+		break;
 			
 		case "funcDef2":
 			$(".introjs-helperLayer").one("transitionend", function() {

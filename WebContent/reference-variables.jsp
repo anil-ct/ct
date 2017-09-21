@@ -43,6 +43,26 @@
 	height: 130px;
 }
 
+#outputDiv {
+	padding: 0;
+	z-index: 9999999;
+}
+
+.output-console-title-bar {
+	background-color: darkgray;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.output-console-body {
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	font-size: 13px;
+	height: 60px;
+	padding: 10px;
+	white-space: inherit;
+}
+
 .padding0 {
 	padding: 0;
 }
@@ -91,6 +111,23 @@ pre {
     border: 1px solid #ccc;
     border-radius: 4px;
 }
+
+g {
+	color: green;
+}
+
+y {
+	color: yellow;
+	font-weight: bold;
+}
+
+blue {
+	color: #0000FF;
+}
+
+red {
+	color: red;
+}
 </style>
 </head>
 <body>
@@ -131,7 +168,7 @@ function introGuide() {
 				},{
 			 		element : "#rightDiv1",
 					intro : "",
-					position : "right"
+					position : "bottom"
 				},{
 			 		element : "#intB",
 					intro : "",
@@ -139,7 +176,7 @@ function introGuide() {
 				},{
 			 		element : "#rightDiv1",
 					intro : "",
-					position : "right"
+					position : "bottom"
 				},{
 			 		element : "#aIntoB",
 					intro : "",
@@ -148,6 +185,14 @@ function introGuide() {
 			 		element : "#initB",
 					intro : "",
 					position : "right"
+				},{
+			 		element : "#cout1",
+					intro : "",
+					tooltipClass : "hide"
+				},{
+			 		element : "#outputDiv",
+					intro : "",
+					tooltipClass : "hide"
 				},{
 			 		element : "#leftDiv2",
 					intro : "",
@@ -159,7 +204,7 @@ function introGuide() {
 				},{
 			 		element : "#rightDiv2",
 					intro : "",
-					position : "right"
+					position : "bottom"
 				},{
 			 		element : "#aIntoRefB",
 					intro : "",
@@ -168,6 +213,14 @@ function introGuide() {
 			 		element : "#rightDiv2",
 					intro : "",
 					position : "bottom"
+				},{
+			 		element : "#cout2",
+					intro : "",
+					tooltipClass : "hide"
+				},{
+			 		element : "#outputDiv",
+					intro : "",
+					tooltipClass : "hide"
 				},{
 			 		element : "#restart",
 					intro : "",
@@ -194,7 +247,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Let us consider an example without reference variable.";
+				var text = "Let us consider an example without reference variables.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -205,7 +258,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Here we declared an int variable <b class='ct-code-b-yellow'>a</b> with value <b class='ct-code-b-yellow'>10</b>.";
+				var text = "Here we declared an int variable <b class='ct-code-b-yellow'>num1</b> with value <b class='ct-code-b-yellow'>10</b>.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -218,7 +271,7 @@ function introGuide() {
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "The value <b class='ct-code-b-yellow'>10</b> is stored in variable <b class='ct-code-b-yellow'>a</b>.";
+					var text = "The value <b class='ct-code-b-yellow'>10</b> is stored in variable <b class='ct-code-b-yellow'>num1</b>.";
 					typing($(".introjs-tooltiptext"), text, function() {
 						$("#aPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 							$(this).removeClass("animated zoomIn");
@@ -242,7 +295,7 @@ function introGuide() {
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "Declare the variable <b class='ct-code-b-yellow'>b</b>.";
+					var text = "Memory is allocated to the variable <b class='ct-code-b-yellow'>num2</b>.";
 					typing($(".introjs-tooltiptext"), text, function() {
 						$("#bPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 							$(this).removeClass("animated zoomIn");
@@ -252,16 +305,28 @@ function introGuide() {
 				});
 			}
 		break;
-		case "aIntoB":
+		case "intB":
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Initialize the variable <b class='ct-code-b-yellow'>b</b> with <b class='ct-code-b-yellow'>a</b>. i.e <b class='ct-code-b-yellow'>a</b>"
-				+ "  value stored into <b class='ct-code-b-yellow'>b</b>.";
+				var text = "Declared an int variable <b class='ct-code-b-yellow'>num2</b>.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append(" <div id='bToA' class='display-inline-block relative ct-code-b-yellow'>"
-							+ "  b = <div id='tooltipAVal' class='display-inline-block relative'>a</div></div>");
+					$('.introjs-nextbutton').show();
+				});
+			});
+		break;
+		case "aIntoB":
+			introjs.refresh();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
+			$(".introjs-tooltip").css({"min-width": "250px"});
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "<ul><li>Here declare an int variable <b class='ct-code-b-yellow'>num2</b> and initialize with the value of variable <b class='ct-code-b-yellow'>num1</b>.</li>"
+					+ "<li>Here the value <y>10</y> is within two variables <y>num1</y> and <y>num2</y>, so that we can say both contains same value but we can't say two variables have same memory.</li>"
+				typing($(".introjs-tooltiptext"), text, function() {
+					$(".introjs-tooltiptext ul").append("<li><div id='bToA' class='display-inline-block relative ct-code-b-yellow'>"
+							+ "  num2 = <div id='tooltipAVal' class='display-inline-block relative'>num1</div></div></li>");
 					var l1 = $("#bToA").offset();
 					var l2 = $("#init").offset();
 					var topLength = l2.top - l1.top;
@@ -288,48 +353,57 @@ function introGuide() {
 				});
 			});
 		break;
-		case "intB":
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Declare an int variable <b class='ct-code-b-yellow'>b</b>.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
-				});
-			});
-		break;
 		case "initB":
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Initialize the variable <b class='ct-code-b-yellow'>b</b> with value <b class='ct-code-b-yellow'>20</b>.<br>";
+				var text = "The constatnt value 20 is stored in the variable <b class='ct-code-b-yellow'>num2</b> i.e <b class='ct-code-b-yellow'>20</b>"
+					+ " is replaced in the place of <y>10</y>.<br>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-tooltiptext").append(" <div id='bTo20' class='display-inline-block relative ct-code-b-yellow'>"
-							+ "  b = <div id='tooltipBVal' class='display-inline-block relative'>20</div></div>");
-					var l1 = $("#bTo20").offset();
-					var l2 = $("#b20").offset();
-					var topLength = l2.top - l1.top;
-					var leftLength = l2.left - l1.left;
-					$('#bPanelVal2').removeClass('hide').addClass("opacity00");
-					TweenMax.from("#bTo20", 1, {top : topLength, left : leftLength, onComplete:function() {
-						var l = $("#tooltipBVal").offset();
-						$("#bPanelVal2").offset({
-							top:l.top,
-							left:l.left
-						});
-						$('#bPanelVal2').removeClass('opacity00').addClass('circle-css');
-						$("#bPanel").addClass("z-index");
-						TweenMax.to("#bPanelVal2", 1, {top : 0, left : 0, onComplete:function() {
-							$('#bPanelVal').addClass('hide')
-							$('#bPanelVal2').removeClass('circle-css');
-							$("#bPanel").removeClass("z-index");
-							$('.introjs-nextbutton').show();
-						}});
-					}});
+							+ "  num2 = <div id='tooltipBVal' class='display-inline-block relative'>20</div></div>");
+					$("#bPanel").addClass("z-index");
+					fromEffectWithTweenMax("#tooltipBVal", "#bPanelVal", function() {
+						$("#bPanel").removeClass("z-index");
+						$('.introjs-nextbutton').show();
+					});
 				});
 			});
+		break;
+		case "cout1":
+			introjs.refresh();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				setTimeout(function(){
+					introjs.nextStep();
+				}, 500);
+			});
+		break;
+		case "outputDiv":
+			if (introjs._currentStep == 9) {
+				$("#outputDiv").removeClass("opacity00");
+				introjs.refresh();
+				$('.introjs-nextbutton').hide();
+				$('.introjs-prevbutton').hide();
+				$(".introjs-helperLayer").one("transitionend", function() {
+					$("#body").append("<div>The values of a, b : 10 20</div>");
+					setTimeout(function(){
+						introjs.nextStep();
+					}, 500);
+				});
+			} else if (introjs._currentStep == 16) {
+				introjs.refresh();
+				$('.introjs-nextbutton').hide();
+				$('.introjs-prevbutton').hide();
+				$(".introjs-helperLayer").one("transitionend", function() {
+					$("#body > div:last-child").append("<div>The values of a, b : 10 10</div>");
+					setTimeout(function(){
+						introjs.nextStep();
+					}, 500);
+				});
+			}
 		break;
 		case "leftDiv2":
 			$("#leftDiv2").removeClass("opacity00");
@@ -355,13 +429,13 @@ function introGuide() {
 			});
 		break;
 		case "rightDiv2":
-			if (introjs._currentStep == 10) {
+			if (introjs._currentStep == 12) {
 				$("#rightDiv2").removeClass("opacity00");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "The value <b class='ct-code-b-yellow'>10</b> is stored in the memory of variable <b class='ct-code-b-yellow'>a</b>.";
+					var text = "Memory is allocated to the variable <b class='ct-code-b-yellow'>num1</b>.";
 					typing($(".introjs-tooltiptext"), text, function() {
 						$("#aRefPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 							$(this).removeClass("animated zoomIn");
@@ -380,13 +454,13 @@ function introGuide() {
 						});	
 					});
 				});
-			}  else if (introjs._currentStep == 12) {
+			}  else if (introjs._currentStep == 14) {
 				$("#refB, #line").removeClass("hide");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "<b class='ct-code-b-yellow'>a</b> and <b class='ct-code-b-yellow'>b</b> refer to the same data object in the memory.";
+					var text = "No extra memory is allocated to the <b class='ct-code-b-yellow'>reference variable</b>.";
 					typing($(".introjs-tooltiptext"), text, function() {
 						$('.introjs-nextbutton').show();
 					});
@@ -399,12 +473,11 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Here ampersand(&) <b class='ct-code-b-yellow'>&b</b> is a <b class='ct-code-b-yellow'>reference variable</b>.<br>"
-				+ " A reference variable provides an alias for a previously defined variable. Here the variable <b class='ct-code-b-yellow'>b</b> is <b>alias</b>"
-				+ " for variable <b class='ct-code-b-yellow'>a</b>.";
+				var text = "<ul><li>Here <b class='ct-code-b-yellow'>&num2</b> is a <b class='ct-code-b-yellow'>reference variable</b> to the variable <y>a</y></li>"
+				+ "<li>A reference variable provides an <y>alias</y> name to the previously defined variable of the same data type.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append(" <div id='bToRefA' class='display-inline-block relative ct-code-b-yellow'>"
-							+ "  &b = <div id='tooltipRefAVal' class='display-inline-block relative'>a</div></div>");
+					$(".introjs-tooltiptext ul").append("<li><div id='bToRefA' class='display-inline-block relative ct-code-b-yellow'>"
+							+ "  &num2 = <div id='tooltipRefAVal' class='display-inline-block relative'>num1</div></div></li>");
 					var l1 = $("#bToRefA").offset();
 					var l2 = $("#initRef").offset();
 					var topLength = l2.top - l1.top;
@@ -418,6 +491,16 @@ function introGuide() {
 						}});
 					}});
 				});
+			});
+		break;
+		case "cout2":
+			introjs.refresh();
+			$('.introjs-nextbutton').hide();
+			$('.introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				setTimeout(function(){
+					introjs.nextStep();
+				}, 500);
 			});
 		break;
 		case "restart":
@@ -440,45 +523,6 @@ function introGuide() {
 	$('.introjs-prevbutton').hide();
 	$('.introjs-skipbutton').hide();
 	$('.introjs-bullets').hide();
-}
-
-function textFocus(selector) {
-	$("#"+selector).focus();
-	editText('#'+ selector);
-}
-
-function editText(selector) {
-	$(selector).on("keydown", function(e) {
-		$('.error-text').remove();
-		var max = $(this).attr("maxlength");
-		if ($(this).text().length > max-1) {
-			if ($.inArray(e.keyCode, [46, 8, 9, 27, 37, 39, 13]) !== -1) {
-				return;
-			}
-			if (e.keyCode == 13 && e.keyCode == 9) {
-				e.preventDefault();
-			}
-			e.preventDefault();
-		}		
-	});
-	
-	$(selector).on("keyup", function(e) {
-		$('.error-text').remove();
-		introjs.refresh();
-		if ($.inArray(e.keyCode, [46, 8, 9, 27, 37, 39, 13]) !== -1) {
-			return;
-		}
-		
-		if (e.altKey && e.keyCode == 77) {
-			$(selector).val($(selector).attr("originalText"));
-		}
-		
-		if ($(this).val() == $(selector).attr("originalText")) {
-			$(".introjs-nextbutton").show();
-		} else {
-			$(".introjs-nextbutton").hide();
-		}
-	});
 }
 
 function typing(selector, text, callBackFunction) {
@@ -521,16 +565,44 @@ function getStep(element, intro, position, tooltipClass) {
 	
 	return step;
 }
+
+function fromEffectWithTweenMax(selector1, selector2, callBackFunction) {
+	$(selector1).addClass('z-index1000000').effect( "highlight",{color: 'yellow'}, 500, function() {
+		var l1 = $(selector1).offset();
+		$(selector2).text($(selector1).text()).addClass("opacity00");
+		$('body').append("<span id='dummy' style='position: relative; z-index: 100000002;"
+						+ " font-family: monospace; color: red' ><b>" + $(selector2).text() + "</b></span>");
+		$('#dummy').offset({
+		  'top': l1.top,
+		  'left': l1.left
+		});
+		var l1 = $(selector1).offset();
+		var l2 = $(selector2).offset();
+		var topLength = parseInt($('#dummy').css('top')) - (l1.top - l2.top);
+		var leftLength = parseInt($('#dummy').css('left')) - (l1.left - l2.left);
+		TweenMax.to('#dummy', 0.8, {top: topLength, left: leftLength, onComplete: function () {
+			$(selector2).removeClass('opacity00');
+			$(selector1).removeClass('z-index1000000');
+			$("#dummy").remove();
+			$("#animationDiv").removeAttr("style").addClass("introjs-showElement");
+			if (typeof callBackFunction === "function") {
+				callBackFunction();
+			}
+		}});
+	});
+}
+
 </script>
 <div class='text-center margin-top-20'>
 	<h4 class='label ct-demo-heading' id='demoTitle'>Reference variables</h4>
 </div>
 <div class="col-xs-12  margin-top-20">
 	<div class="col-xs-offset-2 col-xs-4">
-		<div id="leftDiv1" class="opacity00"><pre class="creampretab"><span id="intA">int a = <span id="aVal">10</span>;</span>
-<span id="intB">int b;</span>
-<span id="aIntoB">int <span id="init">b = a</span>;</span>
-<span id="initB">int <span id="b20">b = <span id="bVal">20</span></span>;</span></pre>
+		<div id="leftDiv1" class="opacity00"><pre class="creampretab"><span id="intA"><red>int</red> num1 = <span id="aVal">10</span>;</span>
+<span id="intB"><red>int</red> num2;</span>
+<span id="aIntoB"><span id="init">num2 = num1</span>;</span>
+<span id="initB"><span id="b20">num2 = <span id="bVal">20</span></span>;</span>
+<span id="cout1">cout << <red>"The values of a, b : "</red>;</span></pre>
 		</div>
 	</div>
 	<div class="col-xs-4">
@@ -538,7 +610,7 @@ function getStep(element, intro, position, tooltipClass) {
 			<div class="col-xs-offset-2 col-xs-4 margin-top-10">
 				<div id="aPanel" class="opacity00">
 					<div class="panel panel-primary margin-bottom0">
-	    				<div class="panel-heading text-center padding0"><b>a</b></div>
+	    				<div class="panel-heading text-center padding0"><b>num1</b></div>
 	    				<div class="panel-body text-center"><span id="aPanelVal" class="opacity00">10</span></div>
 	  				</div>
 	  				<div class="text-center">2485</div>
@@ -547,8 +619,8 @@ function getStep(element, intro, position, tooltipClass) {
 			<div class="col-xs-4 margin-top-10">
 				<div id="bPanel" class="opacity00">
 					<div class="panel panel-primary margin-bottom0">
-	    				<div class="panel-heading text-center padding0"><b>b</b></div>
-	    				<div class="panel-body text-center"><span id="bPanelVal" class="opacity00">10</span><span id="bPanelVal2" class="hide">20</span></div>
+	    				<div class="panel-heading text-center padding0"><b>num2</b></div>
+	    				<div class="panel-body text-center"><span id="bPanelVal" class="opacity00">10</span></div>
 	  				</div>
 	  				<div class="text-center">3658</div>
   				</div>
@@ -558,9 +630,22 @@ function getStep(element, intro, position, tooltipClass) {
 </div>
 
 <div class="col-xs-12  margin-top-20">
+	<div class="col-xs-offset-4 col-xs-4">
+		<div id="outputDiv" class="opacity00">
+			<div class="output-console-title-bar">
+				<span class="title">Output</span>
+			</div>
+			<div class="output-console-body" id="body">
+			</div>
+		</div>
+	</div>
+</div>	
+
+<div class="col-xs-12  margin-top-20">
 	<div class="col-xs-offset-2 col-xs-4">
-		<div id="leftDiv2" class="opacity00"><pre class="creampretab"><span id="intRefA">int a = <span id="aRefVal">10</span>;</span>
-<span id="aIntoRefB">int &<span id="initRef">b = a</span>;</span></pre>
+		<div id="leftDiv2" class="opacity00"><pre class="creampretab"><span id="intRefA">int num1 = <span id="aRefVal">10</span>;</span>
+<span id="aIntoRefB">int &<span id="initRef">num2 = num1</span>;</span>
+<span id="cout2">cout << <red>"The values of a, b : "</red>;</span></pre>
 		</div>
 	</div>
 	<div class="col-xs-4">
@@ -568,9 +653,9 @@ function getStep(element, intro, position, tooltipClass) {
 			<div class="col-xs-offset-3 col-xs-6 margin-top-10">
 				<div id="aRefPanel" class="opacity00">
 					<div class="panel panel-primary margin-bottom0">
-					<div class="panel-heading text-center padding0 hide" id="refB"><b>b</b></div>
+					<div class="panel-heading text-center padding0 hide" id="refB"><b>num2</b></div>
 					<div id="line" class="hide" style="border: 1px solid white;"></div>
-	    				<div class="panel-heading text-center padding0"><b>a</b></div>
+	    				<div class="panel-heading text-center padding0"><b>num1</b></div>
 	    				<div class="panel-body text-center"><span id="aRefPanelVal" class="opacity00">10</span></div>
 	  				</div>
 	  				<div class="text-center">8426</div>

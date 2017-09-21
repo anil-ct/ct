@@ -229,6 +229,10 @@ function introGuide() {
 					intro : "",
 					tooltipClass : "hide"
 				},{
+			 		element : "#main",
+					intro : "",
+					position : "right"
+				},{
 			 		element : "#destruct",
 					intro : "",
 					position : "bottom"
@@ -328,14 +332,14 @@ function introGuide() {
 						$('.introjs-nextbutton, .introjs-prevbutton').show();
 					});
 				});
-			} else if (introjs._currentStep == 14) {
+			} else if (introjs._currentStep == 15) {
 				introjs.refresh();
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$("#s1Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
 					$("#s1Panel").removeClass("animated zoomOut");
 					$("#s2Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
 						$("#s2Panel").removeClass("animated zoomOut");
-						var text = "Deallocate the memory.";
+						var text = "The memory was cleared by <y>destructor</y>.";
 						typing($(".introjs-tooltiptext"), text, function() {
 							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
@@ -388,7 +392,7 @@ function introGuide() {
 						introjs.nextStep();
 					}, 1500);
 				});
-			} else if (introjs._currentStep == 15) {
+			} else if (introjs._currentStep == 16) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
 				$(".introjs-helperLayer").one("transitionend", function() {
@@ -437,6 +441,16 @@ function introGuide() {
 				});
 			});
 		break;
+		case "main":
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			introjs.refresh();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "After <y>main()</y> execution completed, the <y>destructor</y> will call.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton').show();
+				});
+			});
+		break;
 		case "destruct":
 			$("#s1Panel").removeClass("opacity00")
 			$("#s2Panel").removeClass("opacity00")
@@ -444,8 +458,8 @@ function introGuide() {
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			introjs.refresh();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "When destructor function call the objects are deleted from the memory."
-					+ " And the result will print on the console.";
+				var text = "When the <y>destructor</y> called, the objects are deleted from the memory."
+					+ " The <y>cout</y> display the output on the console.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -483,10 +497,10 @@ function abValues() {
 	var topLength = l2.top - l1.top;
 	var leftLength = l2.left - l1.left;
 	TweenMax.from("#aToX", 1, {top : topLength, left : leftLength, onComplete:function() {
-		TweenMax.to("#tooltipXVal", 0.5, {rotationX : -90, onComplete:function() {
+		TweenMax.to("#tooltipXVal", 0.3, {rotationX : -90, onComplete:function() {
 			$("#tooltipXVal").text($("#s1Val1").text());
-			TweenMax.to("#tooltipXVal", 0.5, {rotationX : 0, onComplete:function() {
-				TweenMax.to("#tooltipYVal", 0.5, {rotationX : -90, onComplete:function() {
+			TweenMax.to("#tooltipXVal", 0.3, {rotationX : 0, onComplete:function() {
+				TweenMax.to("#tooltipYVal", 0.3, {rotationX : -90, onComplete:function() {
 					$("#tooltipYVal").text($("#s1Val2").text());
 					TweenMax.to("#tooltipYVal", 0.5, {rotationX : 0, onComplete:function() {
 						$('.introjs-nextbutton').show();
@@ -600,10 +614,10 @@ function getStep(element, intro, position, tooltipClass) {
 			cout << <red>"s1 and s2 objects are deleted.\n"</red>;
 		}</span>
 };</span>
-<red>void</red> main() {
+<span id="main"><red>void</red> main() {
 	<span id="callDefaultConst" class="hide">Sample s1;</span>
 	<span id="callParameterConst" class="hide">Sample s2(<spa id="s1Val1">10</spa>, <span id="s1Val2">20</span>);</span>
-}
+}</span>
 </pre>
 		</div>
 	</div>

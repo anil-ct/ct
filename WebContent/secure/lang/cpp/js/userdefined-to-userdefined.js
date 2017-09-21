@@ -1,9 +1,46 @@
 var introjs;
 var tl = new TimelineLite();	
 var typingSpeed = 5;
+var buttonCount = 1;
+var delete_key = 46;
+var backspace_key = 8;
 
-var userdefinedToUserdefinedReadyFun = function() {
-	introGuide();
+var userDefinedToUserDefinedReadyFun = function() {
+introGuide();
+	
+	$("[contenteditable=true]").on("click keydown keyup", function(e) {
+		$(".errMsg").remove();
+		if ($(this).text() == "") {
+			$(this).addClass("empty");
+		} else {
+			$(this).removeClass("empty");
+		}
+		introjs.refresh();
+		
+		if ($(".empty").length > 0) {
+			$(".introjs-nextbutton").hide();
+		} else {
+			$(".introjs-nextbutton").show();
+		}
+		
+		if ($(this).text().indexOf(".") == -1) {
+			flag = true;
+		} else {
+			flag = false;
+		}
+		var max = $(this).attr("maxlength");
+		if ($.inArray(e.keyCode, [46, 8, 9, 27]) !== -1 || (e.keyCode >= 37 && e.keyCode <= 39) || (($(this).text().length >= 1) && e.keyCode == 110 && flag)) {
+			return;
+		}
+		if (((e.shiftKey) || (e.keyCode < 48 || e.keyCode > 57)) && ((e.keyCode < 96) || (e.keyCode > 105))) {
+			e.preventDefault();
+		}
+		if ($(this).text().length > max) {
+			e.preventDefault();
+		}
+		
+	});
+	
 	$('#restart').click(function() {
 		location.reload();
 	});
@@ -20,15 +57,27 @@ function introGuide() {
 		steps : [{
 			 		element : "#topDiv",
 					intro : "",
-				 	position : "bottom"
+					tooltipClass : "hide"
 				},{
 			 		element : "#code",
+					intro : "",
+					position : "right"
+				},{
+			 		element : "#class1",
+					intro : "",
+					position : "right"
+				},{
+			 		element : "#class2",
 					intro : "",
 					position : "right"
 				},{
 			 		element : "#rd",
 					intro : "",
 					position : "right"
+				},{
+			 		element : "#memoryDiv",
+					intro : "",
+					tooltipClass : "hide"
 				},{
 			 		element : "#comments",
 					intro : "",
@@ -60,7 +109,7 @@ function introGuide() {
 				},{
 			 		element : "#displayFun",
 					intro : "",
-					position : "right"
+					tooltipClass : "hide"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
@@ -78,45 +127,79 @@ function introGuide() {
 		introjs.refresh();
 		switch (elementId) {
 		case "topDiv":
-			$(".introjs-tooltip").hide();
 			$('.introjs-nextbutton').hide();
+			$('.user-btn').removeClass("hide");
 			$("#li1").fadeTo(500, 1, function () {
 				$("#li2").fadeTo(500, 1, function () {
-					$("#li3").fadeTo(500, 1, function () {
-						$('.introjs-nextbutton').show();
+					$("#nextBtn").fadeTo(500, 1, function () {
 					});
 				});
 			});
 		break;
 		case "code":
 			$("#code").removeClass("opacity00");
-			$('.user-btn').remove();
+			$('.user-btn').addClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Let us consider sample C++ program.";
+				var text = "Let us consider sample C++ program to convert<br> <y>user-defined</y> to <y>user-defined</y>.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
+		case "class1":
+			introjs.refresh();
+			$("#constM").addClass("hide");
+			$("#memoryDiv").addClass("opacity00")
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "This is a class <y>radian</y> which consists a <b class='monospace'><y>float</y></b> field <b class='monospace'><y>rad</y></b>.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
+		case "class2":
+			introjs.refresh();
+			$("#constM").addClass("hide");
+			$("#memoryDiv").addClass("opacity00")
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "This is a class <y>degree</y> which consists a <b class='monospace'><y>float</y></b> field <b class='monospace'><y>deg</y></b>.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "rd":
 			$("#rd").removeClass("hide");
 			introjs.refresh();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "Let us create two objects for the two clasess <y>radian</y> and <y>degree</y>.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
+		case "memoryDiv":
+			$("#memoryDiv").removeClass("hide");
+			introjs.refresh();
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Let us create a object for class <y>radian</y> and <y>degree</y>.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$("#memoryDiv").removeClass("opacity00").addClass("z-index");
-					$("#rPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+				$('.introjs-nextbutton').show();
+				$("#memoryDiv").removeClass("opacity00").addClass("z-index");
+				$("#rPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+					$(this).removeClass("animated zoomIn");
+					$("#dPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
-						$("#dPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-							$(this).removeClass("animated zoomIn");
-							$("#memoryDiv").removeClass("z-index");
-							$('.introjs-nextbutton').show();
-						});
+						$("#memoryDiv").removeClass("z-index");
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 500);
 					});
 				});
 			});
@@ -125,15 +208,16 @@ function introGuide() {
 			$("#comments").removeClass("hide");
 			$("#callingParaConst").removeClass("opacity00").addClass("yellow");
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-tooltip").css({"min-width": "300px"});
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Here we converting the basic to user-defined type. We will convert a float type basic variable to a user defined type class variable."
-					+ " Internally the compiler will convert this as<br> <y>d = degree(100.30)</y>;<br>"
-					+ " The parameterized constructor will call in <y>degree</y> class.";
+				var text = "<ul><li><b class='monospace'>You can edit the value</b>, <y>d</y> is an object of class <y>degree</y>.</li>"
+				+  "<li>It is a conversion <y>basic data type</y> <b class='monospace'>float</b> to <y>user-defined data type</y> <b class='monospace'>degree</b>.</li>"
+				+ "<li>For converting <y>basic</y> to <y>user-defined</y> use a <y>constructor</y>.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					charAtEnd("dVal");
+					introjs.refresh();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
@@ -141,63 +225,60 @@ function introGuide() {
 			$("#paraConstDeg").removeClass("hide");
 			$("#callingParaConst").removeClass("yellow");
 			introjs.refresh();
+			$("[contenteditable=true]").attr("contenteditable", "false");
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Immediately the parameter constructor will call. And the value"
-					+ " <y><b> 100.30 </b></y> copy into <y>x</y>.<br> And the <y>deg</y> value would be <y><b> 100.30 </b></y>.<br>";
+				var text = "<ul><li>The parameterized constructor <y>degree(float x)</y> is called when <y>d = " + $("#dVal").text() + "</y> is made.</li>"
+					+ "<li>The <y>x</y> value <y> " + $("#dVal").text() + " </y> is copied into the formal parameter <y>deg</y>.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append("<div id='tooltipDegX' class='display-inline-block relative'>"
+					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="flipX()">Next &#8594;</a>');
+					
+					
+					/* $(".introjs-tooltiptext").append("<ul><li><div id='tooltipDegX' class='display-inline-block relative'>"
 							+ " <y><b>deg = <div id='tooltipX' class='display-inline-block relative'>x</div></b></y>"
-							+ "</div>");
+							+ "</div></li></ul>");
 					var l1 = $("#tooltipDegX").offset();
 					var l2 = $("#degX").offset();
 					var topLength = l2.top - l1.top;
 					var leftLength = l2.left - l1.left;
 					TweenMax.from("#tooltipDegX", 1, {top : topLength, left : leftLength, onComplete:function() {
-						flipEffect("#tooltipX", "100.30", function() {
-							$("#dPanel").removeClass("opacity00").addClass("z-index");
-							$("#degPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-								$(this).removeClass("animated zoomIn");
-								$("#dPanel").removeClass("z-index");
-								$('.introjs-nextbutton').show();
-							});
+						flipEffect("#tooltipX", $("#dVal").text(), function() {
+							$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="initD()">Next &#8594;</a>');
 						});
-					}});
+					}}); */
 				});
 			});
 		break;
 		case "rToD":
-			if (introjs._currentStep == 5) {
+			if (introjs._currentStep == 8) {
 				$("#rToD").removeClass("hide");
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-tooltip").css({"min-width": "300px"});
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "Here we converting the user-defined type to basic."
-						+ " Internally the compiler will convert this as <y>r = d.operator radian()</y><br>";
+					var text = "<ul><li>Here <y>d</y> is user-defined object which is assigned to another user-defined object <y>r</y>.</li>"
+					+ "<li>For converting <y>user-defined</y> to<br> <y>user-defined</y> use <y>operator radian()</y> in the class <y>degree</y>.</li>"
+					+ "<li>Here operator radian() converts the <y>degree</y> value into <y>radian</y>.<br> So, <y>r = d</y> called like<br> <y>r = d.operator radian()</y>;</li></ul>";
 					typing($(".introjs-tooltiptext"), text, function() {
 						$('.introjs-nextbutton').show();	
 					});
 				});
-			} else if (introjs._currentStep == 7) {
+			} else if (introjs._currentStep == 10) {
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
 				$(".introjs-tooltip").css({"min-width": "300px"});
 				$(".introjs-helperLayer").one("transitionend", function() {
 					introjs.refresh();
-					$("#preD").addClass("yellow");
-					flipEffect("#preD", "1.7497", function() {
-						introjs.refresh();
-						var text = "The return value is <y><b> 1.7497</b></y>.<br>"
-						+ "<y><b>r = 1.7497</b></y><br> again converting the basic to user-defined type. We will convert a float type basic variable to a user defined type class variable."
-						+ " Internally the compiler will convert this as<br> <y>r = radian(1.7497)</y>;<br>"
-						+ " The parameterized constructor will call in <y>radian</y> class.";
-						typing($(".introjs-tooltiptext"), text, function() {
-							$('.introjs-nextbutton').show();	
-						});
+					introjs.refresh();
+					var text = "<ul><li>The return value is <y><b>"+((($("#dVal").text()) * 3.14) / 180).toFixed(2)+"</b></y>.</li>"
+					+ "<li><y><b>r = "+((($("#dVal").text()) * 3.14) / 180).toFixed(2)+"</b></y> again converting the <y>basic to user-defined type</y>.</li>"
+					+ " <li><y>r</y> is user defined object of a class <y>radian</y></li>"
+					+ "<li>The basic data type value is assigned to an object by using conversion constructor which is a <y>parameterized constructor</y> i.e <y>radian("+((($("#dVal").text()) * 3.14) / 180).toFixed(2)+")</y></li></ul>";;
+					typing($(".introjs-tooltiptext"), text, function() {
+						$('.introjs-nextbutton').show();	
 					});
 				});
 			}
@@ -208,27 +289,29 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Immediately the operator radian() will call. And return (deg * 3.14 / 180)<br>";
+				var text = "<ul><li>Immediately the <y>operator radian()</y> will call.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append("<y><b><div id='tooltipTotalReturn' class='display-inline-block relative'>"
+					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="returnValue()">Next &#8594;</a>');
+					
+					/* $(".introjs-tooltiptext ul").append("<li><y><b><div id='tooltipTotalReturn' class='display-inline-block relative'>"
 							+ "<div id='tooltipDiv' class='display-inline-block relative'>"
 							+ "<div id='tooltipMul' class='display-inline-block relative'>"
 							+ " <div id='tooltipDeg' class='display-inline-block relative'>deg</div> * 3.14</div> / 180</div>"
-							+ " </div></b></y><br> <span id='text' class='opacity00'>This value will return.</span>");
+							+ " </div></b></y> <span id='text' class='opacity00'>&nbsp;This value will return.</span></li>");
 					var l1 = $("#tooltipTotalReturn").offset();
 					var l2 = $("#returnVal").offset();
 					var topLength = l2.top - l1.top;
 					var leftLength = l2.left - l1.left;
 					TweenMax.from("#tooltipTotalReturn", 1, {top : topLength, left : leftLength, onComplete:function() {
-						flipEffect("#tooltipDeg", "100.30", function() {
-							flipEffect("#tooltipMul", "314.942", function() {
-								flipEffect("#tooltipDiv", "1.7497", function() {
+						flipEffect("#tooltipDeg", $("#dVal").text(), function() {
+							flipEffect("#tooltipMul", ($("#dVal").text()) * 3.14, function() {
+								flipEffect("#tooltipDiv", ((($("#dVal").text()) * 3.14) / 180).toFixed(2), function() {
 									$("#text").removeClass("opacity00");
 									$('.introjs-nextbutton').show();
 								});
 							});
 						});
-					}});
+					}}); */
 				});
 			});
 		break;
@@ -239,26 +322,23 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Immediately the parameter constructor will call. And the value"
-					+ " <y><b> 1.7497 </b></y> copy into <y>x</y>.<br> And the <y>rad</y> value would be <y><b> 1.7497 </b></y>.<br>";
+				var text = "<ul><li>The parameterized constructor <y>radian(float x)</y> is called when <y>r = d</y> is made.</li>"
+					+ "<li>The <y>d</y> value <y>"+((($("#dVal").text()) * 3.14) / 180).toFixed(2)+"</y> is copied into the formal parameter <y>x</y>.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append("<div id='tooltipRadX' class='display-inline-block relative'>"
+					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="radX()">Next &#8594;</a>');
+					
+					/* $(".introjs-tooltiptext").append("<ul><li><div id='tooltipRadX' class='display-inline-block relative'>"
 							+ " <y><b>rad = <div id='tooltipXVal' class='display-inline-block relative'>x</div></b></y>"
-							+ "</div>");
+							+ "</div></li></ul>");
 					var l1 = $("#tooltipXVal").offset();
 					var l2 = $("#radX").offset();
 					var topLength = l2.top - l1.top;
 					var leftLength = l2.left - l1.left;
 					TweenMax.from("#tooltipRadX", 1, {top : topLength, left : leftLength, onComplete:function() {
-						flipEffect("#tooltipXVal", "1.7497", function() {
-							$("#rPanel").removeClass("opacity00").addClass("z-index");
-							$("#radPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-								$(this).removeClass("animated zoomIn");
-								$("#rPanel").removeClass("z-index");
-								$('.introjs-nextbutton').show();
-							});
+						flipEffect("#tooltipXVal", ((($("#dVal").text()) * 3.14) / 180).toFixed(2), function() {
+							$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="initR()">Next &#8594;</a>');
 						});
-					}});
+					}}); */
 				});
 			});
 		break;
@@ -280,10 +360,9 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This finction will print the result.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
-				});
+				setTimeout(function(){
+					introjs.nextStep();
+				}, 1000);
 			});
 		break;
 		case "outputDiv":
@@ -292,7 +371,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$("#outputText").removeClass("opacity00");
+				$("#body").append("<div>radians value : "+((($("#dVal").text()) * 3.14) / 180).toFixed(2)+"</div>");
 				setTimeout(function(){
 					introjs.nextStep();
 				}, 1000);
@@ -318,6 +397,78 @@ function introGuide() {
 	$('.introjs-prevbutton').hide();
 	$('.introjs-skipbutton').hide();
 	$('.introjs-bullets').hide();
+}
+
+function flipX() {
+	$('.user-btn').remove();
+	$(".introjs-tooltiptext").append("<ul><li><div id='tooltipDegX' class='display-inline-block relative'>"
+			+ " <y><b>deg = <div id='tooltipX' class='display-inline-block relative'>x</div></b></y>"
+			+ "</div></li></ul>");
+	var l1 = $("#tooltipDegX").offset();
+	var l2 = $("#degX").offset();
+	var topLength = l2.top - l1.top;
+	var leftLength = l2.left - l1.left;
+	TweenMax.from("#tooltipDegX", 1, {top : topLength, left : leftLength, onComplete:function() {
+		flipEffect("#tooltipX", $("#dVal").text(), function() {
+			$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="initD()">Next &#8594;</a>');
+		});
+	}});
+}
+
+function initD() {
+	$('.user-btn').remove();
+	$("#dPanel").addClass("z-index");
+	fromEffectWithTweenMax("#tooltipX", "#degPanelVal", function() {
+		$("#dPanel").removeClass("z-index");
+		$('.introjs-nextbutton').show();
+	});	
+}
+
+function radX() {
+	$('.user-btn').remove();
+	$(".introjs-tooltiptext").append("<ul><li><div id='tooltipRadX' class='display-inline-block relative'>"
+			+ " <y><b>rad = <div id='tooltipXVal' class='display-inline-block relative'>x</div></b></y>"
+			+ "</div></li></ul>");
+	var l1 = $("#tooltipXVal").offset();
+	var l2 = $("#radX").offset();
+	var topLength = l2.top - l1.top;
+	var leftLength = l2.left - l1.left;
+	TweenMax.from("#tooltipRadX", 1, {top : topLength, left : leftLength, onComplete:function() {
+		flipEffect("#tooltipXVal", ((($("#dVal").text()) * 3.14) / 180).toFixed(2), function() {
+			$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="initR()">Next &#8594;</a>');
+		});
+	}});}
+
+function initR() {
+	$('.user-btn').remove();
+	$("#rPanel").removeClass("opacity00").addClass("z-index");
+	fromEffectWithTweenMax("#tooltipXVal", "#radPanelVal", function() {
+		$("#rPanel").removeClass("z-index");
+		$('.introjs-nextbutton').show();
+	});
+}
+
+function returnValue() {
+	$('.user-btn').remove();
+	$(".introjs-tooltiptext ul").append("<li><y><b><div id='tooltipTotalReturn' class='display-inline-block relative'>"
+			+ "return ("
+			+ "<div id='tooltipDiv' class='display-inline-block relative'>"
+			+ "<div id='tooltipMul' class='display-inline-block relative'>"
+			+ " <div id='tooltipDeg' class='display-inline-block relative'>deg</div> * 3.14</div> / 180</div>"
+			+ " )</div></b></y></li>");
+	var l1 = $("#tooltipTotalReturn").offset();
+	var l2 = $("#returnVal").offset();
+	var topLength = l2.top - l1.top;
+	var leftLength = l2.left - l1.left;
+	TweenMax.from("#tooltipTotalReturn", 1, {top : topLength, left : leftLength, onComplete:function() {
+		flipEffect("#tooltipDeg", $("#dVal").text(), function() {
+			flipEffect("#tooltipMul", ($("#dVal").text()) * 3.14, function() {
+				flipEffect("#tooltipDiv", ((($("#dVal").text()) * 3.14) / 180).toFixed(2), function() {
+					$('.introjs-nextbutton').show();
+				});
+			});
+		});
+	}});
 }
 
 function typing(selector, text, callBackFunction) {
