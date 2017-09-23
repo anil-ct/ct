@@ -19,9 +19,9 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/cpp/js/userdefined-to-basic.js" type="text/javascript"></script> -->
+<script src="../js/userdefined-to-basic.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="../js-min/udtb.min.js"></script>
+<!-- <script type="text/javascript" src="../js-min/udtb.min.js"></script> -->
 
 <style type="text/css">
 

@@ -19,7 +19,7 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/cpp/js/copy-constructor.js" type="text/javascript"></script> -->
+<!-- <script src="../js/copy-constructor.js" typ -->e="text/javascript"></script>
 
 <script src="../js-min/cc.min.js"></script>
 
@@ -164,6 +164,11 @@ orange {
 	background-color: #ff0066;
 	font-weight: bold;
 }
+
+.relative {
+	position: relative;
+	display: inline-block;
+}
 </style>
 </head>
 <body>
@@ -221,7 +226,7 @@ $(document).ready(function() {
 	}</span>
 };</span>
 <red>void</red> main() {
-	<span id="callParameterConst" class="hide">Sample s1(<spa id="s1Val1">10</spa>, <span id="s1Val2">20</span>);</span>
+	<span id="callParameterConst" class="hide">Sample s1(<span id="s1Val1">10</span>, <span id="s1Val2">20</span>);</span>
 	<span id="callMethod1" class="hide">s1.display();</span>
 	<span id="callCopyConst" class="hide">Sample s2 = s1;</span>
 	<span id="callMethod2" class="hide">s2.display();</span>

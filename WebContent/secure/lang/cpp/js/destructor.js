@@ -10,34 +10,6 @@ var destructorReadyFun = function () {
 	$('#restart').click(function() {
 		location.reload();
 	});
-	
-	$(".validate").on("click keydown keyup", function(e) {
-		$(".errMsg").remove();
-		if ($(this).text() == "") {
-			$(this).addClass("empty");
-		} else {
-			$(this).removeClass("empty");
-		}
-		introjs.refresh();
-		
-		if ($(".empty").length > 0) {
-			$(".introjs-nextbutton").hide();
-		} else {
-			$(".introjs-nextbutton").show();
-		}
-		
-		var max = $(this).attr("maxlength");
-		if ($.inArray(e.keyCode, [46, 8, 9, 27]) !== -1 || (e.keyCode >= 37 && e.keyCode <= 39)) {
-			return;
-		}
-		if (((e.shiftKey) || (e.keyCode < 48 || e.keyCode > 57)) && ((e.keyCode < 96) || (e.keyCode > 105))) {
-			e.preventDefault();
-		}
-		if ($(this).text().length > max) {
-			//$(".introjs-tooltiptext").append("<div class='errMsg'>Max Length 2 digits only</div>")
-			e.preventDefault();
-		}
-	});
 }
 
 function introGuide() {
@@ -51,9 +23,13 @@ function introGuide() {
 		steps : [{
 			 		element : "#topDiv",
 					intro : "",
-				 	position : "bottom"
+					tooltipClass : "hide"
 				},{
 			 		element : "#code",
+					intro : "",
+					position : "right"
+				},{
+			 		element : "#class",
 					intro : "",
 					position : "right"
 				},{
@@ -63,11 +39,15 @@ function introGuide() {
 				},{
 			 		element : "#memoryDiv",
 					intro : "",
-					position : "right"
+					position : "left"
 				},{
 			 		element : "#defaultConst",
 					intro : "",
 					position : "right"
+				},{
+			 		element : "#s1Panel",
+					intro : "",
+					tooltipClass : "hide"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
@@ -77,17 +57,33 @@ function introGuide() {
 					intro : "",
 					position : "right"
 				},{
+			 		element : "#memoryDiv",
+					intro : "",
+					position : "left"
+				},{
 			 		element : "#parameterConst",
 					intro : "",
 					position : "bottom"
+				},{
+			 		element : "#s2Panel",
+					intro : "",
+					tooltipClass : "hide"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
 					tooltipClass : "hide"
 				},{
+			 		element : "#main",
+					intro : "",
+					position : "right"
+				},{
 			 		element : "#destruct",
 					intro : "",
 					position : "bottom"
+				},{
+			 		element : "#memoryDiv",
+					intro : "",
+					position : "left"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
@@ -105,14 +101,13 @@ function introGuide() {
 		introjs.refresh();
 		switch (elementId) {
 		case "topDiv":
-			$(".introjs-tooltip").hide();
-			$('.introjs-nextbutton').hide();
+			$('.user-btn').removeClass("hide");
+			$("#code").addClass("opacity00");
 			$("#li1").fadeTo(500, 1, function () {
 				$("#li2").fadeTo(500, 1, function () {
 					$("#li3").fadeTo(500, 1, function () {
 						$("#li4").fadeTo(500, 1, function () {
 							$("#li5").fadeTo(500, 1, function () {
-								
 							});
 						});
 					});
@@ -121,95 +116,132 @@ function introGuide() {
 		break;
 		case "code":
 			$("#code").removeClass("opacity00");
-			$('.user-btn').remove();
+			$('.user-btn').addClass("hide");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Let us consider sample C++ program.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
+		case "class":
+			introjs.refresh();
+			$("#constM").addClass("hide");
+			$("#memoryDiv").addClass("opacity00")
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "This is a class <y>Sample</y> which consists <b><y>int</y></b> fields <b><y>a</y></b>, <b><y>b</y></b>.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "callDefaultConst":
 			$("#callDefaultConst").removeClass("hide");
+			$("#s1Panel").addClass("opacity00").addClass("animated zoomOut");
+			$("#s1Panel").removeClass("animated zoomOut");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Let us create a object for class Sample.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "memoryDiv":
-			$("#memoryDiv").removeClass("opacity00");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Memory created for object.";
-				typing($(".introjs-tooltiptext"), text, function() {
+			if (introjs._currentStep == 4) {
+				$("#memoryDiv").removeClass("opacity00");
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
+				introjs.refresh();
+				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#s1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
-						$('.introjs-nextbutton').show();
+						var text = "Memory is created for object <y>s1</y>, which consists of two integer variables <y>a</y> and <y>b</y>.";
+						typing($(".introjs-tooltiptext"), text, function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
 					});	
 				});
-			});
+			} else if (introjs._currentStep == 9) {
+				introjs.refresh();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
+				$("#s2Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+					$(this).removeClass("animated zoomIn");
+					var text = "Memory is created for object <y>s2</y>, which consists of two integer variables <y>a</y> and <y>b</y>.";
+					typing($(".introjs-tooltiptext"), text, function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
+				});
+			} else if (introjs._currentStep == 15) {
+				introjs.refresh();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
+				$("#s1Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
+					$("#s1Panel").removeClass("animated zoomOut");
+					$("#s2Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
+						$("#s2Panel").removeClass("animated zoomOut");
+						var text = "The memory was cleared by <y>destructor</y>.";
+						typing($(".introjs-tooltiptext"), text, function() {
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
+					});
+				});
+			}
 		break;
 		case "defaultConst":
 			$("#defaultConst").removeClass("hide");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "After creating an object immediately the default constructor will call.";
+				var text = "<ul><li>After creating an object immediately the default constructor will call.</li>"
+					+ "<li>Initialize the values <y>a</y>, <y>b</y>.</li></ul>"
 				typing($(".introjs-tooltiptext"), text, function() {
-					$("#memoryDiv").addClass("z-index");
-					$("#a1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-						$(this).removeClass("animated zoomIn");
-					$("#b1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-						$(this).removeClass("animated zoomIn");
-						$("#memoryDiv").removeClass("z-index");
-						$('.introjs-nextbutton').show();
-					});
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
+		case "s1Panel":
+			$("#memoryDiv").removeClass("opacity00");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			introjs.refresh();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				$("#a1PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
+					$("#b1PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 500);
 					});
 				});
 			});
 		break;
 		case "outputDiv":
-			if (introjs._currentStep == 5) {
+			if (introjs._currentStep == 7) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#body").append("<div>s1 object is created.</div>");
 					setTimeout(function(){
 						introjs.nextStep();
 					}, 1500);
 				});
-			} else if (introjs._currentStep == 8) {
+			} else if (introjs._currentStep == 12) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#body > div:last-child").append("<div>s2 object is created.</div>");
 					setTimeout(function(){
 						introjs.nextStep();
 					}, 1500);
 				});
-			} else if (introjs._currentStep == 10) {
+			} else if (introjs._currentStep == 16) {
 				$("#outputDiv").removeClass("opacity00");
 				introjs.refresh();
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#body > div:last-child").append("<div>s1 and s2 objects are deleted.</div>");
-					$("#body > div:last-child").append("<div>s1 and s2 objects are deleted.</div>");
+					/* $("#body > div:last-child").append("<div>s1 and s2 objects are deleted.</div>"); */
 					setTimeout(function(){
 						introjs.nextStep();
 					}, 1500);
@@ -218,79 +250,62 @@ function introGuide() {
 		break;
 		case "callParameterConst":
 			$("#callParameterConst").removeClass("hide");
+			$("#s2Panel").addClass("opacity00").addClass("animated zoomOut");
+			$("#s2Panel").removeClass("animated zoomOut");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "constructor with parameters.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$("#memoryDiv").addClass("z-index");
-					$("#s2Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-						$(this).removeClass("animated zoomIn");
-						$("#memoryDiv").removeClass("z-index");
-						$('.introjs-nextbutton').show();
-					});	
+					$('.introjs-nextbutton').show();
 				});
 			});
 		break;
 		case "parameterConst":
 			$("#parameterConst").removeClass("hide");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "After creating an object immediately the parameter constructor will called. And variables a, b created in the memory."
-					+ " And the result will print on the console.";
+				var text = "<ul><li>After creating an object immediately the parameter constructor will call.</li>"
+				+ "<li><y>x</y>, <y>y</y> values copied into <y>a</y>, <y>b</y> respectively.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append(" <div id='aToX' class='display-inline-block relative ct-code-b-yellow'>"
-							+ "  a = <div id='tooltipXVal' class='display-inline-block relative'>x</div>;"
-							+ " b = <div id='tooltipYVal' class='display-inline-block relative'>y</div>;</div>");
-					var l1 = $("#aToX").offset();
-					var l2 = $("#xAndY").offset();
-					var topLength = l2.top - l1.top;
-					var leftLength = l2.left - l1.left;
-					TweenMax.from("#aToX", 1, {top : topLength, left : leftLength, onComplete:function() {
-						TweenMax.to("#tooltipXVal", 0.5, {rotationX : -90, onComplete:function() {
-							$("#tooltipXVal").text($("#s1Val1").text());
-							TweenMax.to("#tooltipXVal", 0.5, {rotationX : 0, onComplete:function() {
-								TweenMax.to("#tooltipYVal", 0.5, {rotationX : -90, onComplete:function() {
-									$("#tooltipYVal").text($("#s1Val2").text());
-									TweenMax.to("#tooltipYVal", 0.5, {rotationX : 0, onComplete:function() {
-										 $("#memoryDiv").addClass("z-index");
-											$("#a2Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-												$(this).removeClass("animated zoomIn");
-											$("#b2Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-												$(this).removeClass("animated zoomIn");
-												$("#memoryDiv").removeClass("z-index");
-												$('.introjs-nextbutton').show();
-											});
-										});
-									}});
-								}});
-							}});
-						}});
-					}});
+					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="abValues()">Next &#8594;</a>');
+				});
+			});
+		break;
+		case "s2Panel":
+			introjs.refresh();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				$("#a2PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
+					$("#b2PanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
+						setTimeout(function(){
+							introjs.nextStep();
+						}, 500);
+					});
+				});
+			});
+		break;
+		case "main":
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			introjs.refresh();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "After <y>main()</y> execution completed, the <y>destructor</y> will call.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton').show();
 				});
 			});
 		break;
 		case "destruct":
+			$("#s1Panel").removeClass("opacity00")
+			$("#s2Panel").removeClass("opacity00")
 			$("#destruct").removeClass("hide");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "When destructor function call the memory will be clear."
-					+ " And the result will print on the console.";
+				var text = "When the <y>destructor</y> called, the objects are deleted from the memory."
+					+ " The <y>cout</y> display the output on the console.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$("#memoryDiv").addClass("z-index");
-					$("#s1Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
-						$(this).removeClass("animated zoomIn");
-						$("#s2Panel").addClass("opacity00").addClass("animated zoomOut").one("animationend", function() {
-							$(this).removeClass("animated zoomIn");
-							$("#memoryDiv").removeClass("z-index");
-							$('.introjs-nextbutton').show();
-						});
-					});
+					$('.introjs-nextbutton').show();
 				});
 			});
 		break;
@@ -314,6 +329,30 @@ function introGuide() {
 	$('.introjs-prevbutton').hide();
 	$('.introjs-skipbutton').hide();
 	$('.introjs-bullets').hide();
+}
+
+function abValues() {
+	$('.user-btn').remove();
+	$(".introjs-tooltiptext").append("<ul style='list-style-type: none;'><li><div id='aToX' class='display-inline-block relative ct-code-b-yellow'>"
+			+ "  <div>a = <div id='tooltipXVal' class='display-inline-block relative'>x</div>;</div>"
+			+ " <div>b = <div id='tooltipYVal' class='display-inline-block relative'>y</div>;</div></div></li></ul>");
+	var l1 = $("#aToX").offset();
+	var l2 = $("#xAndY").offset();
+	var topLength = l2.top - l1.top;
+	var leftLength = l2.left - l1.left;
+	TweenMax.from("#aToX", 1, {top : topLength, left : leftLength, onComplete:function() {
+		TweenMax.to("#tooltipXVal", 0.3, {rotationX : -90, onComplete:function() {
+			$("#tooltipXVal").text($("#s1Val1").text());
+			TweenMax.to("#tooltipXVal", 0.3, {rotationX : 0, onComplete:function() {
+				TweenMax.to("#tooltipYVal", 0.3, {rotationX : -90, onComplete:function() {
+					$("#tooltipYVal").text($("#s1Val2").text());
+					TweenMax.to("#tooltipYVal", 0.5, {rotationX : 0, onComplete:function() {
+						$('.introjs-nextbutton').show();
+					}});
+				}});
+			}});
+		}});
+	}});
 }
 
 function textFocus(selector) {

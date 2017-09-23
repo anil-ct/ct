@@ -70,7 +70,7 @@ pre {
 #memoryDiv {
 	border: 1px solid gray;
     border-radius: 6px;
-	padding: 15px;
+	/* padding: 15px; */
 }
 
 .padding0 {
@@ -92,7 +92,7 @@ pre {
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 287px;
+	height: 80px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -171,6 +171,21 @@ orange {
 	font-weight: bold;
 }
 
+.panel-body {
+    padding: 0px;
+}
+
+#circle1 {
+	border: 1px solid gray;
+	border-radius: 50%;
+}
+
+.line {
+	marker-end: url(#arrow);
+	stroke: gray;
+	stroke-width: 2;
+}
+
 </style>
 </head>
 <body>
@@ -216,7 +231,7 @@ function introGuide() {
 				},{
 			 		element : "#memoryDiv",
 					intro : "",
-					position : "right"
+					position : "bottom"
 				},{
 			 		element : "#defaultConst",
 					intro : "",
@@ -258,8 +273,8 @@ function introGuide() {
 		introjs.refresh();
 		switch (elementId) {
 		case "topDiv":
-			$('.introjs-nextbutton').hide();
-			$('.introjs-nextbutton').hide();
+			$('.user-btn').removeClass("hide");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$("#li1").fadeTo(500, 1, function () {
 				$("#nextBtn").fadeTo(500, 1, function () {
 				});
@@ -267,7 +282,7 @@ function introGuide() {
 		break;
 		case "code":
 			$("#code").removeClass("opacity00");
-			$('.user-btn').remove();
+			$('.user-btn').addClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
@@ -291,43 +306,39 @@ function introGuide() {
 		break;
 		case "objects":
 			$("#objects").removeClass("hide");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$("#s1Panel, #s2Panel, #s3Panel").addClass("opacity00").addClass("animated zoomOut");
+			$("#s1Panel, #s2Panel, #s3Panel").removeClass("animated zoomOut");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "<ul><li>Let us create objects for class <y>Sample</y>.</li>"
 					+ "<li>Here <y>s1</y>, <y>s2</y>, <y>s3</y> are objects of the class <y>Sample</y>.</li>"
 					+ "<li>First the memory is allocated for that objects.</li>";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "memoryDiv":
 			if (introjs._currentStep == 4) {
 				$("#memoryDiv").removeClass("opacity00");
-				introjs.refresh();
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					$("#s1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-						$(this).removeClass("animated zoomIn");
-						$("#s2Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+					var text = "Memory is created for objects <y>s1</y>, <y>s2</y>, <y>s3</y>, which consists of a integer variable <y>count</y>.";
+					typing($(".introjs-tooltiptext"), text, function() {
+						$("#s1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 							$(this).removeClass("animated zoomIn");
-							$("#s3Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+							$("#s2Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 								$(this).removeClass("animated zoomIn");
-								var text = "Memory is created for objects <y>s1</y>, <y>s2</y>, <y>s3</y>, which consists of a integer variable <y>count</y>.";
-								typing($(".introjs-tooltiptext"), text, function() {
-									$('.introjs-nextbutton').show();
+								$("#s3Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
+									$(this).removeClass("animated zoomIn");
+										$('.introjs-nextbutton, .introjs-prevbutton').show();
 								});
 							});
 						});
 					});	
 				});
 			} else if (introjs._currentStep == 11) {
-				introjs.refresh();
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#s2Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
@@ -340,23 +351,19 @@ function introGuide() {
 		break;
 		case "defaultConst":
 			$("#defaultConst").removeClass("hide");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-tooltip").css({"min-width": "210px"});
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>After creating object for <y>Sample</y> immediately the default constructor will call.</li>"
-				+ "<li>And the <y>static variable count</y> will increment.</li><li>cout will print the output on the console.</li></ul>";
+				var text = "<ul><li>After creating objects for <y>Sample</y> immediately the default constructor will call.</li>"
+				+ "<li>And the <y>static variable count</y> will increment.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="incrementCount()">Next &#8594;</a>');
 				});
 			});
 		break;
-		case "paraConst":
+		/* case "paraConst":
 			$("#paraConst").removeClass("hide");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-tooltip").css({"min-width": "280px"});
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "<ul><li>After creating an object immediately the parameter constructor will call.</li>"
@@ -368,8 +375,7 @@ function introGuide() {
 		break;
 		case "s1Panel":
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				$("#aPanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
 					setTimeout(function(){
@@ -380,9 +386,7 @@ function introGuide() {
 		break;
 		case "callMethod1":
 			$("#callMethod1").removeClass("hide");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function(){
 					introjs.nextStep();
@@ -391,19 +395,15 @@ function introGuide() {
 		break;
 		case "displayMethod":
 			$("#displayMethod").removeClass("hide");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function(){
 					introjs.nextStep();
 				}, 1500);
 			});
-		break;
+		break; */
 		case "cout":
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "The <y>cout</y> display the output on the console.";
 				typing($(".introjs-tooltiptext"), text, function() {
@@ -412,21 +412,19 @@ function introGuide() {
 			});
 		break;
 		case "outputDiv":
-			$("#outputDiv").removeClass("opacity00");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				$("#body").append("<div>Given values: 10 20</div>");
-				setTimeout(function(){
-					introjs.nextStep();
-				}, 1500);
-			});
+			if (introjs._currentStep == 4) {
+				$("#outputDiv").removeClass("opacity00");
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
+				$(".introjs-helperLayer").one("transitionend", function() {
+					$("#body").append("<div>Given values: 10 20</div>");
+					setTimeout(function(){
+						introjs.nextStep();
+					}, 1500);
+				});
+			}
 		break;
 		case "restart":
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-tooltip").css({"min-width": "115px"});
 			$('#restart').removeClass("opacity00");
 			$(".introjs-helperLayer").one("transitionend", function() {
@@ -587,10 +585,10 @@ function getStep(element, intro, position, tooltipClass) {
 			</div>
 		</div>
 	</div>
-<div class="col-xs-12 margin-top-20">
-	<div class="col-xs-5">
-		<div id="code" class="opacity00">
-<pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
+	<div class="col-xs-12 margin-top-20">
+		<div class="col-xs-4">
+			<div id="code" class="opacity00">
+				<pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
 <span id="class"><g>class</g> <blue>Sample</blue> {
 	<g>static</g> <red>int</red> count;
@@ -605,79 +603,53 @@ function getStep(element, intro, position, tooltipClass) {
 	}</span>
 };</span>
 <span id="explitCall" class="hide">int Sample :: count = 0;</span>
-<red>void</red> main() {
+<red>int</red> main() {
 	<span id="objects" class="hide">Sample s1, s2, s3;</span>
 }
 </pre>
+			</div>
 		</div>
-	</div>
-	<div class="col-xs-3">
-	<div id="memoryDiv" class="opacity00">
-	<div class="text-center"><b>memory</b></div>
-		<div id="s1Panel" class="opacity00">
-			<div class="panel panel-primary margin-bottom0">
-    			<div class="panel-heading text-center padding0"><b id="s">s1</b></div>
-    			<div class="panel-body text-center" style="padding: 5px;">
-    				<div class="col-xs-offset-3 col-xs-6 margin-top-10">
-						<div id="aPanel" class="">
-							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>count</b></div>
-			    				<div class="panel-body text-center"><span id="aPanelVal" class="">0</span></div>
-			  				</div>
-			  				<!-- <div class="text-center">1024</div> -->
-		  				</div>
-					</div>
-    			</div>
-  			</div>
- 		</div>
- 		
- 		<div id="s2Panel" class="opacity00 margin-top-10">
-			<div class="panel panel-primary margin-bottom0">
-    			<div class="panel-heading text-center padding0"><b id="s">s2</b></div>
-    			<div class="panel-body text-center" style="padding: 5px;">
-    				<div class="col-xs-offset-3 col-xs-6 margin-top-10">
-						<div id="bPanel" class="">
-							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>count</b></div>
-			    				<div class="panel-body text-center"><span id="bPanelVal" class="">0</span></div>
-			  				</div>
-			  				<!-- <div class="text-center">1024</div> -->
-		  				</div>
-					</div>
-    			</div>
-  			</div>
- 		</div>
- 		
- 		<div id="s3Panel" class="opacity00 margin-top-10">
-			<div class="panel panel-primary margin-bottom0">
-    			<div class="panel-heading text-center padding0"><b id="s">s3</b></div>
-    			<div class="panel-body text-center" style="padding: 5px;">
-    				<div class="col-xs-offset-3 col-xs-6 margin-top-10">
-						<div id="cPanel" class="">
-							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>count</b></div>
-			    				<div class="panel-body text-center"><span id="cPanelVal" class="">0</span></div>
-			  				</div>
-			  				<!-- <div class="text-center">1024</div> -->
-		  				</div>
-					</div>
-    			</div>
-  			</div>
- 		</div>
- 		</div>
- 		<div class="col-xs-12 text-center margin-top-20">
- 			<span class="btn btn-warning btn-sm opacity00" id="restart">Restart</span>
- 		</div>
-	</div>
-	<div class="col-xs-4">
-		<div id="outputDiv" class="opacity00">
+		<div class="col-xs-4">
+			<div id="memoryDiv">
+				
+				<svg class="svg-css" height="230" width="100%">
+				<text text-anchor="middle" x="16%" y="11%" fill="gray" style="font-weight:bold;">s1</text>
+				<text text-anchor="middle" x="49%" y="6%" fill="gray" style="font-weight:bold;">s2</text>
+				<text text-anchor="middle" x="87%" y="9%" fill="gray" style="font-weight:bold;">s3</text>
+					<marker style="fill: gray;" orient="auto" markerHeight="5" markerWidth="5" refY="2.5" refX="4" id="arrow">
+		            	<path class="arrow" d="M0,0 L5,2.5 L0,5 Z"/>
+		           	</marker>
+		           	
+		           	
+		           	
+		           	<filter id="filter" x="0" y="0">
+				      <feGaussianBlur stdDeviation="5" />
+				      <feOffset dx="5" dy="5" />
+				    </filter>
+				    <ellipse cx="52%" cy="71%" rx="28%" ry="20%" style="fill:gray;stroke:gray;stroke-width:1" filter="url('#filter')"/>
+    
+					<ellipse cx="52%" cy="71%" rx="28%" ry="20%" style="fill:white;stroke:gray;stroke-width:1"/>
+					<ellipse cx="51%" cy="74%" rx="16.5%" ry="8.6%" style="fill:yellow;stroke:gray;stroke-width:1"/>
+					
+					<text text-anchor="middle" x="51.3%" y="63%" fill="gray" style="font-weight:bold;">count</text>
+					<line id="arrow1" class="line" x1="16%" y1="11%" x2="36%" y2="55%"/>
+					<line id="arrow2" class="line" x1="49%" y1="7%" x2="49%" y2="51%"/>
+					<line id="arrow3" class="line" x1="86%" y1="10%" x2="64%" y2="54%">
+				</svg>
+			</div>
+		</div>
+		<!-- <div class="col-xs-offset-4 col-xs-4">
+				<div id="circle1"></div>
+			</div> -->
+		<div id="outputDiv" class="col-xs-4 opacity00">
 			<div class="output-console-title-bar">
 				<span class="title">Output</span>
 			</div>
-			<div class="output-console-body" id="body">
-			</div>
+			<div class="output-console-body" id="body"></div>
 		</div>
 	</div>
-</div>
+	<div class="col-xs-12 text-center margin-top-20">
+		<span class="btn btn-warning btn-sm opacity00" id="restart">Restart</span>
+	</div>
 </body>
 </html>

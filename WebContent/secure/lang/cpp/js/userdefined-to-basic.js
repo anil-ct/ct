@@ -70,7 +70,7 @@ function introGuide() {
 				},{
 			 		element : "#memoryDiv",
 					intro : "",
-					tooltipClass : "hide"
+					tooltipClass : "right"
 				},{
 			 		element : "#defaultConst",
 					intro : "",
@@ -179,7 +179,8 @@ function introGuide() {
 		break;
 		case "constM":
 			$("#constM").removeClass("hide");
-			introjs.refresh();
+			$("#mPanel").addClass("opacity00").addClass("animated zoomOut");
+			$("#mPanel").removeClass("animated zoomOut");
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Let us create an object for class <y>Meter</y>.";
@@ -191,17 +192,16 @@ function introGuide() {
 		case "memoryDiv":
 			$("#memoryDiv").removeClass("hide");
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				$('.introjs-nextbutton').show();
+				var text = "Memory is created for object <y>m</y>, which consists of a integer variable <y>length</y>.";
+				typing($(".introjs-tooltiptext"), text, function() {
 				 $("#memoryDiv").removeClass("opacity00").addClass("z-index");
 					$("#mPanel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
 						$("#memoryDiv").removeClass("z-index");
-						setTimeout(function(){
-							introjs.nextStep();
-						}, 500);
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
+						});
 					});
 				});
 		break;

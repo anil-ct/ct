@@ -119,11 +119,11 @@ function introGuide() {
 			 		element : "#outputDiv",
 					intro : "",
 					tooltipClass : "hide"
-				}/* ,{
+				},{
 			 		element : "#restart",
 					intro : "",
 					position : "right"
-				} */
+				} 
 			]});
 	
 	introjs.onafterchange(function(targetElement) {
@@ -323,7 +323,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Here s1 object copy into s2, the values are same as s1 object.";
+				var text = "Here <y>s1</y> object copy into <y>s2</y>, the values are same as <y>s1</y> object.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -335,34 +335,9 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>After copy the s1 object into s2. The copy constructor will call.</li><li>The values are</li></ul>";
+				var text = "<ul><li>After copy the <y>s1</y> object into <y>s2</y>. The <y>copy constructor</y> will call.</li><li>The values are</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="copyConstValues()">Next &#8594;</a>');
-					
-					/* $(".introjs-tooltiptext").append(" <div id='s1ToAB' class='display-inline-block relative ct-code-b-yellow'>"
-							+ "  a = <div id='tooltipS1AVal' class='display-inline-block relative'>s1.a</div>;"
-							+ " b = <div id='tooltipS1BVal' class='display-inline-block relative'>s1.b</div>;</div>");
-					var l1 = $("#s1ToAB").offset();
-					var l2 = $("#s1AB").offset();
-					var topLength = l2.top - l1.top;
-					var leftLength = l2.left - l1.left;
-					TweenMax.from("#s1ToAB", 1, {top : topLength, left : leftLength, onComplete:function() {
-						$("#a2Panel").addClass("z-index");
-						TweenMax.to("#tooltipS1AVal", 0.5, {rotationX : -90, onComplete:function() {
-							$("#tooltipS1AVal").text($("#s1Val1").text());
-							$("#a2Panel").removeClass("z-index");
-							TweenMax.to("#tooltipS1AVal", 0.5, {rotationX : 0, onComplete:function() {
-								$("#b2Panel").addClass("z-index");
-								TweenMax.to("#tooltipS1BVal", 0.5, {rotationX : -90, onComplete:function() {
-									$("#tooltipS1BVal").text($("#s1Val2").text());
-									$("#b2Panel").removeClass("z-index");
-									TweenMax.to("#tooltipS1BVal", 0.5, {rotationX : 0, onComplete:function() {
-										$('.introjs-nextbutton').show();
-									}});
-								}});
-							}});
-						}});
-					}}); */
 				});
 			});
 		break;

@@ -18,11 +18,11 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/c++/js/destructor.js" type="text/javascript"></script> -->
+<!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
 
-<script type="text/javascript" src="../js-min/destruct.min.js"></script>
+<script src="../js-min/destruct.min.js"></script>
 
-<title>destructors</title>
+<title>destructor</title>
 <style type="text/css">
 
 .margin-top-20 {
@@ -37,6 +37,7 @@
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
+    background-color: white;
 }
 
 .creampretab {
@@ -68,10 +69,6 @@
 
 .padding0 {
 	padding: 0;
-}
-
-div, span {
-	position: relative;
 }
 
 #outputDiv {
@@ -109,6 +106,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0!important;
 }
 
 .z-index {
@@ -137,6 +135,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold;
 }
 
 blue {
@@ -169,7 +168,7 @@ $(document).ready(function() {
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00"><g><a href="https://en.wikipedia.org/wiki/Destructor_(computer_programming)" target="_blank">Destructor</a></g> functions are the inverse of constructor functions. They are called when objects are destroyed (deallocated).</li>
+					<li id="li1" class="opacity00"><a href="https://en.wikipedia.org/wiki/Destructor_(computer_programming)" target="_blank">Destructor</a> functions are the inverse of constructor functions. They are called when objects are destroyed (deallocated).</li>
 					<li id="li2" class="opacity00">Destructors have same name as the class preceded by a tilde<g>(~)</g>.</li>
 					<li id="li3" class="opacity00">If we do not write our own destructor in class, compiler creates a default destructor for us.</li>
 					<li id="li4" class="opacity00">The Destructor of class is automatically called when object goes out of scope.</li>
@@ -186,7 +185,7 @@ $(document).ready(function() {
 <div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>Sample</blue> {
+<span id="class"><g>class</g> <blue>Sample</blue> {
 	<red>int</red> a, b;
 	<span id="defaultConst" class="hide"><g>public</g>:
 		Sample() { 
@@ -202,11 +201,11 @@ $(document).ready(function() {
 		<span id="destruct" class="hide"><b>~Sample()</b> { 
 			cout << <red>"s1 and s2 objects are deleted.\n"</red>;
 		}</span>
-};	
-<red>void</red> main() {
+};</span>
+<span id="main"><red>void</red> main() {
 	<span id="callDefaultConst" class="hide">Sample s1;</span>
 	<span id="callParameterConst" class="hide">Sample s2(<spa id="s1Val1">10</spa>, <span id="s1Val2">20</span>);</span>
-}
+}</span>
 </pre>
 		</div>
 	</div>
@@ -218,19 +217,19 @@ $(document).ready(function() {
     			<div class="panel-heading text-center padding0"><b id="s1">s1</b></div>
     			<div class="panel-body text-center" style="padding: 5px;">
     				<div class="col-xs-6 margin-top-10">
-						<div id="a1Panel" class="opacity00">
+						<div id="a1Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>a</b></div>
-			    				<div class="panel-body text-center"><span id="a1PanelVal" class="">5</span></div>
+			    				<div class="panel-body text-center"><span id="a1PanelVal" class="opacity00">5</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
 					</div>
 					<div class="col-xs-6 margin-top-10">
-						<div id="b1Panel" class="opacity00">
+						<div id="b1Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>b</b></div>
-			    				<div class="panel-body text-center"><span id="b1PanelVal" class="">10</span></div>
+			    				<div class="panel-body text-center"><span id="b1PanelVal" class="opacity00">10</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1026</div> -->
 		  				</div>
@@ -244,19 +243,19 @@ $(document).ready(function() {
     			<div class="panel-heading text-center padding0"><b id="s2">s2</b></div>
     			<div class="panel-body text-center" style="padding: 5px;">
     				<div class="col-xs-6 margin-top-10">
-						<div id="a2Panel" class="opacity00">
+						<div id="a2Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>a</b></div>
-			    				<div class="panel-body text-center"><span id="a2PanelVal" class="">10</span></div>
+			    				<div class="panel-body text-center"><span id="a2PanelVal" class="opacity00">10</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
 					</div>
 					<div class="col-xs-6 margin-top-10">
-						<div id="b2Panel" class="opacity00">
+						<div id="b2Panel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>b</b></div>
-			    				<div class="panel-body text-center"><span id="b2PanelVal" class="">20</span></div>
+			    				<div class="panel-body text-center"><span id="b2PanelVal" class="opacity00">20</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1026</div> -->
 		  				</div>
