@@ -112,7 +112,7 @@ function introGuide() {
 					$("#li3").fadeTo(500, 1, function () {
 						$("#nextBtn").fadeTo(500, 1, function () {
 						});
-					});
+					});	
 				});
 			});
 		break;
@@ -148,7 +148,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This is parameterized constructor.";
+				var text = "Here <y>s1</y> is an object of the class <y>Sample</y>, created by the user with different argument values.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
@@ -163,7 +163,8 @@ function introGuide() {
 				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#s1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
-						var text = "Memory is created for object <y>s1</y>, which consists of two integer variables <y>a</y> and <y>b</y>.";
+						var text = "<ul><li>Memory is created for object <y>s1</y>, which consists of two integer variables <y>a</y> and <y>b</y>.</li>"
+							+ "<li>After allocation of memory to the object, the <y>parameterized constructor</y> will call automatically.</li></ul>";
 						typing($(".introjs-tooltiptext"), text, function() {
 							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
@@ -189,8 +190,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>After creating an object immediately the parameter constructor will call.</li>"
-				+ "<li><y>x</y>, <y>y</y> values copied into <y>a</y>, <y>b</y> respectively.</li></ul>";
+				var text = "This is the parameterized constructor definition which receives 2 arguments  <y>x</y> and <y>y</y> to initialize the data members <y>a</y> and <y>b</y>.<br>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="abValues()">Next &#8594;</a>');
 				});
@@ -280,7 +280,7 @@ function introGuide() {
 
 function abValues() {
 	$('.user-btn').remove();
-	$(".introjs-tooltiptext ul").append("<div id='aToX' class='display-inline-block relative ct-code-b-yellow'>"
+	$(".introjs-tooltiptext").append("<div id='aToX' class='display-inline-block relative ct-code-b-yellow'>"
 			+ "<div>a = <div id='tooltipXVal' class='display-inline-block relative'>x</div>;</div>"
 			+ " <div>b = <div id='tooltipYVal' class='display-inline-block relative'>y</div>;</div></div>");
 	var l1 = $("#aToX").offset();

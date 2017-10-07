@@ -202,7 +202,7 @@ $(document).ready(function() {
 			cout << <red>"s1 and s2 objects are deleted.\n"</red>;
 		}</span>
 };</span>
-<span id="main"><red>void</red> main() {
+<span id="main"><red>int</red> main() {
 	<span id="callDefaultConst" class="hide">Sample s1;</span>
 	<span id="callParameterConst" class="hide">Sample s2(<spa id="s1Val1">10</spa>, <span id="s1Val2">20</span>);</span>
 }</span>

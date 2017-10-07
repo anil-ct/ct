@@ -19,9 +19,9 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
+<!-- <script src="../js/friend-function.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/ff.min.js"></script>
+<script src="../js-min/ff.min.js"></script>
 
 <style type="text/css">
 
@@ -70,10 +70,6 @@
 	padding: 0;
 }
 
-div, span {
-	position: relative;
-}
-
 #outputDiv {
 	padding: 0;
 	z-index: 9999999;
@@ -89,7 +85,7 @@ div, span {
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 388px;
+	height: 135px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -109,6 +105,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0 !important;
 }
 
 .z-index {
@@ -117,6 +114,10 @@ div, span {
 	border-radius: 4px;
 	padding: 4px;
 	background: white;
+}
+
+.relative {
+	position: relative;
 }
 
 .yellow {
@@ -133,10 +134,12 @@ div, span {
 
 g {
 	color: green;
+	font-weight: bold;
 }
 
 y {
 	color: yellow;
+	font-weight: bold;
 }
 
 blue {
@@ -161,7 +164,6 @@ $(document).ready(function() {
 	friendFunctionReadyFun();
 });
 
-
 </script>
 <div class='text-center margin-top-20'>
 	<h4 class='label ct-demo-heading' id='demoTitle'>Friend Function</h4>
@@ -169,8 +171,8 @@ $(document).ready(function() {
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<div id="typingDiv1">
-				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00">A <b><a href="https://en.wikipedia.org/wiki/Friend_function" target="_blank">friend function</a></b> can be given special grant to access private and protected members. A friend function can be:
+				<ul>
+					<li id="li1" class="opacity00">A friend function can be given special grant to access <g>privat</g>e and <g>protected</g> members. A friend function can be:
 						<ul>
 							<li>A method of another class</li>
 							<li>A global function</li>
@@ -181,9 +183,8 @@ $(document).ready(function() {
 					 	of a class with protected or private data, it lessens the value of encapsulation of separate classes in object-oriented programming.
 					 </li>
 					<li id="li3" class="opacity00">Friendship is not mutual. If a class A is friend of B, then B doesn’t become friend of A automatically.</li>
-					<li id="li4" class="opacity00">Friendship is not inherited</li>
-					<li id="li5" class="opacity00">The concept of friends is not there in Java. 
-						&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span><br>
+					<li id="li4" class="opacity00">Friendship is not inherited
+						&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span>
 					</li>
 				</ul>
 			</div>
@@ -195,24 +196,21 @@ $(document).ready(function() {
 <div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>Distance</blue> {
+<span id="class"><g>class</g> <blue>Distance</blue> {
 	<g>private</g>:
-    	<span id="meter"><red>int</red> meter;</span>
+		<span id="meter"><red>int</red> meter;</span>
 	<span id="defaultConst" class="hide"><g>public</g>:
 		Distance() {
 			meter = 0;
 		}</span>
-		<span id="friendFun" class="hide"><b>//friend function</b>
-		<span id="friend" class=""><g>friend</g></span> <red>int</red> addFive(Distance);</span>
-};
-<span id="totalAddFiveFun" class="hide"><b>//friend function definition</b></span>
+		<span id="friendFun" class="hide"><span id="friend" class=""><g>friend</g></span> <red>int</red> addFive(Distance);</span>
+};</span>
 <span id="addFiveFun" class="hide"><red>int</red> addFive(Distance d) {
-	<b>//accessing private data from non-member function</b>
 	<span id="meterInit">d.meter = meter + 5;</span>
 	return d.meter;
 }</span>
 <red>void</red> main() {
-	<span id="constD" class="hide">Distance D;</span>
+	<span id="constD" class="hide">Distance d;</span>
 	<span id="cout" class="hide">cout << <red>"Distance: "</red> << <span id="callMethod">addFive(D);</span></span>
 }
 </pre>
@@ -223,21 +221,13 @@ $(document).ready(function() {
 	<div class="text-center"><b>memory</b></div>
 		<div id="dPanel" class="opacity00">
 			<div class="panel panel-primary margin-bottom0">
-    			<div class="panel-heading text-center padding0"><b id="d">D</b></div>
+    			<div class="panel-heading text-center padding0"><b id="d">d</b></div>
     			<div class="panel-body text-center" style="padding: 5px;">
     				<div class="col-xs-offset-3 col-xs-6">
-						<div id="meterPanel" class="opacity00">
+						<div id="meterPanel" class="">
 							<div class="panel panel-primary margin-bottom0">
 			    				<div class="panel-heading text-center padding0"><b>meter</b></div>
-			    				<div class="panel-body text-center"><span id="meterPanelVal" class="">0</span></div>
-			  				</div>
-			  				<!-- <div class="text-center">1024</div> -->
-		  				</div>
-		  				
-		  				<div id="meterPanel1" class="hide">
-							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>meter</b></div>
-			    				<div class="panel-body text-center"><span id="meterPanelVal1" class="">5</span></div>
+			    				<div class="panel-body text-center"><span id="meterPanelVal" class="opacity00">0</span></div>
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>

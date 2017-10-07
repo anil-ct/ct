@@ -203,10 +203,10 @@ $(document).ready(function() {
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
-			<ul style="font-family: monospace;">
+			<ul>
 				<li id="li1" class="opacity00">
-					To convert a <b class='monospace lite-blue'>basic data type</b> to <b class='monospace lite-blue'>user-defined type</b>, the <b class='monospace lite-blue'>conversion function</b> should be defined in a class in the form of <b class='monospace lite-blue'>constructor</b>,
-					 which is called a <b class='monospace lite-blue'>conversion constructor</b>.  
+					To convert a basic data type to user-defined type, the conversion function should be defined in a class in the form of constructor,
+					 which is called a conversion constructor.  
 				</li>
 				<li id="li2" class="opacity00">
 					 The format is: <br>

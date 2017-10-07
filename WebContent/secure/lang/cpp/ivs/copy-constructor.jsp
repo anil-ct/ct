@@ -19,9 +19,9 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="../js/copy-constructor.js" typ -->e="text/javascript"></script>
+<script src="../js/copy-constructor.js" type="text/javascript"></script>
 
-<script src="../js-min/cc.min.js"></script>
+<!-- <script src="../js-min/cc.min.js"></script> -->
 
 <style type="text/css">
 
@@ -37,7 +37,7 @@
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
-    height: 315px;
+    height: 290px;
     background-color: white;
 }
 
@@ -187,16 +187,10 @@ $(document).ready(function() {
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00">A <a href="https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)" target="_blank">constructor</a> is a special member function which has been <b><g>executed</g></b> only when an <b><g>object</g></b> of that class is <b><g>created</g></b>.</li>
-					<li id="li2" class="opacity00">Types of constructors are: 
-						<ul>
-							<li><a href="https://en.wikipedia.org/wiki/Default_constructor" target="_blank">Default constructor</a></li>
-							<li><a href="https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)" target="_blank">Parameterized constructor</a></li>
-							<li><a href="https://en.wikipedia.org/wiki/Copy_constructor_(C%2B%2B)" target="_blank">Copy constructor</a></li>
-						</ul>
-					</li>
+					<li id="li1" class="opacity00">A  copy constructor creates an object by initializing it with an object of the same class, which has been created previously.</li>
+					<li id="li2" class="opacity00">The copy constructor is used to − Initialize one object from another of the same type. Copy an object to pass it as an argument to a function.</li>
 					<li id="li3" class="opacity00">The format of the <b><g>copy constructor</g></b> is:<br>
-						 <div class="col-xs-4"><pre class="creampretab1">class <blue>class-name</blue> {<br>  <g>public</g>:<br>  class-name(arguments) {<br>    -----<br>    -----<br>  }<br>};</pre></div>
+						 <div class="col-xs-4"><pre class="creampretab1">class <blue>class-name</blue> {<br>  <g>public</g>:<br>&nbsp;&nbsp;&nbsp;&nbsp;class-name(argument) {<br>      -----<br>      -----<br>    }<br>};</pre></div>
 					</li>
 				</ul>
 				<div class="col-xs-12">
@@ -225,7 +219,7 @@ $(document).ready(function() {
 		<span id="cout">cout &lt;&lt; <red>"Given values : "</red> << a << " " << b;</span> 
 	}</span>
 };</span>
-<red>void</red> main() {
+<red>int</red> main() {
 	<span id="callParameterConst" class="hide">Sample s1(<span id="s1Val1">10</span>, <span id="s1Val2">20</span>);</span>
 	<span id="callMethod1" class="hide">s1.display();</span>
 	<span id="callCopyConst" class="hide">Sample s2 = s1;</span>

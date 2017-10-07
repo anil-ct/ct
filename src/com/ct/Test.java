@@ -1,14 +1,16 @@
 package com.ct;
 
-public class Test {
-	private String msg;
+class Test1 extends Thread {
+	public void run() {
+		System.out.println("Thread " + currentThread().getId() + currentThread().getName()  + " is running");
 
-	public Test() {
-		this.msg = "Hello";
 	}
+}
 
+public class Test {
 	public static void main(String[] args) {
-		Test t = new Test();
-		System.out.println(t.msg);
+		Test1 t = new Test1();
+		t.start();
+		System.out.println("Thread " + t.getId());
 	}
 }

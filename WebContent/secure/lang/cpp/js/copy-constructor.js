@@ -9,34 +9,6 @@ var copyConstructorReadyFun = function() {
 	$('#restart').click(function() {
 		location.reload();
 	});
-	
-	$(".validate").on("click keydown keyup", function(e) {
-		$(".errMsg").remove();
-		if ($(this).text() == "") {
-			$(this).addClass("empty");
-		} else {
-			$(this).removeClass("empty");
-		}
-		introjs.refresh();
-		
-		if ($(".empty").length > 0) {
-			$(".introjs-nextbutton").hide();
-		} else {
-			$(".introjs-nextbutton").show();
-		}
-		
-		var max = $(this).attr("maxlength");
-		if ($.inArray(e.keyCode, [46, 8, 9, 27]) !== -1 || (e.keyCode >= 37 && e.keyCode <= 39)) {
-			return;
-		}
-		if (((e.shiftKey) || (e.keyCode < 48 || e.keyCode > 57)) && ((e.keyCode < 96) || (e.keyCode > 105))) {
-			e.preventDefault();
-		}
-		if ($(this).text().length > max) {
-			//$(".introjs-tooltiptext").append("<div class='errMsg'>Max Length 2 digits only</div>")
-			e.preventDefault();
-		}
-	});
 }
 
 function introGuide() {
@@ -50,7 +22,7 @@ function introGuide() {
 		steps : [{
 			 		element : "#topDiv",
 					intro : "",
-				 	position : "bottom"
+					tooltipClass : "hide"
 				},{
 			 		element : "#code",
 					intro : "",
@@ -96,13 +68,13 @@ function introGuide() {
 					intro : "",
 					position : "top"
 				},{
-			 		element : "#memoryDiv",
-					intro : "",
-					position : "right"
-				},{
 			 		element : "#copyConst",
 					intro : "",
 					position : "bottom"
+				},{
+			 		element : "#memoryDiv",
+					intro : "",
+					position : "right"
 				},{
 			 		element : "#callMethod2",
 					intro : "",
@@ -132,8 +104,8 @@ function introGuide() {
 		introjs.refresh();
 		switch (elementId) {
 		case "topDiv":
-			$(".introjs-tooltip").hide();
-			$('.introjs-nextbutton').hide();
+			$('.user-btn').removeClass("hide");
+			$('.introjs-nextbutton, .introjs-prevbutton').show();
 			$("#li1").fadeTo(500, 1, function () {
 				$("#li2").fadeTo(500, 1, function () {
 					$("#li3").fadeTo(500, 1, function () {
@@ -145,14 +117,13 @@ function introGuide() {
 		break;
 		case "code":
 			$("#code").removeClass("opacity00");
-			$('.user-btn').remove();
+			$('.user-btn').addClass("hide");
 			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "Let us consider a sample C++ program.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
@@ -170,13 +141,13 @@ function introGuide() {
 		break;
 		case "callParameterConst":
 			$("#callParameterConst").removeClass("hide");
-			introjs.refresh();
-			$('.introjs-nextbutton').hide();
-			$('.introjs-prevbutton').hide();
+			$("#s1Panel").addClass("opacity00").addClass("animated zoomOut");
+			$("#s1Panel").removeClass("animated zoomOut");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This is parameterized constructor.";
+				var text = "Here <y>s1</y> is an object of the class <y>Sample</y>, created by the user with different argument values.";
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
@@ -184,18 +155,18 @@ function introGuide() {
 			if (introjs._currentStep == 4) {
 				$("#memoryDiv").removeClass("opacity00");
 				introjs.refresh();
-				$('.introjs-nextbutton').hide();
-				$('.introjs-prevbutton').hide();
+				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#s1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
-						var text = "Memory is created for object <y>s1</y>, which consists of two integer variables <y>a</y> and <y>b</y>.";
+						var text = "<ul><li>Memory is created for object <y>s1</y>, which consists of two integer variables <y>a</y> and <y>b</y>.</li>"
+							+ "<li>After allocation of memory to the object, the <y>parameterized constructor</y> will call automatically.</li></ul>";
 						typing($(".introjs-tooltiptext"), text, function() {
-							$('.introjs-nextbutton').show();
+							$('.introjs-nextbutton, .introjs-prevbutton').show();
 						});
 					});	
 				});
-			} else if (introjs._currentStep == 12) {
+			} else if (introjs._currentStep == 13) {
 				introjs.refresh();
 				$('.introjs-nextbutton').hide();
 				$('.introjs-prevbutton').hide();
@@ -215,8 +186,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>After creating an object immediately the parameter constructor will call.</li>"
-				+ "<li><y>x</y>, <y>y</y> values copied into <y>a</y>, <y>b</y> respectively.</li></ul>";
+				var text = "This is the <y>parameterized constructor</y> definition which receives 2 arguments  <y>x</y> and <y>y</y> to initialize the data members <y>a</y> and <y>b</y>.<br>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="abValues()">Next &#8594;</a>');
 				});
@@ -323,7 +293,7 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Here <y>s1</y> object copy into <y>s2</y>, the values are same as <y>s1</y> object.";
+				var text = "Here new object <y>s2</y> is created from existing object <y>s1</y>, i.e a copy of existing object values will be sent to the newly created object.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});

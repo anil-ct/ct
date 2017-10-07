@@ -60,11 +60,7 @@ function introGuide() {
 			 		element : "#funDec",
 					intro : "",
 					position : "right"
-				}/* ,{
-			 		element : "#main",
-					intro : "",
-					position : "right"
-				} */,{
+				},{
 			 		element : "#varDec",
 					intro : "",
 					position : "right"
@@ -166,7 +162,11 @@ function introGuide() {
 						fromEffectWithTweenMax("#bVal", "#bPanelVal", function(){
 							$("#bPanelVal").removeClass("opacity");
 							$("#bVal").removeClass("z-index");
-							$(".introjs-nextbutton").show();
+							fromEffectWithTweenMax("#sumVal", "#sumPanelVal", function(){
+								$("#sumPanelVal").removeClass("opacity");
+								$("#sumVal").removeClass("z-index");
+								$(".introjs-nextbutton").show();
+							});	
 						});
 					});
 				});
@@ -190,9 +190,14 @@ function introGuide() {
 				});
 			} else if (introjs._currentStep == 9) {
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "The return value will be stored in <b class ='ct-code-b-yellow'>sum</b>.";
+					var text = "The return value <y id='sumValue'>" + (parseInt($("#aVal").text()) + parseInt($("#bVal").text())) + "</y> will be stored in <b class ='ct-code-b-yellow'>sum</b>.";
 					typing($(".introjs-tooltiptext"), text, function() {
-						$(".introjs-nextbutton").show();
+						$("#sumPanel").addClass("z-index");
+						fromEffectWithTweenMax("#sumValue", "#sumPanelVal", function(){
+							//$("#sumPanelVal").removeClass("opacity");
+							$("#sumPanel").removeClass("z-index");
+							$(".introjs-nextbutton").show();
+						});	
 					});
 				});
 			}

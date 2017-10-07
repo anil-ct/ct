@@ -19,9 +19,9 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="/secure/lang/cpp/js/default-constructor.js" type="text/javascript"></script> -->
+<script src="/secure/lang/cpp/js/default-constructor.js" type="text/javascript"></script>
 
-<script src="../js-min/dfc.min.js"></script>
+<!-- <script src="../js-min/dfc.min.js"></script> -->
 
 <style type="text/css">
 
@@ -37,7 +37,7 @@
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
-    height: 295px;
+    height: 330px;
     background-color: white;
 }
 
@@ -182,18 +182,25 @@ $(document).ready(function() {
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<div id="typingDiv1">
-				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00">A <a href="https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)" target="_blank">constructor</a> is a special member function which has been <b><g>executed</g></b> only when an <b><g>object</g></b> of that class is <b><g>created</g></b>.</li>
+				<ul>
+					<li id="li1" class="opacity00">
+						A constructor is a special member function which has been only when an  of that class is.
+					</li>
 					<li id="li2" class="opacity00">Types of constructors are: 
 						<ul>
-							<li><a href="https://en.wikipedia.org/wiki/Default_constructor" target="_blank">Default constructor</a></li>
-							<li><a href="https://en.wikipedia.org/wiki/Constructor_(object-oriented_programming)" target="_blank">Parameterized constructor</a></li>
-							<li><a href="https://en.wikipedia.org/wiki/Copy_constructor_(C%2B%2B)" target="_blank">Copy constructor</a></li>
+							<li>Default constructor</li>
+							<li>Parameterized constructor</li>
+							<li>Copy constructor</li>
 						</ul>
 					</li>
-					<li id="li3" class="opacity00">The format of the <b><g>default constructor</g></b> is:<br>
-						 <div class="col-xs-4"><pre class="creampretab1">class <blue>class-name</blue> {<br>  <g>public</g>:<br>  class-name() {<br><br>  }<br>};</pre></div>
+					<li id="li3" class="opacity00">The format of the default constructor is:<br>
+						 <div class="col-xs-4"><pre class="creampretab1">class <blue>class-name</blue> {<br>  <g>public</g>:<br> &nbsp;&nbsp;&nbsp;class-name() {<br>      -----<br>      -----<br> &nbsp;}<br>};</pre></div>
 					</li>
+					<div class="col-xs-12">
+						<li id="li4" class="opacity00" style="margin-left: -15px;">
+							Default constructor is used to initialize with the same values to the data members of all the objects.
+						</li>
+					</div>
 				</ul>
 				<div class="col-xs-12">
 				<span id="nextBtn" class='user-btn introjs-button opacity00' onclick='introjs.nextStep()'>Next &#8594;</span>
@@ -220,7 +227,7 @@ $(document).ready(function() {
 		<span id="cout">cout &lt;&lt; <red>"Given values : "</red> << a << " " << b;</span> 
 	}</span>
 };</span>
-<red>void</red> main() {
+<red>int</red> main() {
 	<span id="callDefaultConst" class="hide">Sample s1;</span>
 	<span id="callMethod1" class="hide">s1.display();</span>
 }

@@ -21,7 +21,7 @@
 
 <!-- <script src="/secure/lang/c++/js/constructor.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/const.min.js"></script>
+<script src="../js-min/const.min.js"></script>
 
 <style type="text/css">
 
@@ -137,6 +137,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold;
 }
 
 blue {

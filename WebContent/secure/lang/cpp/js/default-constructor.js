@@ -81,11 +81,14 @@ function introGuide() {
 		introjs.refresh();
 		switch (elementId) {
 		case "topDiv":
+			$(".introjs-tooltip").hide();
 			$('.introjs-nextbutton').hide();
 			$("#li1").fadeTo(500, 1, function () {
 				$("#li2").fadeTo(500, 1, function () {
 					$("#li3").fadeTo(500, 1, function () {
-						$("#nextBtn").fadeTo(500, 1, function () {
+						$("#li4").fadeTo(500, 1, function () {
+							$("#nextBtn").fadeTo(500, 1, function () {
+							});
 						});
 					});
 				});
@@ -121,9 +124,8 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>Let us create an object for class <y>Sample</y>.</li>"
-					+ "<li>Here <y>s1</y> is an object of the class <y>Sample</y>.</li>"
-					+ "<li>First the memory is allocated for that object.</li>";
+				var text = "<ul><li>Here <y>s1</y> is an object of the class <y>Sample</y> created by the user.</li>"
+					+ "<li>Whenever an object is declared, memory is allocated to the object.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});
@@ -138,7 +140,8 @@ function introGuide() {
 				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#s1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
 						$(this).removeClass("animated zoomIn");
-						var text = "Memory is created for object <y>s1</y>, which consists of two integer variables <y>a</y> and <y>b</y>.";
+						var text = "<ul><li>Memory is created for object <y>s1</y>, which consists of two integer variables <y>a</y> and <y>b</y>.</li>"
+								+ "<li>After allocation of memory to the object, the <y>default constructor</y> will call automatically.</li></ul>";
 						typing($(".introjs-tooltiptext"), text, function() {
 							$('.introjs-nextbutton').show();
 						});
@@ -164,8 +167,8 @@ function introGuide() {
 			$('.introjs-nextbutton').hide();
 			$('.introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>If we are not defined any constructor, the compiler will <y>implicitly</y> declare and define a <y>default constructor</y> with an <y>empty body</y>.</li>"
-					+ "<li>If we are define any constructor, the compiiler will not define.</li></ul>";
+				var text = "<ul><li>When a class is defined the compiler automatically defines a <y>default constructor</y> with an empty body.</li>"
+					+ "<li>If the user defined any default constructor then the compiiler default constructor disappear.</li></ul>";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton').show();
 				});

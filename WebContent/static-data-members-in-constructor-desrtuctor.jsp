@@ -24,7 +24,6 @@
 <!-- <script src="/secure/lang/c/js-min/cof.min.js"></script> -->
 
 <style type="text/css">
-
 .margin-top-20 {
 	margin-top: 20px;
 }
@@ -34,12 +33,11 @@
 }
 
 #topDiv {
-    border: 1px solid gray;
-    border-radius: 8px;
-    padding: 10px;
-    background-color: white;
-    height: 60px;
-    
+	border: 1px solid gray;
+	border-radius: 8px;
+	padding: 10px;
+	background-color: white;
+	height: 60px;
 }
 
 pre {
@@ -69,7 +67,7 @@ pre {
 
 #memoryDiv {
 	border: 1px solid gray;
-    border-radius: 6px;
+	border-radius: 6px;
 	/* padding: 15px; */
 }
 
@@ -116,7 +114,7 @@ pre {
 
 .user-btn {
 	background-color: green;
-	margin: 0!important;
+	margin: 0 !important;
 }
 
 .z-index {
@@ -126,7 +124,6 @@ pre {
 	padding: 4px;
 	background: white;
 }
-
 
 .yellow {
 	background-color: yellow;
@@ -172,7 +169,7 @@ orange {
 }
 
 .panel-body {
-    padding: 0px;
+	padding: 0px;
 }
 
 #circle1 {
@@ -185,7 +182,6 @@ orange {
 	stroke: gray;
 	stroke-width: 2;
 }
-
 </style>
 </head>
 <body>
@@ -198,6 +194,10 @@ var delete_key = 46;
 var backspace_key = 8;
 $(document).ready(function() {
 	introGuide();
+	
+	$(".s1-s2-s3").hide();
+	$(".line").hide();
+	
 	$('#restart').click(function() {
 		location.reload();
 	});
@@ -225,6 +225,14 @@ function introGuide() {
 					intro : "",
 					position : "right"
 				},{
+			 		element : "#static",
+					intro : "",
+					position : "right"
+				},{
+			 		element : "#explitCall",
+					intro : "",
+					position : "right"
+				},{
 			 		element : "#objects",
 					intro : "",
 					position : "right"
@@ -236,6 +244,10 @@ function introGuide() {
 			 		element : "#defaultConst",
 					intro : "",
 					position : "bottom"
+				},{
+			 		element : "#outputDiv",
+					intro : "",
+				 	tooltipClass : "hide"
 				},{
 			 		element : "#paraConst",
 					intro : "",
@@ -295,10 +307,31 @@ function introGuide() {
 		case "class":
 			introjs.refresh();
 			$("#constM").addClass("hide");
-			$("#memoryDiv").addClass("opacity00")
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
+				$(".introjs-tooltip").css({"min-width": "250px"});
 				var text = "This is a class <y>Sample</y> which consist of a <y>static int</y> field <y>count</y>.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
+		case "static":
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "<ul><li>The type of each static member variable must be defined outside class defination.</li>"
+					+ "<li>This is necessary because the static data members are stored separately rather than a part of an object.</li>"
+					+ "<li>They are also associated with the class itself ratherthan with any object, they are also known as variable.</li>"
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
+		case "explitCall":
+			$("#explitCall").removeClass("hide");
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "A static varibles are initialised to zero by default the user can also initialise a value to the static variable.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
@@ -307,8 +340,6 @@ function introGuide() {
 		case "objects":
 			$("#objects").removeClass("hide");
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$("#s1Panel, #s2Panel, #s3Panel").addClass("opacity00").addClass("animated zoomOut");
-			$("#s1Panel, #s2Panel, #s3Panel").removeClass("animated zoomOut");
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "<ul><li>Let us create objects for class <y>Sample</y>.</li>"
 					+ "<li>Here <y>s1</y>, <y>s2</y>, <y>s3</y> are objects of the class <y>Sample</y>.</li>"
@@ -319,23 +350,23 @@ function introGuide() {
 			});
 		break;
 		case "memoryDiv":
-			if (introjs._currentStep == 4) {
+			if (introjs._currentStep == 6) {
 				$("#memoryDiv").removeClass("opacity00");
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "Memory is created for objects <y>s1</y>, <y>s2</y>, <y>s3</y>, which consists of a integer variable <y>count</y>.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						$("#s1Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-							$(this).removeClass("animated zoomIn");
-							$("#s2Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-								$(this).removeClass("animated zoomIn");
-								$("#s3Panel").removeClass("opacity00").addClass("animated zoomIn").one("animationend", function() {
-									$(this).removeClass("animated zoomIn");
-										$('.introjs-nextbutton, .introjs-prevbutton').show();
+					$("#s1").show();
+					arrowReveal("#arrow1", function() {
+						$("#s2").show();
+						arrowReveal("#arrow2", function() {
+							$("#s3").show();
+							arrowReveal("#arrow3", function() {
+								var text = "Memory is created for objects <y>s1</y>, <y>s2</y>, <y>s3</y>, which consists of a integer variable <y>count</y>.";
+								typing($(".introjs-tooltiptext"), text, function() {
+									$('.introjs-nextbutton, .introjs-prevbutton').show();
 								});
 							});
-						});
-					});	
+						});	
+					});
 				});
 			} else if (introjs._currentStep == 11) {
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
@@ -361,47 +392,6 @@ function introGuide() {
 				});
 			});
 		break;
-		/* case "paraConst":
-			$("#paraConst").removeClass("hide");
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-tooltip").css({"min-width": "280px"});
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<ul><li>After creating an object immediately the parameter constructor will call.</li>"
-				+ "<li><y>arg</y> value copied into <y>non_static_variable</y>.</li></ul>";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="abValues()">Next &#8594;</a>');
-				});
-			});
-		break;
-		case "s1Panel":
-			introjs.refresh();
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				$("#aPanelVal").removeClass("opacity00").effect( "highlight",{color: 'red'}, 500, function() {
-					setTimeout(function(){
-						introjs.nextStep();
-					}, 500);
-				});
-			});
-		break;
-		case "callMethod1":
-			$("#callMethod1").removeClass("hide");
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				setTimeout(function(){
-					introjs.nextStep();
-				}, 1500);
-			});
-		break;
-		case "displayMethod":
-			$("#displayMethod").removeClass("hide");
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				setTimeout(function(){
-					introjs.nextStep();
-				}, 1500);
-			});
-		break; */
 		case "cout":
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
@@ -412,7 +402,7 @@ function introGuide() {
 			});
 		break;
 		case "outputDiv":
-			if (introjs._currentStep == 4) {
+			if (introjs._currentStep == 8) {
 				$("#outputDiv").removeClass("opacity00");
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
@@ -482,13 +472,11 @@ function incrementCount() {
 function sendValues() {
 	$('.user-btn').remove();
 	$("#memoryDiv").addClass("z-index");
-	fromEffectWithTweenMax("#tooltipX", "#aPanelVal", function() {
-		fromEffectWithTweenMax("#tooltipX", "#bPanelVal", function() {
-			fromEffectWithTweenMax("#tooltipX", "#cPanelVal", function() {
-				$("#memoryDiv").removeClass("z-index");
-				$('.introjs-nextbutton').show();
-			});
-		});
+	flipEffect("#countVal", "1", function(){
+		fromEffectWithTweenMax("#tooltipX", "#countVal", function() {
+		$("#memoryDiv").removeClass("z-index");
+		$('.introjs-nextbutton').show();
+	});
 	});
 }
 
@@ -513,6 +501,25 @@ function flipEffect(selector, val, callBackFunction) {
 			}
 		}});
 	}});
+}
+
+function arrowReveal(lineId, callBackFunction) {
+	var x2 = $(lineId).attr('x2');
+	var y2 = $(lineId).attr('y2');
+	$(lineId).attr('x2', $(lineId).attr('x1'));
+	$(lineId).attr('y2', $(lineId).attr('y1'));
+	$(lineId).show();
+	TweenMax.to(lineId, 1, {
+		attr: {
+			x2: x2,
+			y2: y2
+	},
+		onComplete: function () {
+			if (typeof callBackFunction === 'function') {
+				callBackFunction();
+			}
+	 	}
+	});
 }
 
 function charAtEnd(elementId) {
@@ -591,7 +598,7 @@ function getStep(element, intro, position, tooltipClass) {
 				<pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
 <span id="class"><g>class</g> <blue>Sample</blue> {
-	<g>static</g> <red>int</red> count;
+	<span id="static"><g>static</g> <red>int</red> count;</span>
 	<g>public</g>:
 	<span id="defaultConst" class="hide">Sample() {
 		<span id="count1">count++;</span>
@@ -610,12 +617,12 @@ function getStep(element, intro, position, tooltipClass) {
 			</div>
 		</div>
 		<div class="col-xs-4">
-			<div id="memoryDiv">
+			<div id="memoryDiv" class="opacity00">
 				
 				<svg class="svg-css" height="230" width="100%">
-				<text text-anchor="middle" x="16%" y="11%" fill="gray" style="font-weight:bold;">s1</text>
-				<text text-anchor="middle" x="49%" y="6%" fill="gray" style="font-weight:bold;">s2</text>
-				<text text-anchor="middle" x="87%" y="9%" fill="gray" style="font-weight:bold;">s3</text>
+				<text id="s1" class="s1-s2-s3" text-anchor="middle" x="16%" y="11%" fill="gray" style="font-weight:bold;">s1</text>
+				<text id="s2" class="s1-s2-s3" text-anchor="middle" x="49%" y="6%" fill="gray" style="font-weight:bold;">s2</text>
+				<text id="s3" class="s1-s2-s3" text-anchor="middle" x="87%" y="9%" fill="gray" style="font-weight:bold;">s3</text>
 					<marker style="fill: gray;" orient="auto" markerHeight="5" markerWidth="5" refY="2.5" refX="4" id="arrow">
 		            	<path class="arrow" d="M0,0 L5,2.5 L0,5 Z"/>
 		           	</marker>
@@ -629,12 +636,13 @@ function getStep(element, intro, position, tooltipClass) {
 				    <ellipse cx="52%" cy="71%" rx="28%" ry="20%" style="fill:gray;stroke:gray;stroke-width:1" filter="url('#filter')"/>
     
 					<ellipse cx="52%" cy="71%" rx="28%" ry="20%" style="fill:white;stroke:gray;stroke-width:1"/>
-					<ellipse cx="51%" cy="74%" rx="16.5%" ry="8.6%" style="fill:yellow;stroke:gray;stroke-width:1"/>
+					<ellipse cx="52%" cy="72%" rx="15.5%" ry="8.6%" style="fill:yellow;stroke:gray;stroke-width:1"/>
 					
-					<text text-anchor="middle" x="51.3%" y="63%" fill="gray" style="font-weight:bold;">count</text>
-					<line id="arrow1" class="line" x1="16%" y1="11%" x2="36%" y2="55%"/>
-					<line id="arrow2" class="line" x1="49%" y1="7%" x2="49%" y2="51%"/>
-					<line id="arrow3" class="line" x1="86%" y1="10%" x2="64%" y2="54%">
+					<text text-anchor="middle" x="52.3%" y="61%" fill="gray" style="font-weight:bold;">count</text>
+					<text id="countVal" text-anchor="middle" x="52.3%" y="74%" fill="gray" style="font-weight:bold;">0</text>
+					<line id="arrow1" class="line" x1="16%" y1="11%" x2="36%" y2="54%"/>
+					<line id="arrow2" class="line" x1="49%" y1="7%" x2="50%" y2="50%"/>
+					<line id="arrow3" class="line" x1="85%" y1="10%" x2="64%" y2="52%"/>
 				</svg>
 			</div>
 		</div>

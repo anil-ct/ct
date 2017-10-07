@@ -16,9 +16,9 @@
 <script src="/js/typewriting.min.js" type="text/javascript"></script>
 <script src="/js/gs/TweenMax.min.js" type="text/javascript"></script>
 
-<!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
+<!-- <script src="../js/function-overloading-in-cpp.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/foc.min.js"></script>
+<script src="../js-min/fold1.min.js"></script>
 
 <title>Function overloading</title>
 <style type="text/css">
@@ -46,6 +46,7 @@
 	line-height: 1.42857;
 	word-break: break-all;
 	word-wrap: break-word;
+	padding: 6px;
 }
 
 .box-border {
@@ -97,6 +98,7 @@ div, span {
 
 .user-btn {
 	background-color: green;
+	margin: 0!important;
 }
 
 .z-index {
@@ -117,6 +119,7 @@ g {
 
 y {
 	color: yellow;
+	font-weight: bold; 
 }
 
 blue {
@@ -134,23 +137,24 @@ orange {
 </style>
 </head>
 <body>
-<script type="text/javascript">
 
+<script type="text/javascript">
 
 $(document).ready(function() {
 	functionOverloadingReadyFun();
 });
 
 </script>
+
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>function-overloading</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>Function Overloading in c++</h4>
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<div id="typingDiv1">
 				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00">Two or more functions having same name but different argument(s) are known as overloaded functions.</li>
-					<li id="li2" class="opacity00"><a href="https://en.wikipedia.org/wiki/Function_overloading" target="_blank">Function overloading</a> can be considered as an example of polymorphism feature in C++.</li>
+					<li id="li1" class="opacity00">Two or more functions having same name but different arguments are known as overloaded functions.</li>
+					<li id="li2" class="opacity00">Function overloading can be considered as an example of polymorphism feature in C++.</li>
 					<li id="li3" class="opacity00">The return type may be similar but type of the arguments and number of arguments must be different in function overloading.
 						&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span><br>
 					</li>
@@ -163,29 +167,27 @@ $(document).ready(function() {
 		<div id="code" class="opacity00">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>SampleOverloading</blue> {
-	<g>public</g>:
-		<span id="method1" class="color"><red>void</red> add(int a, int b) {
-			cout << <red>"sum = "</red> << <span id="aPlusB1">a + b</span> << <red>"\n"</red>;
-		}</span>
-		<span id="method2" class="color"><red>void</red> add(float a, float b) {
-			cout << <red>"sum = "</red> << <span id="aPlusB2">a + b</span> << <red>"\n"</red>;
-		}</span>
-		<span id="method4" class="color"><red>void</red> add(double a, double b) {
-			cout << <red>"sum = "</red> << <span id="aPlusB3">a + b</span> << <red>"\n"</red>;
-		}</span>
-		<span class="color"><red>void</red> add(int a, int b, int c) {
-			cout << <red>"sum = "</red> << <span id="aPlusB1">a + b + c</span> << <red>"\n"</red>;
-		}</span>
-		<span id="method3" class="color hide"><red>void</red> add(float t, float a, float b, float c) {
-			cout << <red>"sum = "</red> << a + b + c  << <red>"\n"</red>;
-		}</span>
-};
-<span id="main"><red>void</red> main() {
-	<span id="addFun1"><span class="green">add</span>(<span id="intVal1">10</span>, <span id="intVal2">12</span>);</span>
-	<span id="addFun2"><span class="green">add</span>(<span id="floatVal1">12.4</span>, <span id="floatVal2">16.7</span>);</span>
-	<span id="addFun3"><span class="green">add</span>(<span id="doubleVal1">20</span>, <span id="doubleVal2">40</span>);</span>
-	<span id="addFun4" class="hide"><span class="green">add</span>(<span id="float1Val1">8.2</span>);</span>
+	<span id="method1" class="color"><red>void</red> add(int a) {
+		cout << <red>"The integer value is = "</red> << <span id="aPlusB1">a</span> << <red>"\n"</red>;
+	}</span>
+	<span id="method2" class="color"><red>void</red> add(float a, float b) {
+		cout << <red>"Sum of two float values = "</red> << <span id="aPlusB2">a + b</span> << <red>"\n"</red>;
+	}</span>
+	<span id="method3" class="color"><red>void</red> add(double a, double b) {
+		cout << <red>"Sum of two double values = "</red> << <span id="aPlusB3">a + b</span> << <red>"\n"</red>;
+	}</span>
+	<span id="method4" class="color"><red>void</red> add(int a, int b, int c) {
+		cout << <red>"Sum of three integer values = "</red> << <span id="aPlusB4">a + b + c</span> << <red>"\n"</red>;
+	}</span>
+	<span id="method5" class="color hide"><red>void</red> add(float t, float a, float b, float c) {
+		cout << <red>"Sum of three float values = "</red> << a + b + c  << <red>"\n"</red>;
+	}</span>
+<span id="main"><red>int</red> main() {
+	<span id="addFun1" class="hide"><g>add</g>(<span id="intVal1">10</span>);</span>
+	<span id="addFun2" class="hide"><g>add</g>(<span id="floatVal1">12.4</span>f, <span id="floatVal2">16.7</span>f);</span>
+	<span id="addFun3" class="hide"><g>add</g>(<span id="intVal111">30</span>, <span id="intVal112">60</span>, <span id="intVal113">90</span>);</span>
+	<span id="addFun4" class="hide"><g>add</g>(<span id="doubleVal1">20.3</span>, <span id="doubleVal2">40.5</span>);</span>
+	<span id="addFun5" class="hide"><g>add</g>(<span id="float1Val1">8.2</span>);</span>
 }</span></pre>
 		</div>
 	</div>

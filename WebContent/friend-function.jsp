@@ -21,7 +21,7 @@
 
 <!-- <script src="/secure/lang/c++/js/function-overloading.js" type="text/javascript"></script> -->
 
-<script src="/secure/lang/c++/js-min/ff.min.js"></script>
+<script src="../js-min/ff.min.js"></script>
 
 <style type="text/css">
 
@@ -409,28 +409,6 @@ function introGuide() {
 					+ " addFive() return d.meter value.<br>";
 					typing($(".introjs-tooltiptext"), text, function() {
 						$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" onclick="meterVal()">Next &#8594;</a>');
-						
-						/* $(".introjs-tooltiptext").append(" <div id='flipMeter' class='display-inline-block relative ct-code-b-yellow'>"
-								+ "  d.meter = <div id='totalMeter' class='display-inline-block relative'>"
-								+ " <div id='tooltipMeter' class='display-inline-block relative'>meter</div>"
-								+ " + <div id='tooltip5' class='display-inline-block relative'>5</div></div>;</div>");
-						var l1 = $("#flipMeter").offset();
-						var l2 = $("#meterInit").offset();
-						var topLength = l2.top - l1.top;
-						var leftLength = l2.left - l1.left;
-						TweenMax.from("#flipMeter", 1, {top : topLength, left : leftLength, onComplete:function() {
-								flipEffect("#tooltipMeter", 0, function(){
-									flipEffect("#totalMeter", 5, function(){
-										$("#meterPanel").addClass("hide");
-										$("#memoryDiv").addClass("z-index");
-										$("#meterPanel1").removeClass("hide").addClass("animated zoomIn").one("animationend", function() {
-											$(this).removeClass("animated zoomIn");
-											$("#memoryDiv").removeClass("z-index");
-											$('.introjs-nextbutton').show();
-										}); 
-								});
-							});
-						}}); */
 					});
 				});
 			}
@@ -598,8 +576,8 @@ function fromEffectWithTweenMax(selector1, selector2, callBackFunction) {
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 		<div id="topDiv">
 			<div id="typingDiv1">
-				<ul style="font-family: monospace;">
-					<li id="li1" class="opacity00">A <a href="https://en.wikipedia.org/wiki/Friend_function" target="_blank">friend function</a> can be given special grant to access <g>privat</g>e and <g>protected</g> members. A friend function can be:
+				<ul>
+					<li id="li1" class="opacity00">A friend function can be given special grant to access <g>privat</g>e and <g>protected</g> members. A friend function can be:
 						<ul>
 							<li>A method of another class</li>
 							<li>A global function</li>
@@ -658,14 +636,6 @@ function fromEffectWithTweenMax(selector1, selector2, callBackFunction) {
 			  				</div>
 			  				<!-- <div class="text-center">1024</div> -->
 		  				</div>
-		  				
-		  				<!-- <div id="meterPanel1" class="hide">
-							<div class="panel panel-primary margin-bottom0">
-			    				<div class="panel-heading text-center padding0"><b>meter</b></div>
-			    				<div class="panel-body text-center"><span id="meterPanelVal1" class="">5</span></div>
-			  				</div>
-			  				<div class="text-center">1024</div>
-		  				</div> -->
 					</div>
     			</div>
   			</div>

@@ -17,9 +17,9 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="../js/sample-program-on-functions.js" type="text/javascript"></script> -->
+<script src="../js/sample-program-on-functions.js" type="text/javascript"></script>
 
-<script type="text/javascript" src="../js-min/spof.min.js"></script>
+<!-- <script type="text/javascript" src="../js-min/spof.min.js"></script> -->
 
 <style type="text/css">
 .margin-top-20 {
@@ -161,7 +161,7 @@ orange {
 <g>using namespace</g> std;
 <span id="funDec" class="hide"><red>int</red> addition(int, int);</span>
 <span id="main"><red>int</red> main()</span> {
-	<span id="varDec" class="hide"><red>int</red> a = <div class='display-inline-block' contenteditable='true' maxlength='1' id='aVal' spellcheck="false">5</div>, b = <div class='display-inline-block' contenteditable='true' maxlength='1' id='bVal' spellcheck="false">10</div>, sum = 0;</span>
+	<span id="varDec" class="hide"><red>int</red> a = <div class='display-inline-block' contenteditable='true' maxlength='1' id='aVal' spellcheck="false">5</div>, b = <div class='display-inline-block' contenteditable='true' maxlength='1' id='bVal' spellcheck="false">10</div>, sum = <span id="sumVal">0</span>;</span>
 	<span id="sum" class="hide">sum = <span id="callingFun">addition(a, b)</span>;</span>
 	<span id="printf" class="hide">cout << <red>"The sum of a + b is : "</red> << sum;</span>
 }
@@ -200,7 +200,7 @@ orange {
 						<div class="panel panel-primary margin-bottom0">
 			    			<div class="panel-heading text-center padding0"><b id="sum">sum</b></div>
 			    			<div class="panel-body text-center" style="padding: 5px;">
-			    				<span id="sumPanelVal" class="">0</span>
+			    				<span id="sumPanelVal" class="opacity00">0</span>
 			    			</div>
 			  			</div>
 			 		</div>
