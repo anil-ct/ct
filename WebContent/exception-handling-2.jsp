@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>exception-handling</title>
+<title>exception-handling2</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <link rel="stylesheet" href="/css/introjs.css">
@@ -38,6 +38,7 @@
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
+	height: 260px;
 }
 
 .creampretab {
@@ -60,7 +61,9 @@
     -moz-tab-size: 3;
     background-color: #fcf8e3;
     font-family: monospace;
-    font-size: 12px;
+    font-size: 10px;
+    padding: 5px;
+    line-height: 1.2;
 } 
     
 .box-border {
@@ -79,10 +82,6 @@
 	padding: 0;
 }
 
-.relative {
-	position: relative;
-}
-
 #outputDiv {
 	padding: 0;
 	z-index: 9999999;
@@ -98,7 +97,7 @@
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 475px;
+	height: 130px;
 	padding: 10px;
 	white-space: inherit;
 }
@@ -121,6 +120,10 @@
 
 .display-inline-block {
 	display: inline-block;
+}
+
+.relative {
+	position: relative;
 }
 
 .user-btn {
@@ -262,7 +265,7 @@ function introGuide() {
 					intro : "",
 					position : "right"
 				},{
-			 		element : "#xyz",
+			 		element : "#xy",
 					intro : "",
 					position : "right"
 				},{
@@ -274,51 +277,23 @@ function introGuide() {
 					intro : "",
 					tooltipClass : "hide"
 				},{
-			 		element : "#cin1",
-					intro : "",
-					position : "right"
-				},{
-			 		element : "#outputDiv",
-					intro : "",
-					position : "left"
-				},{
 			 		element : "#cout2",
 					intro : "",
-					tooltipClass : "hide"
-				},{
-			 		element : "#outputDiv",
-					intro : "",
-					tooltipClass : "hide"
-				},{
-			 		element : "#cin2",
-					intro : "",
 					position : "right"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
 					position : "left"
 				},{
-			 		element : "#insideTry",
+			 		element : "#try",
 					intro : "",
 					position : "right"
 				},{
-			 		element : "#zInit",
-					intro : "",
-					tooltipClass : "hide"
-				},{
-			 		element : "#callDivFun",
+			 		element : "#catch",
 					intro : "",
 					position : "right"
 				},{
-			 		element : "#divFun",
-					intro : "",
-					position : "right"
-				},{
-			 		element : "#zInit",
-					intro : "",
-					position : "right"
-				},{
-			 		element : "#cout3",
+			 		element : "#cout4",
 					intro : "",
 					tooltipClass : "hide"
 				},{
@@ -326,13 +301,17 @@ function introGuide() {
 					intro : "",
 					tooltipClass : "hide"
 				},{
-			 		element : "#insideCatch",
+			 		element : "#cout5",
 					intro : "",
-					position : "right"
+					tooltipClass : "hide"
 				},{
 			 		element : "#outputDiv",
 					intro : "",
 					tooltipClass : "hide"
+				},{
+			 		element : "#restart",
+					intro : "",
+					position : "right"
 				}
 			]});
 	
@@ -343,7 +322,6 @@ function introGuide() {
 		switch (elementId) {
 		case "topDiv":
 			$('.user-btn').removeClass("hide");
-			$("#code").addClass("opacity00");
 			$("#li1").fadeTo(500, 1, function () {
 				$("#li2").fadeTo(500, 1, function () {
 					$("#li3").fadeTo(500, 1, function () {
@@ -354,6 +332,7 @@ function introGuide() {
 		break;
 		case "tryCatch":
 			$('.user-btn').addClass("hide");
+			$("#tryCatch").removeClass("hide");
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				var text = "The general format of <y>try</y>, <y>catch</y>, <y>throw</y>.";
@@ -403,25 +382,51 @@ function introGuide() {
 				});
 			});
 		break;
-		case "xyz":
-			$("#xyz").removeClass("hide");
+		case "xy":
 			introjs.refresh();
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Declare int variables <y>x</y>, <y>y</y>. And initialize the double variable <y>z</y> with <y>0</y>. Create an object of class <y>MyException</y>.";
+				var text = "Declared two int variables <y>x</y>, <y>y</y>. And initialized with <y>10</y> and <y>0</y> respectively.";
 				typing($(".introjs-tooltiptext"), text, function() {
 					$('.introjs-nextbutton, .introjs-prevbutton').show();
 				});
 			});
 		break;
 		case "cout1":
-			$("#cout1").removeClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
 				setTimeout(function(){
 					introjs.nextStep();
 				}, 1000);
+			});
+		break;
+		case "cout2":
+			$("#cout2").removeClass("hide");
+			introjs.refresh();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "The <y>cout</y> display the output on the console.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$(".introjs-tooltiptext").append("<ul><li><div id='tooltipXY' class='display-inline-block relative opacity00'>"
+					+ "<y><div id='tooltipX' class='display-inline-block relative'>x</div> / <div id='tooltipY' class='display-inline-block relative'>y</div></y></div></li>"
+					+ "<li class='text opacity00'>This will gives an exception. And the program terminated abnormally.</li>");
+					var l1 = $("#tooltipXY").offset();
+					var l2 = $("#x-y").offset();
+					var topLength = l2.top - l1.top;
+					var leftLength = l2.left - l1.left;
+					$("#x-y").effect( "highlight",{color: 'red'}, 500, function() {
+						$("#tooltipXY").removeClass("opacity00");
+						TweenMax.from("#tooltipXY", 1, {top : topLength, left : leftLength, onComplete:function() {
+							flipEffect("#tooltipX", 10, function() {
+								flipEffect("#tooltipY", 0, function() {
+									$(".text").removeClass("opacity00");
+									$('.introjs-nextbutton, .introjs-prevbutton').show();
+								});
+							});
+						}});
+					});
+				});
 			});
 		break;
 		case "outputDiv":
@@ -439,178 +444,92 @@ function introGuide() {
 				introjs.refresh();
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "Enter <y>numerator</y>.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						charAtEnd("inputVal1");
-					});
-				});
-			} else if (introjs._currentStep == 12) {
-				introjs.refresh();
-				$('.introjs-nextbutton, .introjs-prevbutton').hide();
-				$(".introjs-helperLayer").one("transitionend", function() {
 					$("#outputText2").removeClass("opacity00");
-					setTimeout(function(){
-						introjs.nextStep();
-					}, 1000);
+					var text = "<ul><li>floating point exception</li> <li>The compiler evaluate the result of <y>division by zero</y> and there by terminates the "
+					+ "  execution of the program abnormally.</li>"
+					+ "<li>By using <y>try</y>, <y>catch</y> execute the program normally, if it is also generate an exception.</li></ul>"
+					typing($(".introjs-tooltiptext"), text, function() {
+						$('.introjs-nextbutton, .introjs-prevbutton').show();
+					});
 				});
 			} else if (introjs._currentStep == 14) {
-				$("#inputVal1").attr("contenteditable", "false");
+				introjs.refresh();
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
 				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "Enter <y>denominator</y>.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						charAtEnd("inputVal2");
-					});
-				});
-			} else if (printFlag) {
-				$('.introjs-nextbutton, .introjs-prevbutton').hide();
-				$("#callDivFun").removeClass("yellow");
-				$(".introjs-helperLayer").one("transitionend", function() {
-					$("#body").append("<div>division by 0 error occured</div>");
-					introjs.insertOption(introjs._currentStep + 1, getStep("#cout5", "", "", "hide"));
+					$("#outputText3").removeClass("opacity00");
 					setTimeout(function(){
 						introjs.nextStep();
 					}, 1000);
 				});
-			}  else if (lastPrintFlag) {
+			} else if (introjs._currentStep == 16) {
+				introjs.refresh();
 				$('.introjs-nextbutton, .introjs-prevbutton').hide();
-				$("#callDivFun").removeClass("yellow");
 				$(".introjs-helperLayer").one("transitionend", function() {
-					$("#body").append("<div>inside main</div>");
-					introjs.insertOption(introjs._currentStep + 1, getStep("#restart", "", "right"));
-					setTimeout(function(){
-						introjs.nextStep();
-						lastPrintFlag = false;
-					}, 1000);
-				});
-			} else {
-				$('.introjs-nextbutton, .introjs-prevbutton').hide();
-				$("#callDivFun").removeClass("yellow");
-				$(".introjs-helperLayer").one("transitionend", function() {
-					$("#body").append("<div>z = " + (($("#inputVal1").text()) / ($("#inputVal2").text())).toFixed(2) + "</div>");
+					$("#outputText4").removeClass("opacity00");
 					setTimeout(function(){
 						introjs.nextStep();
 					}, 1000);
 				});
 			}
 		break;
-		case "cin1":
-			$("#cin1").removeClass("hide");
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<y>cin</y> will read the input from the inputstream given by the user.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
-				});
-			});
-		break;
-		case "cout2":
-			$("#cout1").removeClass("hide");
+		case "try":
+			$("#try2catch").removeClass("hide");
+			$("#cout2").addClass("hide");
 			introjs.refresh();
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				setTimeout(function(){
-					introjs.nextStep();
-				}, 1000);
-			});
-		break;
-		case "cin2":
-			$("#cin2").removeClass("hide");
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "<y>cin</y> will read the input from the inputstream given by the user.";
+				var text = "Let us check the condition."
 				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
-				});
-			});
-		break;
-		case "insideTry":
-			$("#insideTry").removeClass("hide");
-			introjs.refresh();
-			$("[contenteditable=true]").attr("contenteditable", "false");
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "This is a <y>try block</y>. The statements which may expected to generate an error is written in this block.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
-				});
-			});
-		break;
-		case "zInit":
-			if (introjs._currentStep == 16) {
-				$("#zInit").removeClass("hide");
-				introjs.refresh();
-				$('.introjs-nextbutton, .introjs-prevbutton').hide();
-				$(".introjs-helperLayer").one("transitionend", function() {
-					setTimeout(function(){
-						introjs.nextStep();
-					}, 1000);
-				});
-			} else if (introjs._currentStep == 19) {
-				introjs.refresh();
-				$('.introjs-nextbutton, .introjs-prevbutton').hide();
-				$(".introjs-helperLayer").one("transitionend", function() {
-					$(".introjs-tooltip").css({"min-width": "200px"});
-					$("#callDivFun").addClass("yellow");
-					var text = "The return value is <y><b>" + (($("#inputVal1").text()) / ($("#inputVal2").text())).toFixed(2) + "</b></y>.<br>"
-					+ " is stored into z.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						$('.introjs-nextbutton').show();	
-					});
-				});
-			}
-		break;
-		case "callDivFun":
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			introjs.refresh();
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "Calling division(x, y) by using MyException class reference.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$('.introjs-nextbutton').show();	
-				});
-			});
-		break;
-		case "divFun":
-			$("#divFun").removeClass("hide");
-			$(".introjs-tooltip").css({"min-width": "300px"});
-			introjs.refresh();
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "x, y values copy into a, b respectively.<br>"
-					+ "Check the if condition i.e <y>b != 0</y><br>";
-				typing($(".introjs-tooltiptext"), text, function() {
-					$(".introjs-tooltiptext").append("<div id='tooltipIfCond' class='display-inline-block relative'>"
-							+ " <y><b><div id='tooltipB' class='display-inline-block relative'>b</div> != 0</b></y>"
-							+ "</div>"
-							+ "<div id='cndtnExp1'></div>");
-					var l1 = $("#tooltipIfCond").offset();
+					$(".introjs-tooltiptext").append("<ul><li><div id='tooltipY0' class='display-inline-block relative opacity00'>"
+							+ "<y><div id='tooltipY' class='display-inline-block relative'>y</div> == 0</y></li></ul>"
+							+ " <div id='cndtnExp1'></div></div>");
+					var l1 = $("#tooltipY0").offset();
 					var l2 = $("#ifCond").offset();
 					var topLength = l2.top - l1.top;
 					var leftLength = l2.left - l1.left;
-					TweenMax.from("#tooltipIfCond", 1, {top : topLength, left : leftLength, onComplete:function() {
-						flipEffect("#tooltipB", $("#inputVal2").text(), function() {
-							var text;
-							if (parseInt($("#inputVal2").text()) != 0) {
-								text = "is evaluates to <y>true</y>. So the if block will execute i.e return(a / b).";
-							} else {
-								text = "is evaluates to <red>false</red>. So, else will execute.";
-							}
-							typing($("#cndtnExp1"), text, function() {
-								if (parseInt($("#inputVal2").text()) != 0) {
-									$(".introjs-tooltipbuttons").append('<a class="introjs-button user-btn" style="display: inline-block;" onclick="animationInnerFor()">Next &#8594;</a>');
-								} else {
-									introjs.insertOption(introjs._currentStep + 1, getStep("#throwKey", "", "right"));
-									$(".introjs-nextbutton").removeClass("introjs-disabled").show();
-								}
+					$("#ifCond").effect( "highlight",{color: 'red'}, 500, function() {
+						$("#tooltipY0").removeClass("opacity00");
+						TweenMax.from("#tooltipY0", 1, {top : topLength, left : leftLength, onComplete:function() {
+							flipEffect("#tooltipY", 0, function() {
+								var text;
+								text = "is evaluates to <b><g>true</g></b>. So the <y>if</y> will execute.";
+								typing($("#cndtnExp1"), text, function() {
+									$(".introjs-tooltiptext").append("<ul><li><div id='tooltipXY' class='display-inline-block relative opacity00'>"
+											+ "<y><div id='tooltipX1' class='display-inline-block relative'>x</div> / <div id='tooltipY1' class='display-inline-block relative'>y</div></y></div></li>"
+											+ "<li class='text opacity00'>This will throw an exception. And the corresponding catch block will catch the exception.</li>");
+									var l1 = $("#tooltipXY").offset();
+									var l2 = $("#x-y1").offset();
+									var topLength = l2.top - l1.top;
+									var leftLength = l2.left - l1.left;
+									$("#x-y1").effect( "highlight",{color: 'red'}, 500, function() {
+										$("#tooltipXY").removeClass("opacity00");
+										TweenMax.from("#tooltipXY", 1, {top : topLength, left : leftLength, onComplete:function() {
+											flipEffect("#tooltipX1", 10, function() {
+												flipEffect("#tooltipY1", 0, function() {
+													$(".text").removeClass("opacity00");
+													$('.introjs-nextbutton, .introjs-prevbutton').show();
+												});
+											});
+										}});
+									});
+								});
 							});
-						});
-					}});
+						}});
+					});
 				});
 			});
 		break;
-		case "cout3":
-			$("#cout3").removeClass("hide");
+		case "catch":
+			introjs.refresh();
+			$('.introjs-nextbutton, .introjs-prevbutton').hide();
+			$(".introjs-helperLayer").one("transitionend", function() {
+				var text = "catch block will catch the exceptions thrown by the try block.";
+				typing($(".introjs-tooltiptext"), text, function() {
+					$('.introjs-nextbutton, .introjs-prevbutton').show();
+				});
+			});
+		break;
+		case "cout4":
 			introjs.refresh();
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
@@ -618,58 +537,14 @@ function introGuide() {
 					introjs.nextStep();
 				}, 1000);
 			});
-		break;
-		case "insideCatch":
-			if (parseInt($("#inputVal2").text()) != 0) {
-				$("#insideCatch").removeClass("hide");
-				$("#cout4").removeClass("hide");
-				introjs.refresh();
-				$('.introjs-nextbutton, .introjs-prevbutton').hide();
-				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "Here the catch block will not execute bacause there is no exception raised in the try block.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						introjs.insertOption(introjs._currentStep + 1, getStep("#cout5", "", "", "hide"));
-						$(".introjs-nextbutton").removeClass("introjs-disabled").show();
-					});
-				});
-			} else {
-				printFlag = true;
-				$("#insideCatch").removeClass("hide");
-				$("#cout4").removeClass("hide");
-				introjs.refresh();
-				$('.introjs-nextbutton, .introjs-prevbutton').hide();
-				$(".introjs-helperLayer").one("transitionend", function() {
-					var text = "The catch block will execute.";
-					typing($(".introjs-tooltiptext"), text, function() {
-						introjs.insertOption(introjs._currentStep + 1, getStep("#outputDiv", "", "", "hide"));
-						$(".introjs-nextbutton").removeClass("introjs-disabled").show();
-					});
-				});
-			}
 		break;
 		case "cout5":
-			$("#cout5").removeClass("hide");
-			lastPrintFlag = true;
-			printFlag = false;
 			introjs.refresh();
 			$('.introjs-nextbutton, .introjs-prevbutton').hide();
 			$(".introjs-helperLayer").one("transitionend", function() {
-				introjs.insertOption(introjs._currentStep + 1, getStep("#outputDiv", "", "", "hide"));
 				setTimeout(function(){
 					introjs.nextStep();
 				}, 1000);
-			});
-		break;
-		case "throwKey":
-			$("#throwKey").removeClass("hide");
-			introjs.refresh();
-			$('.introjs-nextbutton, .introjs-prevbutton').hide();
-			$(".introjs-helperLayer").one("transitionend", function() {
-				var text = "The key word throw is used to throw an exception. And the corresponding catch will catch the exception.";
-				typing($(".introjs-tooltiptext"), text, function() {
-					introjs.insertOption(introjs._currentStep + 1, getStep("#insideCatch", "", "right"));
-					$(".introjs-nextbutton").removeClass("introjs-disabled").show();
-				});
 			});
 		break;
 		case "restart":
@@ -693,35 +568,6 @@ function introGuide() {
 	$('.introjs-bullets').hide();
 }
 	
-function animationInnerFor() {
-	$('.introjs-nextbutton').hide();
-	$(".user-btn").remove();
-	$(".introjs-tooltiptext").empty();
-	var text = "The return value <div id='tooltipReturn' class='display-inline-block relative opacity00'>"
-		+ " <y><b>return (<div id='tooltipReturnVal' class='display-inline-block relative'>"
-		+ " <div id='tooltipReturnA' class='display-inline-block relative'>a</div>"
-		+ " / "
-		+ " <div id='tooltipReturnB' class='display-inline-block relative'>b</div>"
-		+ "</b></y>"
-		+ "</div>)</div>";
-	typing($(".introjs-tooltiptext"), text, function() {
-		var l1 = $("#tooltipReturn").offset();
-		var l2 = $("#return").offset();
-		var topLength = l2.top - l1.top;
-		var leftLength = l2.left - l1.left;
-		$("#tooltipReturn").removeClass("opacity00");
-		TweenMax.from("#tooltipReturn", 1, {top : topLength, left : leftLength, onComplete:function () {
-			flipEffect("#tooltipReturnA", $("#inputVal1").text(), function() {
-				flipEffect("#tooltipReturnB", $("#inputVal2").text(), function() {
-					flipEffect("#tooltipReturnVal", (($("#inputVal1").text()) / ($("#inputVal2").text())).toFixed(2), function() {
-						$('.introjs-nextbutton').show();
-					});
-				});
-			});
-		}});
-	});
-}
-
 function typing(selector, text, callBackFunction) {
 	$(selector).typewriting(text, {
 		"typing_interval" : typingSpeed,
@@ -806,25 +652,21 @@ function getStep(element, intro, position, tooltipClass) {
 </div>
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
 <div class="col-xs-offset-1 col-xs-10 margin-top-20">
-	<div id="topDiv" class="hide">
+	<div id="topDiv">
 		<ul>
 			<li id="li1" class="opacity00">
-				With try catch blocks, the code for error handling becomes separate from the normal flow.
+				Exceptions are runtime errors or unusual conditions that a program may encounter while executing.
 			</li>
 			<li id="li2" class="opacity00">
-				 A function can specify the exceptions that it throws using the throw keyword.
-				 The caller of this function must handle the exception in some way (either by specifying it again or catching it).
+				The mechanism of handling exception is known as exception handling.  
 			</li>
 			<li id="li3" class="opacity00">
-				Both basic types and objects can be thrown as exception. We can create a hierarchy of exception objects,
-			 	group exceptions in namespaces or classes, categorize them according to types.
+				With try catch blocks, the code for error handling becomes separate from the normal flow.
 			 	&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span>
 			</li>
 		</ul>
-	</div>
-</div>
-	<div class="col-xs-offset-4 col-xs-4 margin-top-20">
-<pre id="tryCatch" class="creampretab"><span id="tryBlock"><g>try</g> {
+		<div id="try-catch" class="col-xs-offset-4 col-xs-4 margin-top-10">
+<pre id="tryCatch" class="creampretab1 hide"><span id="tryBlock"><g>try</g> {
 	-----
 	-----
 	-----
@@ -840,40 +682,31 @@ function getStep(element, intro, position, tooltipClass) {
 </pre>
 </div>
 	</div>
+</div>
+</div>
 	
-
 <div class="col-xs-12 margin-top-20">
 	<div class="col-xs-offset-1 col-xs-5">
 		<div id="code" class="hide">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<g>class</g> <blue>MyException</blue> {
-	<g>public</g>:
-		<span id="divFun" class="hide"><red>double</red> division(int a, int b) {
-			if( <span id="ifCond">b != 0</span>)  {
-				<span id="return" class="">return(a / b);</span>
-			} else {
-				<span id="throwKey">throw b;</span>
-			}
-		}</span>
-};
 <red>int</red> main() {
-	<span id="xyz" class="hide"><red>int</red> x, y;
-	<red>double</red> z = 0;
-	MyException me;</span>
-	<span id="cout1" class="hide">cout << <red>"enter numerator value : "</red>;</span>
-	<span id="cin1" class="hide">cin >> x;</span>
-	<span id="cout2" class="hide">cout << <red>"enter denominator value : "</red>;</span>
-	<span id="cin2" class="hide">cin >> y;</span>
-	<span id="insideTry" class="hide"><g><b>try</b></g> {
-		<span id="zInit">z = <span id="callDivFun">me.division(x, y);</span></span>
-		<span id="cout3">cout << <red>"z = "</red> << z << <red>"\n"</red>;</span>
-	}</span> <span id="insideCatch" class="hide"><g><b>catch</b></g> (int y) {
-    	<span id="cout4" class="hide">cout << <red>"division by 0 error is occured\n"</red>;</span>
-		}</span>
-	<span id="cout5" class="hide">cout << <red>"inside main"</red>;</span>
+	<span id="xy" class=""><red>int</red> x = 10, y = 0;</span>
+	<span id="cout1" class="">cout << <red>"Before exception, inside main()\n"</red>;</span>
+	<span id="cout2" class="">cout << <red>"division value = "</red> << (<span id="x-y">x / y</span>);</span>
+	<span id="try2catch" class="hide"><span id="try" class=""><g>try</g> {
+		if(<span id="ifCond">y == 0</span>) {
+			<span id="cout3" class="">cout << <red>"division value = "</red> << (<span id="x-y1">x / y</span>);</span>
+		} else {
+			<g>throw</g> y;
+		}
+	}</span>
+	<span id="catch" class=""><g>catch</g> (int y) {
+    	<span id="cout4" class="">cout << <red>"division by 0 error is occured\n"</red>;</span>
+	}</span></span>
+	<span id="cout5" class="">cout << <red>"After exception, inside main()\n"</red>;</span>
 }
-</pre>
+</pre>	
 		</div>
 	</div>
 	<div class="col-xs-5">
@@ -882,8 +715,10 @@ function getStep(element, intro, position, tooltipClass) {
 				<span class="title">Output</span>
 			</div>
 			<div class="output-console-body" id="body">
-			<div id="outputText1" class="opacity00 display-inline-block">enter numerator value :&nbsp; </div><div class='display-inline-block input-val' contenteditable='true' maxlength='4' id='inputVal1' class="padding5" spellcheck="false"></div><br>
-			<div id="outputText2" class="opacity00 display-inline-block">enter denominator value :&nbsp; </div><div class='display-inline-block input-val' contenteditable='true' maxlength='4' id='inputVal2' class="padding5" spellcheck="false"></div>
+				<div id="outputText1" class="opacity00 display-inline-block">Before exception, in main()</div><br>
+				<div id="outputText2" class="opacity00 display-inline-block">Floating point exception</div><br>
+				<div id="outputText3" class="opacity00 display-inline-block">Division by 0 error is occurred</div><br>
+				<div id="outputText4" class="opacity00 display-inline-block">After exception, in main()</div>
 			</div>
 		</div>
 	</div>
@@ -892,4 +727,4 @@ function getStep(element, intro, position, tooltipClass) {
 	<span class="btn btn-warning btn-sm opacity00" id="restart">Restart</span>
 </div>
 </body>
-</html>
+</html>	

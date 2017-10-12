@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>exception-handling</title>
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" href="/css/jquery-ui.css">
 <link rel="stylesheet" href="/css/introjs.css">
@@ -19,10 +18,11 @@
 <script type="text/javascript" src="/js/typewriting.min.js"></script>
 <script type="text/javascript" src="/js/gs/TweenMax.min.js"></script>
 
-<!-- <script src="../js/exception-handling.js" type="text/javascript"></script> -->
+<!-- <script src="../js/catch-all-exceptions.js" type="text/javascript"></script> -->
 
-<script src="../js-min/eh.min.js"></script>
+<script src="../js-min/cae.min.js"></script>
 
+<title>catch-all-exceptions</title>
 <style type="text/css">
 
 .margin-top-20 {
@@ -33,12 +33,11 @@
 	margin-top: 10px;
 }
 
-
 #topDiv {
     border: 1px solid gray;
     border-radius: 8px;
     padding: 10px;
-	height: 260px;
+    background-color: white;
 }
 
 .creampretab {
@@ -56,16 +55,6 @@
 	word-wrap: break-word;
 }
 
-.creampretab1 {
-	tab-size: 2;
-    -moz-tab-size: 3;
-    background-color: #fcf8e3;
-    font-family: monospace;
-    font-size: 10px;
-    padding: 5px;
-    line-height: 1.2;
-} 
-    
 .box-border {
 	border: 2px solid gray;
 	border-radius: 8px;
@@ -97,13 +86,13 @@
 	border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	font-size: 13px;
-	height: 130px;
+	height: 125px;
 	padding: 10px;
 	white-space: inherit;
 }
 
 .padding5 {
-	padding: 10px;
+	padding: 5px;
 }
 
 [contenteditable=true] {
@@ -118,12 +107,12 @@
 	color: #0f0;
 }
 
-.display-inline-block {
-	display: inline-block;
-}
-
 .relative {
 	position: relative;
+}
+
+.display-inline-block {
+	display: inline-block;
 }
 
 .user-btn {
@@ -172,96 +161,71 @@ orange {
 	color: #BC7A00;
 }
 
-.circle-css {
-	border: 1px solid;
-	border-radius: 50%;
-	padding: 2px;
-	position: relative;
-	z-index: 10000001 !important;
-	background-color: #ff0066;
-	font-weight: bold;
-}
 </style>
 </head>
 <body>
 <script type="text/javascript">
 
 $(document).ready(function() {
-	exceptionHandlingReadyFun();
+	catchAllExceptionsReadyFun();
 });
 
 </script>
 <div class='text-center margin-top-20'>
-	<h4 class='label ct-demo-heading' id='demoTitle'>Exception Handling</h4>
+	<h4 class='label ct-demo-heading' id='demoTitle'>catch-all handler</h4>
 </div>
 <div class="col-xs-12 text-center margin-top-10">
 	<span class="btn btn-warning btn-sm opacity00" id="restart">Restart</span>
 </div>
-<div class="col-xs-offset-1 col-xs-10">
 <div class="col-xs-offset-1 col-xs-10 margin-top-10">
-	<div id="topDiv">
-		<ul>
-			<li id="li1" class="opacity00">
-				<b>Exceptions</b> are runtime errors or unusual conditions that a program may encounter while executing.
-			</li>
-			<li id="li2" class="opacity00">
-				The mechanism of handling exception is known as <b>exception handling</b>.  
-			</li>
-			<li id="li3" class="opacity00">
-				With <b>try</b> and <b>catch</b> blocks, the code for error handling becomes separate from the normal flow.
-			 	&emsp; <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span>
-			</li>
-		</ul>
-		<div id="try-catch" class="col-xs-offset-4 col-xs-4 margin-top-10">
-<pre id="tryCatch" class="creampretab1 hide"><span id="tryBlock"><g>try</g> {
-	-----
-	-----
-	-----
-	<span id="throw"><g>throw</g> exception;</span>
-	-----
-	-----
-}</span>
-<span id="catchBlock"><g>catch</g>(arguments) {
-	-----
-	-----
-	-----
-}</span>
-</pre>
-</div>
+		<div id="topDiv">
+			<div id="typingDiv1">
+				<ul>
+					<li id="li1" class="opacity00">
+						A catch-all handler works just like a normal catch block, except that instead of using a specific type to catch, it uses the ellipses operator
+						 (…) as the type to catch. 
+						 <span class='user-btn introjs-button' onclick='introjs.nextStep()'>Next &#8594;</span><br>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</div>
-</div>
-</div>
-	
 <div class="col-xs-12 margin-top-20">
 	<div class="col-xs-offset-1 col-xs-5">
-		<div id="code" class="hide">
+		<div id="code" class="">
 <pre class="creampretab"><orange>#include</orange> <span style="color: #408080;">&lt;iostream&gt;</span>
 <g>using namespace</g> std;
-<red>int</red> main() {
-	<span id="xy" class=""><red>int</red> x = 10, y = 0;</span>
-	<span id="cout1" class="">cout << <red>"Before exception, inside main()\n"</red>;</span>
-	<span id="cout2" class="">cout << <red>"division value = "</red> << (<span id="x-y">x / y</span>);</span>
-	<span id="try2catch" class="hide"><span id="try" class=""><g>try</g> {
-		<span id="cout3" class="">cout << <red>"Division value = "</red> << (<span id="x-y1">x / y</span>) << <red>"\n"</red>;</span>
+<span id="main"><red>int</red> main() {
+	<span id="intX" class="">int x;</span>
+	<span id="cout1" class="">cout << <red>"Enter a number : "</red>;</span>
+	<span id="cin" class="">cin >> x;</span>
+	<span id="try" class=""><g>try</g> {
+		<span id="ifElseIf"><span id="if">if (x == 1)</span>
+			<span id="throw1"><g>throw</g> x;</span>
+		<span id="elseIf1">else if (x == 0)</span>
+			<span id="throw2"><g>throw</g> 'A';</span>
+		<span id="elseIf2">else if (x == 2)</span>
+			<span id="throw3"><g>throw</g> 2.5;</span></span>
 	}</span>
-	<span id="catch" class=""><g>catch</g> (int y) {
-    	<span id="cout4" class="">cout << <red>"Division by 0 error is occured\n"</red>;</span>
-	}</span></span>
-	<span id="cout5" class="">cout << <red>"After exception, inside main()\n"</red>;</span>
-}
-</pre>	
+	<span id="catch" class=""><g>catch</g>(...) {
+	    <span id="cout2" class="">cout << <red>"This is generic catch to all exceptions."</red>;</span>
+	}</span>
+}</span>
+</pre>
 		</div>
 	</div>
 	<div class="col-xs-5">
-		<div id="outputDiv" class="hide">
+		<div id="outputDiv" class="opacity00">
 			<div class="output-console-title-bar">
 				<span class="title">Output</span>
 			</div>
 			<div class="output-console-body" id="body">
-				
+			<div id="outputText" class="opacity00 display-inline-block">Enter a number :&nbsp; </div><div class='display-inline-block input-val' contenteditable='true' maxlength='0' id='inputVal' class="padding5" spellcheck="false"></div>
 			</div>
 		</div>
 	</div>
 </div>
+</body>
+</html>
 </body>
 </html>
